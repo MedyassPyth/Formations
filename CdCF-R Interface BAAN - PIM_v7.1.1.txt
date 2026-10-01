@@ -1,0 +1,741 @@
+
+SPECIFICATIONS GENERALES D’INTERFACE
+BAAN / MQSERIES / PIM
+
+
+
+
+Rôles	Fonctions	Noms /Attaches	Dates
+Rédacteur	Etudes Informatiques	Patrick YGOUT V/ FLVIA	11/12/2013
+
+ 
+Tableau des indices de révision
+
+Version	Date Edition	Nature des évolutions
+0.0 	03-08-2005	Création du document
+1.0	25-01-2006	Gestion des rejets de création des OR, ITR et RM liés à un envoi d’OF BAAN
+( Dont rejet des quantités différentes de ‘1’ )
+Relance manuelle depuis BAAN des OR rejetés
+Créations globales et synchronisées entre TRAM et GIT
+2.0	22-02-2006	Mise à jour du document suite au document de synthèse issu de la réunion du 21/02 (L. Hervault, E. Malagnoux, P. Jarosinski, N. Pistenon, P. Jager, A. Végnant) :
+Les titres des messages et les destinataires ont été légèrement modifiés par rapport aux spécifications de réalisation MOE
+Un bilan global de toutes les informations reçues dans la BAL BT devra être réalisé
+3.0	09-05-2006	Décision de créer les mesures à blanc et de leur associer les phases de l’ITR.
+3.1	31-05-2006	A l’appel du processus GIT pour création de l’ ITR : Rajout d’un paramètre :
+Type de composant . ( AO01-TYPECT de la référence OD associée à l’OR).
+4.0	29-06-2006	Restructuration des traitements d’intégration, suite aux contraintes de MAJ entre TRAM et GIT : 
+Le découpage est justifié par le fait que les MAJ de TRAM et GIT se font sur 2 instances oracle  différentes et que GIT ne peut donc pas mettre à jour les phases de la COOR avant que TRAM est exécuté le commit de son côté. Le découpage assure la cohérence des données dans les 2 applications et chacune des parties pourra être relancée en cas de problème.
+La partie 1 ( GOTxyPCN ) pourra être relancé depuis Mqséries :  L’enregistrement de la table MQREC est positionné à traité en fin de traitement GOTxyPCN .
+La partie 2 ( GOTxyPEN ) pourra être relancé depuis une DDT : GOTPEN .
+Le choix d’avoir 2 scripts différents plutôt que d’avoir 2 niveaux dans d’un même script permet d’identifier rapidement le processus de relance en cas d’anomalie..
+5.0	03-07-2006	Rajout d’une table et d’un processus afin de prendre en compte le fait que Mqséries envoie un appel PIM dès qu’il y a au moins un enregistrement à traiter ( mais plusieurs enregistrements à traiter sont possibles ). 
+Cette table servira à l’ensemble des interfaces TRAM – Mqséries ) : 
+PIMCMT00 – CMTPIM00 et BAPIM100
+5.1	04-07-2006	Rajout du traitement des serials BAAN  pour les génériques à matricules BAAN à renuméroter :
+Existence du générique en table GMR 
+Rechercher en table MAT du début de matricule :
+Renumérotation si trouvé en table « MAT »
+Rejet si non trouvé en table « MAT » et prévu en table « GMR »
+5.2	06-09-2006	Modification des processus décrits dans GOTxyPPN et GOTxyPQN afin d’assurer la cohérence fonctionnelle ( commit – rollback ) entre les mises à jour TRAM et GIT.
+6.0	05/02/2007	Version intégrant les modifications en MCO :
+Nouvelles typologies d’article : Gesfic 970
+6.1	20/06/2007	Prise en compte du gesfic 1186 AP :
+Tout composant de type « alternative » se voit affecter les définitions les plus pénalisantes des solutions ( validées ou non validées par la qualité ) .
+6.2
+	11/12/2013	Gesfic 1946 : Modification des conditions d’envois des matricules composé :
+•	L’envoi à COMETE/TRAPE est effectué :
+	Si la référence article qui lui est associée n’est pas en table « KIT ».
+•	L’envoi à Casq-it est effectué :
+	Systématiquement pour tous les matricules à ITR.
+6.3
+( )	10/01/2014	Gesfic 1946 : Modification des conditions d’envois des matricules composé :
+•	L’envoi à COMETE/TRAPE est effectué :
+	Si la référence article qui lui est associée n’est pas en table « KIT ».
+•	L’envoi à Casq-it est effectué :
+	Systématiquement pour tous les matricules à ITR.
+6.4	16/11/2014	Mise en conformité de la spécification avec l’existant ( COMETE remplacé par TRAPE )
+7.0	21/03/2017	Gestfic 2429 : transcodification des types de composants de ‘Z’ à ‘X’ présents dans la table applicative ‘DEF’
+7.1
+
+
+7.1.1	13/07/2023
+
+
+24/08/2023	FEB 11165 : Création OF de SAP vers PIM (I-194 PIM) :
+•	Ajout de la division
+
+FEB 10909 : SAP/PIM : Interface articles I-136
+
+
+ 
+SOMMAIRE
+1.	SPECIFICATION FONCTIONNELLE :	6
+2.	DOCUMENTS ASSOCIES  :	6
+3.	RECEPTION PIM DE L’INTERFACE BAAN	6
+4.	PRINCIPES DES TRAITEMENTS PIM-OF :	6
+DESCRIPTION DU FICHIER LIVRE PAR BAAN :	6
+IDENTIFICATION DES BAL A AVERTIR :	7
+REJETS POTENTIELS A LA RECEPTION DES OR DE BAAN :	8
+5.	SPECIFICATION DE REALISATION TRAM :	9
+PROCESSUS ATTACHES A MQSERIES :	9
+ENCHAINEMENT DES PROCESSUS APPLICATIFS :	10
+DECOUPAGE DE L’INTEGRATION :	11
+Appel PIM :	11
+PHASE 1 : Lecture de la table mqrec par BAPIM100.ksh :	11
+PHASE 2 : Partie 1 : GOTxyPPN	11
+Contrôles à vérifier avant créations TRAM et GIT :	11
+Contrôles DTM – TRAM :	11
+Contrôles GIT attendus :	12
+Gestion du retour des contrôles GIT :	12
+Création de l’OR et de sa composition à blanc :	13
+Création du segment OR : BH01	13
+Création du segment OF : BH04	13
+Création du segment OROF : BH05	14
+Création du segment ORD : BH02	14
+Création du segment COOR : VL05	14
+Demande GIT des FRM associés a l’ITD :	18
+Création d’un RM pour chacun des FRM rattachés à l’ITD :	18
+Incrémentation du compteur de RM : AT04	18
+Création du segment RM : BP01	18
+Création du segment ORRM : BP04	18
+Appel du processus GIT pour création de l’ ITR :	18
+Retour du processus GIT de création de l’ ITR :	19
+Envoi TRAPE de l’OR composé :	19
+Envoi Casq-it l’OR composé :	19
+Suppression  de l’enregistrement traité dans la table PM11 :	19
+PHASE 2 : Partie 2 : GOTxyPQN	19
+BOUCLE SUR LES RM de l’OR :	19
+Pour chacun des RM, remonter sur le FRM et parcourir les GM du FRM :	19
+Appel GIT pour avoir la phase associée au SIGGM :	19
+Au retour GIT création des mesures à blanc associées au SIGGM :	20
+Appel du processus GIT pour complémentation COOR :	20
+Retour du processus GIT de complémentation COOR :	20
+COMPLEMENTATION COOR ET CREATION DES MESURES PAR DDT : CODE OPERATION « GOTPQN »	21
+BOUCLE SUR LES RM de l’OR :	21
+Pour chacun des RM, remonter sur le FRM ET parcourir les GM du FRM :	21
+Appel GIT pour avoir la phase associée au SIGGM :	21
+Au retour GIT création des mesures à blanc associées au SIGGM :	21
+Appel du processus GIT pour complémentation COOR :	21
+Retour du processus GIT de complémentation COOR :	21
+6.	ANNEXE 1 : EXEMPLE DE LA TABLE APPLICATIVE GMR	22
+7.	ANNEXE 2 : EXEMPLE DE LA TABLE APPLICATIVE MAT :	23
+8.	EVOLUTION EN MCO :	24
+GESFIC 970 : NOUVELLES TYPOLOGIES D’ARTICLES	24
+GESFIC 971 : INTRODUCTION DES REPERES NON CONNUS DE PM :	24
+
+ 
+1.	SPECIFICATION FONCTIONNELLE :
+2.	DOCUMENTS ASSOCIES  :
+FEB BAAN – PIM FLVI 00047-2005 : Mise en place des l’interfaces BAAN – TRAM 
+3.	RECEPTION PIM DE L’INTERFACE BAAN
+4.	PRINCIPES DES TRAITEMENTS PIM-OF :
+A partir d’informations reçues de Baan, PIM doit générer s’il le peut:
+- la COOR à blanc
+- l’ITR 
+- La complétude de la COOR (phases, IHM, …)
+- Les RM pour les FRM associés à l’ITD
+Si PIM ne le peut pas, PIM engendre un message d’avertissement vers une ou plusieurs Boites aux Lettres (BAL) Lotus Notes, aucune création n’est générée et le processus devra être relancé depuis Baan. 
+DESCRIPTION DU FICHIER LIVRE PAR BAAN :
+Ecran Baan :
+ 
+Le produit est conservé (intermédiaire de calcul du préfixe matricule) mais pas envoyé à PIM
+
+Description contenu
+ Libellé de l’info 	Nom infos Table  	Position	Longueur	     Règle de gestion	 Libellé de l’info 
+Nom de l’interface		1	8c	BAPIM100	Nom de l’interface
+Société		9	3c	920	Société
+Référence de gestion	Tispe561.rcmo	12	16 c	Configuration montée	Référence de gestion
+Code gamme	Tisfc001.opro	28	  2 c		Code gamme
+N° d’OF	Tispe561.pdno	30	  6 c		N° d’OF
+Matricule		36	 10 c	Concaténation préfixe et séquence	Matricule
+Quantité lancée 	Tisfc001.qrdr	46	16 c		Quantité lancée OF
+
+IDENTIFICATION DES BAL A AVERTIR :
+Ce sont des BAL génériques de Lotus Notes. Les personnes autorisées à y accéder sont gérées dans Lotus.
+
+pour l'AP
+	6 boites aux lettres : méth1, méth2, BT1, BT2, lanceur1, lanceur2
+pour l'opérationnel
+10 boites aux lettres : méthodes centrales, méthodes CFM, méthodes MFP, méthodes militaire, BT CFM, BT MFP, BT militaire, lanceur CFM, lanceur MFP, lanceur militaire
+
+Le destinataire et le contenu du message dépend de la typologie du rejet (cf. § 4) et de la REFOD reçue de Baan :
+-	Si lignes produits 01, 02, 03, 06, 09, 10, 16, 20, E1, F1, J1, L5, P1 : CFM
+-	Si lignes produits 65, 90, 97 : MFP
+-	Si ligne produit 29 : militaire
+-	Si lignes produits 43, 46 : méthodes centrales quelque soit le motif de rejet
+-	Si REFOD est une référence EMS ou KIT, lanceur CFM  quelque soit le motif de rejet
+
+Pour les EDD, ces destinataires sont gérés dans la table ODM, à la maille générique-produit, et sont modifiables (opérations réservées à un administrateur) : 
+
+
+ 
+
+
+Pour les EMS et kits, une BAL sera définie pour chacun des 2 types de produits (à confirmer), qui recevront tous les messages de rejet.
+ 
+REJETS POTENTIELS A LA RECEPTION DES OR DE BAAN :
+Alimenter les titres de messages ( 80 caractères maxi , limite Notes) en fonction des cas, permettant d’utiliser les mêmes BAL :
+XX: ET si environnement études (D)
+FT si environnement formation (G)
+AP si environnement assurance produit (W)
+OP si environnement opérationnel ( )
+Pas de contenu dans les messages
+
+
+Cas N°1 : OR déjà créé dans TRAM, avertir BT et lanceur.
+XX:OF BAAN’NUMOF ‘: MATRICULE‘MATOR     ‘DEJA ENVOYE A PIM
+Exemple : OP:OF BAAN 704317: MATRICULE 9F001760   DEJA ENVOYE A PIM
+
+Cas N°2 : EDD ou OD Kit / EMS inexistant, avertir lanceur et BT
+XX:OF BAAN’NUMOF ‘: REFERENCE’REFOD           ‘INEXISTANT DANS PIM
+
+Cas N°3 : EDD non gelé, avertir BT, copie lanceur
+XX:OF BAAN’NUMOF ‘: EDD’REFOD           ‘ NON GELE DANS PIM
+
+Cas N°4 : Pas d’applicabilité de la LRD à une ITD, avertir méthodiste, copie lanceur
+XX:OF BAAN’NUMOF ‘: NOM. REP/QTE DE’REFOD           ‘SANS ITD ASSOCIEE DANS PIM
+
+ET:OF BAAN 110306    NOM. REP/QTE DE 20R022A0430      SANS ITD ASSOCIEE
+
+Cas N°5 : Pas d’applicabilité en date de la LRD à une ITD, avertir méthodiste, copie lanceur
+XX:OF BAAN’NUMOF ‘: NOM. REP/QTE DE’REFOD           ‘NON APPLICABLE EN DATE PIM
+
+Cas N°6 : Le type de gamme n’est pas associé à l’ ITD applicable à la LRD, avertir méthodiste, copie lanceur
+XX:OF BAAN’NUMOF ‘: REF’REFOD           ‘CODGAM’99‘NON LIE A ITD’12345678901234‘ 
+....:....1....:....2....:....3....:....4....:....5....:....6....:....7....:....8
+
+Cas N°7 : La quantité est différente de ‘1’, avertir lanceur.
+XX:OF BAAN’NUMOF ‘: REFERENCE’REFOD           ‘QUANTITE <> 1
+
+
+Cas N°8 : Matricule BAAN à renuméroter sans correspondance en table MAT, avertir BT, copie lanceur.
+XX:OF MATRICULE BAAN XXXXXXXXXX REJETE - CAUSE : PREFIXE INCONNU DE TRAM
+ 
+5.	SPECIFICATION DE REALISATION TRAM :
+PROCESSUS ATTACHES A MQSERIES :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1)	OF de BAAN : Mqséries appelle PIM (BAPIM100.ksh) si au moins 1 enregistrement à traiter.
+2)	BAPIM100.ksh boucle sur les enregistrements non traités de MQREC et pour chacun d’eux, 
+3)	écrit un enregistrement dans PM11 . 
+4)	Le script GOTxyPPN est un script périodique qui boucle sur les enregistrements dont le code interface est BAPIM1000 dans PM11 et assure le processus de création de COOR, ITR, RM et mesures à blanc. Le lancement de plusieurs BAPIM100 est sérialisé afin d’éviter la saturation machine qui pourrait avoir lieu si plusieurs générations COOR et ITR tournaient en même temps.
+5)	GOTxyPPN  envoie dans MQENV, les OR à transmettre à TRAPE.
+6)	GOTxyPPN  en fin de traitement TRAM, delete le PM11 traité.
+7)	GOTxyPPN  lance ensuite le GOTxyPQN qui fait exclusivement de la MAJ dans TRAM. 
+
+ 
+ENCHAINEMENT DES PROCESSUS APPLICATIFS :
+PHASE 2 – Partie 1 : GOTxyPPN	
+
+
+
+
+
+
+
+
+
+                                                                        OK DTM et GIT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PHASE 2 – partie 2 : GOTxyPQN	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+DECOUPAGE DE L’INTEGRATION :
+Le découpage est justifié par le fait les MAJ de TRAM et GIT se font sur 2 instances oracles différentes et que GIT ne peut donc pas mettre à jour les phases de la COOR avant que TRAM est exécuté le commit de son côté. Le découpage assure la cohérence des données dans les 2 applications et chacune des parties pourra être relancée en cas de problème.
+Phase 1 : Récupération des enregistrements à traiter par l’interface : GOTxyPCN. Les enregistrements de la table MQREC dont le CODINF est ‘BAPIM100’ sont positionnés à traités en fin de traitement.
+Phase 2 : L’intégration des données est subdivisée en 2 parties :
+Partie 1 ( GOTxyPPN ) pourra être relancé manuellement depuis PIM :  
+Partie 2 ( GOTxyPQN ) pourra être relancé depuis une DDT : GOTPQN .
+Le choix d’avoir 2 scripts différents plutôt que d’avoir 2 niveaux dans d’un même script permet d’identifier rapidement le processus de relance en cas de plantage.
+Appel PIM : 
+L’appel du script CMTPIM00.ksh est assuré par un process Mqséries suite à une écriture dans la table mqrec.
+PHASE 1 : Lecture de la table mqrec par BAPIM100.ksh :
+Ce script se trouve sous l'arborescence suivante : /appl/pim/#/script/GOTxyPCN/script
+	# = 'test' pour sv0125-e, 
+   =  'simu' pour sv0125-ap, 
+   =  'oper' pour l'opérationnel
+
+- Boucle sur la table MQrec dont le code message (T$CODE ) = ‘BAPIM100’ et dont le statut du message est à non traité (T$STAT = ‘N’ )
+- Positionne l’enregistrement à ‘T’
+- Stocke les données dans la table interfaces DTM – TRAM ( PM11 ).
+PHASE 2 : Partie 1 : GOTxyPPN
+Recherche en table PM11 d’un enregistrement dont le CODINF est ‘BAPIM100’ : 
+Si  trouvé : traitement de cet enregistrement.
+Si non trouvé : Arrêt du traitement phase 2 sans lancement de la partie 2.
+
+Stocker l’enregistrement dans la table PM12, pour une éventuelle création manuelle et unitaire des composantes ..
+Contrôles à vérifier avant créations TRAM et GIT : 
+Contrôles DTM – TRAM :
+Si rejet, la valeur est stockée dans l’enregistrement  ( PM12-CODRET) .
+
+A effectuer tant qu’il n’y a pas eu identification de rejet : 
+- Contrôle si l’OR a déjà été envoyé : 
+Si non existence dans PM12, créer l’enregistrement.
+Si existant, vérifier que l’OR reçu n’existe pas en tant qu’OR.
+ Si existant : REJET cas N°1
+Si non existant, écraser l’ancienne définition reçue par la nouvelle.
+- La référence article doit exister :
+ Accéder au segment OD avec la rubrique REFOD
+Si existant : il s’agit d’un KIT ou un EMS.
+Si non existant : Accéder au N° d’ORDRE avec la REFOD .
+Si non existant : REJET cas N°2
+-  Le N° d’ordre doit être gelé ( AP14-GEL = ‘O’ )
+Si non gelé : REJET cas N°3
+ 
+-  Contrôle de cohérence et renumérotation éventuelle du serial venant de BAAN :
+Recherche si le générique est concerné par la renumérotation : 
+Accéder à la table « GMR » Générique à Matricules BAAN à Renuméroter : avec le générique de la référence article associée à l’OR ( Position 5, long 3 ) .
+Si trouvé en table GMR : prendre la longueur de matricule à renuméroter stocké dans le libellé  
+Construire le poste GENERIQUE/longueur du matricule à traiter et rechercher son existence dans la table « MAT » .
+Si existant dans la table modifier les n caractères de la longueur à traiter par ceux du libellé.
+Si non existant  : REJET cas N° 8
+Si non trouvé en table GMR : Il n’y a apas de renumérotation du matricule .
+-  Déterminer la LDR associée à la REFOD fournie :
+Si la REFOD est une référence OD, la référence LRD est la référence OD + ‘/000’
+Si la REFOD est un EDD, accéder à la LDR liée à l’EDD.
+
+Appel GIT pour contrôles :
+Passage des paramètres suivants :
+- LDR,
+- REFOD fourni par BAAN
+- TYPGAM fourni par BAAN
+Contrôles GIT attendus :
+- Vérifier l’applicabilité de la LRD associée à la REFOD :
+Si pas d’applicabilité , REJET cas N°4
+Si applicabilité non valide en date,  REJET cas N°5
+- Vérifier l’applicabilité du TYPGAM à l’ITD :
+Si l’ ITD est liée à au moins un TYPGAM, si le TYPGAM issu de BAAN est non associé à l’ITD, REJET cas N°6
+Gestion du retour des contrôles GIT :
+Paramètres attendus :
+- LDR,
+- REFOD fourni par BAAN
+- TYPGAM fourni par BAAN
+- ITD
+- CODRET : CODE RETOUR ( space ou N° de rejet )
+
+Si CODRET différent de space, émettre le rejet associé à la valeur du code retour.
+
+Si pas de rejet, poursuite des traitements pour créations :
+
+Si rejet, positionnement de l’enregistrement de la table mqrec à traité et arrêt  des traitements :
+
+ 
+Création de l’OR et de sa composition à blanc :
+Par sous-programme  
+Les paramètres à communiquer sont celles issues du PM12 précédemment créé : 
+MATOR
+NUMOF
+VERGAM
+MATDEF
+QTELOF
+REFOD = PM12-REFOD si EMS ou KIT
+OD rattaché à l’EDD si la référence BAAN est un EDD.
+NORPCA : N° d’ordre PCA
+XLIB07 : la division
+
+Création du segment OR : BH01
+Création du segment OF : BH04
+Création du segment OROF : BH05
+Création du segment ORD : BH02
+Création du segment COOR : VL05
+Création du segment OR : BH01
+( si non existant )
+Les rubriques spécifiques à renseigner sont :
+- MATOR
+- MATORO si l’OR est un issu ( matricule origine ) 
+- DATDEF 
+- MATDEF
+Création du segment OF : BH04
+( si non existant )
+Les rubriques spécifiques à renseigner sont :
+- INOFCO = ‘O’
+- NUMOF
+- DATDEF 
+- MATDEF
+- CPTOR
+ 
+Création du segment OROF : BH05
+( si non existant )
+Les rubriques spécifiques à renseigner sont :
+- MATOR
+- NUOFCO
+- INOFCO = ‘O’
+- NUMOF
+- DATRAT = DATDEF
+- TYPRAT = ‘2’ : Rattachement au titre d’un ORD
+Création du segment ORD : BH02
+( Accéder à la dernière composition )
+Les rubriques spécifiques à renseigner sont :
+- REFOD
+- GDATE : Complément à 99999999 à la DATDEF ( pour tri en décroissant )
+- MATOR
+- NUMORD : 01 si pas de composition existante sinon dernière composition + 1
+- VGDTF = VERGAM
+- NORPCA 
+- NUMOF
+- NIVREC = 1
+- CONIND = 1
+- CONDEF = 1
+- MATDEF
+- DATDEF
+- INOFCO = ‘O’
+- PROVER : la division (vide pour un OR créé par BAAN)
+Création du segment COOR : VL05
+La composition de l’OR se construit à partir des composants de l’OD.
+Pour constituer la composition d’OR à blanc, parcourir la composition de NDD (AO04) et dupliquer la NDD en terme de VL05 : 
+
+Alimenter les rubriques du VL05 comme suit :
+MATOR 
+NUMORD = NUMORD du BH02 précédemment  créé
+CARHIS = ‘Z’
+INFIC = space
+NIVNF = 1
+MATDEF
+DATDEF 
+* Les propriétés suivantes proviennent de la NDD ( AO04 )
+REPFCT, REPCOG, REFOD, TYPECE, TYPECT, TYPQTE, TYPIMA, QTECO
+VL05-REPFCT =    AO04-REPFCT
+VL05-REFOD = AO04-REFOD ou si typect = 0, remplacement de l’OD Module par l’EDD composant correspondant : Substituer le générique du composé par le générique associé à l’OD module du composant ( Ligne produit + 2 caractères suivants  et Unit sont recopiés de l’EDD du composé ). Rem : Si TYPECT = ‘X’ (ou ‘Z’, voire ‘Y’ voir table ‘DEF’) et que le couple Famille Moteur/Repère existe dans table ‘CTR’, alors la gestion du repère se fait avec l’EDD attendu à l’identique d’un repère en TYPECT = ‘0’
+VL05-QTECO = AO04-QTECO
+VL05-TYPECE = AO04- TYPECE
+VL05-TYPECT = AO04- TYPECT Si le TYPECT est égal à ‘Z’ et qu’il est trouvé dans la table applicative ‘DEF’ qui contiendra les couples ‘ligne produit du composé/generic du composé/repère fonctionnel du composant’ alors le type de composant passe à ‘X’
+Exemple de contenu de la table applicative ‘DEF’ :
+37/52B/722200
+37/52B/723100
+W1/56B/80100
+VL05-TYPIMA = AO04-TYPIMA
+VL05-TYPQTE = AO04-TYPQTE
+ 
+
+* Les propriétés suivantes proviennent de la référence OD du composant ( AO01 et AS16  associé) 
+RFCONC, VENDO1 à VENDO8
+
+* Attributs sur les propriétés de définition à statuer par la qualité : 
+
+* La définition est visée qualité ( AO01-MATVRQ différent de space ) : 
+VL05-INIMMA ( SU )  = AO01-INIMMA.
+BH03-COMETE = ‘O‘ si AO01-INIMMA = ‘O‘ ou si AO01-RELMON = ‘I‘, sinon BH03-COMETE = AO01-INIMMA.
+VL05-RELMON ( RM ) = AO01-RELMON
+RELFOU = O : Si CLASMT = N1 ou N2 ou si ((AO01-INIMMA = ‘0’ ou si AO01-RELMON = ‘O’) et classement = N3)
+NVISAQ = ‘N’
+
+* La définition est non visée qualité ( AO01-MATVRQ égal à space ) :  les attributs se calculent sur  la définition la plus pénalisante : 
+
+Si le composant n’est pas visé « Q », définir la définition la plus pénalisante sur les propriétés suivantes :
+VL05-INIMMA ET VL05-COMETE
+VL05-INIMMA ( SU )  = ‘O’ si AO01-INIMMA = ‘O’ ou AO01-NSUIVU = ‘O’
+VL05-COMETE = ‘O’ si AO01-INIMMA = ‘O’ ou AO01-NSUIVU = ‘O’ ou ‘AO01-RELMON = ‘I’, ou AO01-NSUIVM = ‘I’
+Sinon VL05-INIMMA ET BH05-COMETE ( SU )  = ‘’N’ 
+
+VL05-RELMON :
+VL05-RELMON ( RM ) = ‘O’ si AO01-RELMON = ‘O’ ou AO01-NSUIVM = ‘O’
+Sinon VL05-RELMON ( RM ) = ‘N’
+
+VL05-RELFOU :
+Si AO01- NCLAST différent de space :
+WW00-CLSMT = Valeur MINI entre CLASMT ET NCLAST.
+RELFOU = O : Si WW00-CLSMT = N1 ou N2 ou si ((AO01-INIMMA = ‘0’ ou si AO01-RELMON = ‘O’) et WW00-CLSMT = N3)
+Si AO01- NCLAST = space :
+RELFOU = O : Si CLASMT = N1 ou N2 ou si ((AO01-INIMMA = ‘0’ ou si AO01-RELMON = ‘O’) et classement = N3)
+
+VL05-NVISAQ = ‘O’
+ 
+* Pour les composants de dont le TYPIMA = ‘D’, renseigner la quantité correspondant au cumul de quantité de ses  composants.
+
+* Pour les composants dont AO04-TYPIMA = ‘B’ ( ULC ), les rendre fictifs  ( VL05-INFIC = ‘F’ ).
+Générer autant de lignes de COOR qu’il y a de composants pour la ligne rendue fictive.
+Les propriétés suivantes héritent des valeurs du niveau supérieur :
+MATOR, NUMORD, CARHIS, NIVNF, MATDEF, DATDEF 
+
+Gesfic 1186 : Si le composant est une alternative, calculer les attributs les plus pénalisants concernant les propriétés suivantes :
+- suivi utilisation ( INIMMA ),
+- suivi montage ( RELMON ),
+- relevé vendor ( RELFOU ),
+- envoi comete ( COMETE )
+en bouclant sur les solutions du repère. 
+
+* Les propriétés suivantes proviennent de la NDD ( AO04 )
+REPFCT, REPCOG, REFOD, TYPECE, TYPECT, TYPQTE, TYPIMA, QTECOX
+VL05-REPFCT =    AO04-REPFCT
+VL05--REFOD = AO04-REFOD
+VL05-QTECO = AO04-QTECO
+VL05-TYPECE = AO04- TYPECE
+VL05-TYPECT = AO04- TYPECT
+VL05-TYPIMA = AO04-TYPIMA
+VL05-TYPQTE = AO04-TYPQTE
+
+Il faut reconduire le REPCO(1) par le REPCO(1) du niveau supérieur et alimenter le REPCO (2) par le REPCO NDD du composant de second niveau.
+
+* Les propriétés suivantes proviennent de la référence OD du composant ( AO01 et AS16  associé) 
+RFCONC, VENDO1 à VENDO8
+
+* Attributs sur les propriétés de définition à statuer par la qualité : 
+
+* La définition est visée qualité ( AO01-MATVRQ différent de space ) : 
+VL05-INIMMA = AO01-INIMMA ( SU )  .
+BH03-COMETE = ‘O‘ si AO01-INIMMA = ‘O‘ ou si AO01-RELMON = ‘I‘, sinon BH03-COMETE = AO01-INIMMA.
+VL05-RELMON ( RM ) = AO01-RELMON
+RELFOU = O : Si CLASMNT = N1 ou N2 ou si ((AO01-INIMMA = ‘0’ ou si AO01-RELMON = ‘O’) et classement = N3)
+NVISAQ = ‘ ’
+
+* La définition est non visée qualité ( AO01-MATVRQ égal à space ) :  les attributs se calculent sur  la définition la plus pénalisante : 
+
+Si le composant n’est pas visé « Q », définir la définition la plus pénalisante sur les propriétés suivantes :
+VL05-INIMMA ET VL05-COMETE
+VL05-INIMMA ( SU )  = ‘O’ si AO01-INIMMA = ‘O’ ou AO01-NSUIVU = ‘O’
+VL05-COMETE = ‘O’ si AO01-INIMMA = ‘O’ ou AO01-NSUIVU = ‘O’ ou ‘AO01-RELMON = ‘I’ ou AO01-NSUIVM = ‘I’
+Sinon VL05-INIMMA ET BH05-COMETE ( SU )  = ‘’N’ 
+
+VL05-RELMON :
+VL05-RELMON ( RM ) = ‘O’ si AO01-RELMON = ‘O’ ou AO01-NSUIVM = ‘O’
+Sinon VL05-RELMON ( RM ) = ‘N’
+
+VL05-RELFOU :
+Si AO01- NCLAST différent de space :
+WW00-CLSMT = Valeur MINI entre CLASMT ET NCLAST.
+RELFOU = O : Si WW00-CLSMT = N1 ou N2 ou si ((AO01-INIMMA = ‘0’ ou si AO01-RELMON = ‘O’) et WW00-CLSMT = N3)
+Si AO01- NCLAST = space :
+RELFOU = O : Si CLASMT = N1 ou N2 ou si ((AO01-INIMMA = ‘0’ ou si AO01-RELMON = ‘O’) et classement = N3)
+
+VL05-NVISAQ = ‘O’
+
+Alimentation en spécifique des propriétés suivantes :
+INFIC = space
+
+Si AO04-COLICO = ‘E’, alors BH03-REFODA = REFOD du composant. Ceci est une ligne de COOR qui sert à lister les alternatives du repère.
+
+ 
+Demande GIT des FRM associés a l’ITD :
+Les paramètres à communiquer sont : 
+ITD
+Les valeurs retournées sont : 
+Les FRM associés
+Le CODRET : Le code retour ( à space si ITD existant, 1 si ITD inexistant ).
+Création d’un RM pour chacun des FRM rattachés à l’ITD :
+Pour chacun des FRM retournés par GIT, créer un RM pour chacun des exemplaires demandés :
+Par sous-programme 
+Les paramètres à communiquer sont celles précédemment créées : 
+NUMORD
+NUMOF
+MATDEF
+REFFRM
+Création du segment RM : BP01
+Création du segment ORRM : BP04
+Modification du segment RADOR : AT04
+Incrémentation du compteur de RM : AT04
+NUMRM = NUMRM +1
+Création du segment RM : BP01
+Alimenter les rubriques du BP01 comme suit :
+NUMRM = AT04-NUMRM incrémenté 
+REFFRM
+DATDEF = Date du jour
+MATDEF
+CPTOR = 1
+INOFCO = ‘O’
+NUMOF
+Création du segment ORRM : BP04
+Alimenter les rubriques du BP04 comme suit :
+MATOR
+NUMRM
+NUMORD
+CONIND = ‘1’
+CONDEF = ‘1’
+DATDEF = Date du jour
+MATDEF
+Appel du processus GIT pour création de l’ ITR :
+Les paramètres à communiquer sont : 
+MATRICULE OR
+ITD
+TYPGAM
+NUMOF
+TYPECT ( AO01-TYPECT de la référence OD associée à l’OR)
+Les valeurs retournées sont : 
+MATRICULE OR
+N° ITR
+Le CODRET 
+ 
+Retour du processus GIT de création de l’ ITR :
+Mise à jour de BH02-NUMITR suite à la création de l’ITR
+
+Envoi TRAPE de l’OR composé :
+Gesfic 1946 : Condition d’envoi des matricules composé :
+•	Tout composé est envoyé à TRAPE dès lors que la référence article qui lui est associée n’est pas en table « KIT ».
+Envoi Casq-it l’OR composé :
+Gesfic 1946 : Condition d’envoi des matricules composé :
+	Pour tout matricule à ITR non créé par SAP
+Suppression  de l’enregistrement traité dans la table PM11 :
+PHASE 2 : Partie 2 : GOTxyPQN
+
+Depuis l’OR  et l’ITR récupéré en paramètre, accéder à la dernière composition de l’OR. Alimenter BH02-NUMITR 
+
+BOUCLE SUR LES RM de l’OR :
+Pour chacun des RM, remonter sur le FRM et parcourir les GM du FRM :
+Pour chaque SIGGM : 
+Appel GIT pour avoir la phase associée au SIGGM :
+Les paramètres à communiquer sont : 
+MATRICULE OR
+BN01-REFFRM
+BN03-SIGGM
+Les valeurs retournées sont : 
+MATRICULE OR
+REFFRM
+SIGGM
+PHASE
+ECLPHA
+CODRET 
+ 
+
+Au retour GIT création des mesures à blanc associées au SIGGM :
+Création d’autant de mesures avec KA02-VALMES à space que de BN03-NBGM
+
+Les propriétés à renseigner sont : 
+
+NUMRM  NUMERO DU RELEVE DE MESURES	BP04-NUMRM
+MATOR  MATRICULE DE L'OR	BP04-MATOR
+NUGM   NUMERO DE GRANDEUR A MESURER 	BN03-NUGM
+NULIG  NUMERO DE LIGNE DU LIBELLE	N° MESURE incrémenté si BN03-NBGM > 1
+CARHIS CARACTERE HISTORISE	‘Z’
+VALRM  VALEUR D'UN RELEVE DE MESURES	Space
+NUANO  NUMERO D'ANOMALIE	Space
+DATV   DATE VISA	Space
+MATV   MATRICULE VISEUR	Space
+CARDH  CARACTERE DERNIER HISTORISE	Space
+MATDMJ MATRICULE DERNIERE PERSONNE 	Space
+DATDMJ DATE DE DERNIERE MISE A JOUR	Space
+VALMIN VALEUR DE MESURE MINIMUM TOLER	BN03-VALMIN
+VALMAX VALEUR DE MESURE MAXIMUM TOLER	BN03-VALMAX
+PHASE  PHASE	PHASE issue de GIT
+ECLPHA ECLATEMENT DANS LA PHASE	PHASE issue de GIT
+
+
+
+Appel du processus GIT pour complémentation COOR :
+Les paramètres à communiquer sont : 
+MATRICULE OR
+ITR
+Retour du processus GIT de complémentation COOR :
+Les données mises à jour par GIT dans TRAM sont :
+- N° de phase et éclatement de phase sur chacun des composants,
+- Eclatements de ligne au repère, effectués dans l’ITD
+- Complémentation du repère jeu ( N° jeu ) pour le composé jeu d’aubes et chacun de ses constituants.
+- …
+ 
+COMPLEMENTATION COOR ET CREATION DES MESURES PAR DDT : CODE OPERATION « GOTPQN »
+
+Depuis l’OR et l’ITR récupérés en paramètre de la DDT, accéder à la dernière composition de l’OR. Si NUMITR différent de space, exécuter les mêmes traitements que décrits dans la partie 2 ( GOTxyPQN ) 
+
+BOUCLE SUR LES RM de l’OR :
+Pour chacun des RM, remonter sur le FRM ET parcourir les GM du FRM :
+Pour chaque SIGGM : 
+Appel GIT pour avoir la phase associée au SIGGM :
+Les paramètres à communiquer sont : 
+MATRICULE OR
+BN01-REFFRM
+BN03-SIGGM
+Les valeurs retournées sont : 
+MATRICULE OR
+REFFRM
+SIGGM
+PHASE
+ECLPHA
+CODRET 
+Au retour GIT création des mesures à blanc associées au SIGGM :
+Création d’autant de mesures avec KA02-VALMES à space que de BN03-NBGM
+
+Appel du processus GIT pour complémentation COOR :
+Les paramètres à communiquer sont : 
+MATRICULE OR
+ITR
+Retour du processus GIT de complémentation COOR :
+Les données mises à jour par GIT dans TRAM sont :
+- N° de phase et éclatement de phase sur chacun des composants,
+- Eclatements de ligne au repère, effectués dans l’ITD
+- Complémentation du repère jeu ( N° jeu ) pour le composé jeu d’aubes et chacun de ses constituants.
+- …
+ 
+6.	ANNEXE 1 : EXEMPLE DE LA TABLE APPLICATIVE GMR
+  
+ 
+7.	ANNEXE 2 : EXEMPLE DE LA TABLE APPLICATIVE MAT :
+
+ 
+
+ 
+8.	EVOLUTION EN MCO :
+Gesfic 970 : NOUVELLES TYPOLOGIES D’ARTICLES
+Dans la COOR :
+type article 0 : la référence attendue est la référence EDD
+type article X: la référence attendue est le PNT en standard.
+Si couple Famille Moteur/Repère avec Type article X est présent dans la table applicative‘CTR’ alors la référence attendue est la référence EDD
+type article Y : la référence attendue est le PNT
+type article Z : la référence attendue est le PNT en standard.
+Si le « Triplon » Ligne produit du Composé/Générique du composé/Repère est présent dans la table applicative ‘DEF’ alors le type article du composant doit être considéré comme X au lieu de Z, impliquant que si de plus le couple Famille Moteur/Repère est présent dans la table applicative‘CTR’ alors la référence attendue est la référence EDD
+type article W : la référence attendue est la référence article en NDD
+Rem EDD du composé = AABBGGGnnnn où
+‘AA’ de AABB = Ligne produit du Composé
+‘GGG’ = Générique du composé
+‘nnnn’ = Unit du composé
+Gesfic 971 : INTRODUCTION DES REPERES NON CONNUS DE PM :
+Dans la COOR :
+type article A : la référence attendue est la référence article en NDD
+

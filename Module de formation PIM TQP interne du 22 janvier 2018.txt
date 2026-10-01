@@ -1,0 +1,356 @@
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+Module de formation PIM TQP
+interne
+/ 22 janvier 2018 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+1 /
+SOMMAIRE
+/01/
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+2 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+SOMMAIRE
+ Prérequis : les fonctions des monteurs
+ PIM et ses interfaces
+ Les litiges
+ Les réserves
+ La remise à zéro d’une phase
+ Démontage/remontage d’un sous-module
+ Les évènements sur encours
+ L’état qualité série (PIM25)
+ La terminaison montage
+ La prise en main d’une OPP sous-traitée
+ La navigation dans TRAM
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+3 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+PRE-REQUIS : LES FONCTIONS DES TQP INTERNES
+ Les TQP/TQE ont les accès :
+ des monteurs
+ plus des accès propre à leurs fonctions.
+ Le rôle des TQP dans PIM est différent selon les lignes de montage. Certaines fonctions dites ‘BT’
+peuvent être réalisées par des TQP et vice versa.
+5 octobre 2016 / CAAT - P. Jarosinski
+4 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+PIM ET SES INTERFACES
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+PIM
+Méthodes monteur
+TQP/TQE
+BT
+ITD ITR
+PM/TC
+Nomenclatures (repères fonctionnels, articles quantité
+Articles : SU/SM/Classement/Vendor
+BaaN
+TRAPE
+Infocentre COMETE
+(enquêtes articles SU=Oui)
+CORSAIRE
+Casq-it
+OUTLOOK
+EDD / PNt
+OF/Matricule ens./EDD
+Serial / référence article
+MTL
+PIM25
+Serial / référence article
+Partenaires (Safran Aero
+Boosters, TGS, AVIO, NPOS,
+Safran Transmission Systems)
+As Built
+5 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+PIM ET LES LITIGES
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+ 3 types de litiges
+Type litige : P, T or C
+P comme PIRAT (remplacé par CORSAIRE) : bloquant visa phase
+T comme TRAM : bloquant visa phase
+C comme COMETE (remplacé par TRAPE en mars 2015) : non bloquant visa phase mais
+bloquant ‘Terminaison montage’
+Litige : code de l’erreur (voir planche 26 à 28 – les codes)
+ Comment les voir
+Dans la phase ou dans les évènements sur encours ou via ‘Interrogations diverses’
+ Litiges Comete/TRAPE (particularité)
+Recyclés toutes les 15’.
+6 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES RÉSERVES
+ Les différents types
+1 Pièce (pb. cosmétique) manuelle
+2 Mesures et/ou calcul (hors tolérances) automatique
+3 Vendor (inconnu de DTM) automatique
+4 UVC manuelle
+5 Pre-libération manuelle
+6 PIRAT/CORSAIRE automatique
+7 Mesure importée par fichier (TRIDIM) automatique
+9 Montage manuelle
+ Les statuts
+1. Non prise en compte
+2. Prise en compte
+3. Soldée
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+7 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES RÉSERVES
+ La prise en compte d’une réserve
+• Permet au monteur de viser sa phase => l’écart est instruite en parallèle.
+• Peut se faire : à partir de la liste des réserves de l’ITR ou de la phase ou des évènements sur encours.
+• Prise en compte = gravité dans PIM. Peut prendre les valeurs :
+ BLOQUANT : ne pas utiliser car bloquera le ‘terminé montage’
+ ACCEPTE EN L’ETAT : écart ne nécessite ni investigation, ni action
+ NON BLOQUANT : écart nécessite investigation/action et on prend le risque de poursuivre le
+montage.
+ L’observation d’une réserve
+• Possible tant que la réserve n’est pas soldée
+• Doit être traduite en français ou en anglais.
+ Le solde de la réserve
+• Manuel (sauf pour réserve UVC).
+WRS/CAA/P. Jarosinski
+8 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES RÉSERVES ET CASQ-IT
+ Interface réserve PIM / DA Casq_it
+Possibilité de créer une DA ‘RESERVE PIM’ dans Casqit à partir d’une ou plusieurs réserves PIM.
+=> Uniquement si autorisé à créer des DA/DER montage dans Casq-it.
+ Conséquences
+La DA est créé (type = RESERVE PIM) au titre du module avec les infos de la réserves.
+La réserve ne sera soldée qu’au solde de la DA
+Si DA liée à DER, le solde de la DA sera fait après le solde de la DER.
+ Particularité des réserves ‘Mesures et/ou calcul’
+• Une réserve liée à une GM hors tolérance est ‘annulée’ et non supprimée si elle est liée à une DA Casq-it.
+ Particularité des réserves ‘UVC’
+• Une réserve ‘UVC’ est soldée automatiquement et créé un évènement sous serial visible sur l’état qualité.
+WRS/CAA/P. Jarosinski
+9 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LA REMISE À ZÉRO D’UNE PHASE
+ Dans quels cas ?
+• Afin de pouvoir modifier une réponse à condition (changement de chemin graphe)
+• Afin de pouvoir appliquer une ITE (Instruction de Travail Exceptionnel)
+• Afin de pouvoir démonter un sous-module (Voir § Démonter un sous-module)
+ Ne jamais le faire :
+ A - Sur des phases comportant des repères LHM historisés (Etat = ‘L’ et Visa = ‘H’)
+ B - Sur des phases comportant des déclarations de repères maîtres (càd de module inférieur)
+ C – pour démonter un repère simple
+ D – Palier à un problème (identifié à tort comme un dysfonctionnement PIM)
+ E – Recommencer à zéro un travail déjà effectué
+ Comment fait-on ?
+ Noter les enregistrements
+ Démonter 1 à 1 les serials/jeux daubes
+ Sur phase verrouillé
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+10 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+DÉMONTAGE/REMONTAGE D’UN SOUS-MODULE
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+1° a) Déviser les phases dans lesquels les repères composants (Hors Modules) du module sont identifiés (IMHM)
+Comment les trouver :
+•Ouvrir la phase d’identification du kit/module
+•Clic droit sur la ligne de repère du module, puis ‘Liste des phases impactées par le démontage’
+Un double clic permet d’ouvrir les phases concernées.
+Inutile d’ouvrir une phase déjà au statut ‘à faire’.
+b) si la phase concernée contient
+- Des formules de calculs utilisant des GM importées, deviser la phase (inutile si déjà au statut ‘à faire’ (blanche) ou ‘en cours’ (bleue))
+- Des repères IMHM à l’état ‘M’ :
+-Démonter les serials de pièces ou de jeu d’aubes.
+-Faire une remise à zéro de la phase.
+Attention : veiller à noter les données saisies si besoin.
+2° Deviser la phase d’identification du repère du module
+• Deviser la ligne du repère.
+Si PIM affiche le message ‘Changement d’OR impossible-Le statut des phases liées ne le permet pas’, reprendre au 1°
+(ceci signifie que des phases liées ne sont pas au bon statut)
+• Blanchir le serial kit/module du repère
+3° Re-identifier le repère du kit/module (càd saisir le serial du nouveau module)
+Valider la phase d’identification du module.
+4° Faire une mise à jour des phases dans lesquels sont identifiés les repères HM du module (IMHM)
+nota : ce n’est pas instantané. Une relance de la recherche peut être nécessaire.
+Attention : si le nouveau matricule module est déjà monté sur un autre moteur, il faut impérativement
+le démonter ainsi que ses composants (selon procédure ci-dessus).
+11 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+DÉMONTAGE/REMONTAGE D’UN SOUS-MODULE
+WRS/CAA/P. Jarosinski
+12 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+DÉVERROUILLAGE FORCÉ/SIMPLE
+ Déverrouillage simple
+ Permet de libérer la phase que l’on a bloqué.
+ Déverrouillage forcé
+ Permet de prendre la main sur une phase verrouillée par un autre utilisateur.
+ Attention : l’autre utilisateur ne voit pas le déverrouillage et peut continuer à travailer =>
+s’assurer qu’il ne le fait pas.
+WRS/CAA/P. Jarosinski
+13 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES ÉVÈNEMENTS SUR ENCOURS
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+ Pourquoi faire ?
+ Ils permettent de visualiser, à un instant t, l’état d’avancement d’un module/moteur.
+ Comment y accède-t-on ?
+ Via menu contextuel de l’ITR en mono ou multi-niveaux.
+ Que contiennent-ils ?
+ Plusieurs onglets : Réserves, COPR , COOR , Mesures, Commentaires
+ Onglet ‘Réserves’ : toutes les réserves soldées ou pas.
+ Onglet ‘COPR’ : toutes les phases ‘à faire’, ‘en cours’, ‘sous litige’, ‘non validé’
+ Onglet ‘Mesures’ : toutes les mesures non relevées ou calculées
+ Onglet ‘Commentaires’ : tous les commentaires de visa/dévisa phase des monteurs.
+Tous les commentaires sont à traduite en français ou en anglais.
+14 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES ÉVÈNEMENTS SUR ENCOURS
+WRS/CAA/P. Jarosinski
+ Onglet COOR : tous les repères
+Non visés
+Sous litige (PIRAT/CORSAIRE, Comete/TRAPE, TRAM)
+Avec ‘Manquant’ ou ‘LHP’ ou ‘LHM’
+Ayant fait l’objet d’une mise à jour sur encours
+Ayant un état ‘démonté’
+Non monté (absent de l’ITD)
+•Voir exemple planche 27.
+15 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+L’AS BUILT
+WRS/CAA/P. Jarosinski
+• Analyse du fichier Excel as built
+ Colonne K : toutes les alternatives sont levées c’est-à-dire absence de ALT ou ALTERNATIVE
+ Colonne J : Si présence d’une *, ceci signifie que le serial était connu avant son montage => vérification à faire car peut
+cacher un double serial sur du suivi montage (non contrôlé par TRAPE/COMETE).
+16 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+L’ÉTAT QUALITÉ SÉRIE (PIM25)
+ L’état qualité série permet de s’assurer
+ qu’aucun évènement qualité reste ouvert (sauf DAX)
+ que les PP appliqués sont dans la période de validité
+ qu’aucun serial est sous restriction
+ qu’aucune dérogation n’est classifiée MAJEUR/CRITIQUE
+ qu’aucun serial est Utilisé au développement
+ qu’aucun serial a un statut BLR ou REB
+ qu’il n’y a pas d’écart de référence
+ Voir GUO-0347
+ L’état qualité série, amendé de l’analyse du TQP, doit être joint au dossier module/moteur.
+ Exemple : Voir fichier ‘PIM25^^WUB00001^^145451_exemple’
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+17 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LA TERMINAISON MONTAGE
+ Pourquoi faire ?
+ S’assurer que le module/moteur, physiquement terminé, ne présente aucun problème bloquant.
+ Toutes les lignes de la COOR sont visées.
+ Plus aucun litige
+ Plus de réserve au statut ‘ non pris en compte ‘
+ Toutes les phases sont au statut ‘Validée ‘ ou ‘non validée’
+ Plus de composant au statut ‘Démonté’
+ Plus de composant au statut ‘ LHM ’
+ Passage obligé avant la prise en recette.
+ Faciliter la prise en recette en réglant au plus tôt les éventuels points bloquants.
+ Comment y accède-t-on ?
+ Menu contextuel de l’ITR
+ Traçabilité
+ Dans les observations de l’OR
+ Conséquences pour le monteur
+ ITR accessible en consultation uniquement
+ OR, COOR, COPR sont au statut ‘Terminé montage
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+18 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LA PRISE EN MAIN D’UNE OPP SOUS-TRAITÉE
+ Pourquoi faire ?
+ Une OPP sous-traitée est attribuée à un sous-traitant du montage.
+ Le monteur ne peut en aucun cas intervenir sur une phase d’une OPP sous-traitée.
+ Seul le TQP/BT peut prendre la main sur cette OPP si besoin.
+ Comment y accède-t-on ?
+ Menu contextuel de l’ITR
+Exercices
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+19 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LA NAVIGATION DANS TRAM
+ Qu’est ce que TRAM ?
+ TRAM est un module de PIM dans lequel est stockée en temps réel la traçabilité produit.
+ Les codes opérations
+ TRAM permet d’effectuer des interrogations via des codes opérations.
+ Certains codes sont rhabillés dans PIM.
+ La navigation
+ Les enchainements / aperçu.
+ L’affichage : comment obtenir un affichage complet ?
+ L’export vers Excel (metaframe)
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+20 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+CASQ_IT MONTAGE
+ TQP doivent suivre la formation Casq-it permettant
+ De créer/solder des DA
+ D’émettre des demandes de dérogations
+ D’émettre des dérogations répétitives
+ De créer des Permis de produire
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+21 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+DOCUMENTATION PIM DISPONIBLE
+ Manuel utilisateur PIM BT et TQ interne diffusé après la formation
+ ILS-1235 dans SDPS : role des TQ/BT dans PIM.
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+22 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+BACK UP
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+23 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LITIGES PIRAT / CORSAIRE
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+A PIRAT : AM-REDISTRIBUTION D'UN JEU DEJA MONTE (NON BLOQUANT)
+D PIRAT : TQP-AM=QTE VENANT DE PIRAT INCOMPATIBLE AVEC ATTENDU
+E PIRAT : TQP-AM=DEFINITION JEU PIRAT INCOMPATIBLE AVEC ATTENDU
+H PIRAT : JEU EN COURS DE MONTAGE OU DE DEMONTAGE
+I PIRAT : PSP-AUCUN RM ASSOCIE AU FRM DU JEU
+J PIRAT : PSP=PROBLEME DEFINITION JEU PIRAT : ECART NB DE SIGLE
+K PIRAT : PSP-ECART MESURES FICHIER PIRAT ET NB MESURES DU FRM
+P PIRAT : AM-JEU MONTE DANS PIM ET NON RECU DE PIRAT
+24 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LITIGES TRAPE (EX COMETE)
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+DG COMETE-TRAPE : DOUBLE AVEC PIECE GE
+EC COMETE-TRAPE : ECART REFERENCE TPE/PIM SUR MODULE/MOTEUR
+ER COMETE-TRAPE : ECART DE REFERENCE TPE/PIM SUR PIECE
+FC COMETE-TRAPE : MODULE<>8 CAR ET PAS DE FAMILLE DANS TPE
+FI COMETE-TRAPE : SERIAL<>8 CAR ET PAS DE FAMILLE DANS TPE
+PB COMETE-TRAPE : ALERTE SUR PIECE-NE PAS MONTER
+PR COMETE-TRAPE : PIECE REBUTEE
+25 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LITIGES TRAPE (EX COMETE) SUITE
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+RC COMETE-TRAPE : REFERENCE MODULE/MOTEUR INCONNUE DE TPE
+RI COMETE-TRAPE : REFERENCE PIECE INCONNUE DE TPE
+SC COMETE-TRAPE : MATRICULE MODULE/MOTEUR INCONNU DE TPE
+SI COMETE-TRAPE : SERIAL INCONNU DE TPE
+SP COMETE-TRAPE : STATUT PIECE INCOMPATIBLE DANS TPE
+26 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LITIGES TRAM
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+TRAM est un module de PIM
+B TRAM : AM-COMPOSANT A ITR NON EXISTANT DANS TRAM
+C TRAM : BTA-EDD DU COMPOSANT INCOMPATIBLE AVEC LA DEFINITION
+G TRAM : BTA-ECART DE PARTNB ENTRE COOPERANT ET SNECMA
+W1 TRAM : BTA-OR INEXISTANT POUR UN TYPE ARTICLE W
+W2 TRAM : BTA-INCOHERENCE REFERENCE POUR UN TYPE ARTICLE W
+X1 TRAM : BTA-OR/MATRICULE INCONNU (TYPE ARTICLE X)
+27 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+EVÈNEMENTS SUR EN COURS : EXEMPLE
+Direction de la Qualité/WRS-CAAT /4 octobre 2016
+Information :
+Colonne ‘Statut Composant’ : si ‘Manquant’, vérifier si manquant est réel.
+Colonne ‘Litige’ : Si présence de litige, lever le litige
+Colonne ‘Modif. n0’ : application d’une modification technique par le BTA (information uniquement).
+Colonne ‘Quantité : Si quantité=0, la pièce n’est pas montée. Vérifier qu’il s’agit de quantité QSB et que 0 est justifié.
+Colonne ‘Référence article’ : Si ‘ART’ ou ‘ALTERNATIVE’ => ouvrir la phase : pourquoi l’alternative n’est pas levée.
+Colonne ‘Dénomination’ :
+*** ERREUR REPERE MTL **** : serial non relevé à tort
+*** LIGNE VISEE/NON MONTEE) *** : pièce montée mais à quantité 0 ou déclarée manquante. Est-ce justifié ?
+*** ARTICLE NON VISE QUALITE *** : 1 des attributs articles a évolué => alerter le BTA.

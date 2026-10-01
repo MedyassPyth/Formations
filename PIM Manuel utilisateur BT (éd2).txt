@@ -1,0 +1,281 @@
+1
+Manuel utilisateur "BT PIM" v1
+Manuel utilisateur
+Bureau Technique
+« Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma. »
+Concepteur : Christian Constanty
+2
+Manuel utilisateur "BT PIM" v1
+OBJECTIF DU MANUEL
+Ce manuel est destiné aux personnes ayant le rôle de
+Bureau Technique PIM
+a pour objet de décrire le processus et les fonctionnalités associées à la navigation et à
+l'enrichissement des Instructions de Travail Réalisées (ITR)
+dans l'application PIM
+3
+Manuel utilisateur "BT PIM" v1
+TABLE DES MATIÈRES
+ACCÈS AUX FONCTIONNALITÉS TRAM.…………………..……………………..
+MODIFICATION SUR EN COURS.……….………………………………………….
+Modification attributs d'un repère..…………………………….………….
+Modification de la composition d'un OR..……………..………..…………
+Application des modifications sur les ITR………………………………..
+ÉDITIONS………………………..…………...……………….……………………….
+EXTRACTION DE LA MTL………………………..…….……...……………..……..
+TRANSFERT DES DONNÉES…..………………….….…..……..………………….
+CONSULTATION DES DEMANDES DE TRANSFERTS……..……….….………
+SOLDE QUALITÉ………….………....…………………..……………………………
+Retrait solde qualité………………………………………………………..
+SUPPRESSION D'UNE ITR.………....…………………..…………………………
+5
+11
+13
+19
+25
+33
+39
+45
+51
+57
+69
+73
+ACCÈS AUX
+FONCTIONNALITÉS
+TRAM
+Bureau PIM
+
+
+Bureau TRAM
+7
+Manuel utilisateur "BT PIM" v1
+ A partir du bureau PIM, cliquer sur le bureau TRAM s'affiche
+ A partir du bureau TRAM, cliquer sur
+la boite de dialogue ci-après s'affiche
+ACCÈS AUX FONCTIONNALITÉS TRAM
+9
+Manuel utilisateur "BT PIM" v1
+Sélectionner la fonctionnalité souhaitée en ouvrant le dossier
+ou
+Saisir le code opération et éventuellement renseigner la Clé1
+(avec certains codes opération la Clé1 n'est pas nécessaire)
+Cliquer sur l'écran ci-après s'affiche
+ACCÈS AUX FONCTIONNALITÉS TRAM
+MODIFICATION
+SUR EN COURS
+Modification
+attributs repère
+15
+Manuel utilisateur "BT PIM" v1
+MODIFICATION SUR EN COURS
+Sélectionner dans le dossier Article
+Le code opération associé IGODQ s'affiche
+Saisir en Clé1 la référence de l'article
+Cliquer sur l'écran ci-après s'affiche
+1
+2
+17
+Manuel utilisateur "BT PIM" v1
+1. Les nouvelles valeurs des attributs s'affiche dans la colonne "Non validé Qualité"
+2. Accepter les nouvelles valeurs : Saisir
+- O pour accepter
+- N pour refuser
+Cliquer sur le bouton pour valider votre saisie
+Acceptation des modifications :
+il faut répercuter sur les ITR à faire ou en cours les modifications
+Refus des modifications :
+lors de la génération d'une nouvelle ITR le système prendra en compte les attributs
+les plus pénalisants
+MODIFICATION SUR EN COURS
+Modification de la
+composition
+21
+Manuel utilisateur "BT PIM" v1
+MODIFICATION SUR EN COURS
+Sélectionner dans le dossier OR
+Le code opération associé COORQ s'affiche
+Saisir en Clé1 le numéro matricule du module (OR)
+Cliquer sur l'écran ci-après s'affiche
+1
+2
+23
+Manuel utilisateur "BT PIM" v1
+1. C : Saisir M pour mise à jour des propriétés d'un repère
+A pour supprimer un repère
+C pour créer un repère (se positionner sur une ligne vierge)
+2. Les rubriques modifiables :
+- repère fonctionnel
+- référence article
+- quantité
+- codes vendor validés
+- numéro de modification : saisir le numéro de la MOD
+- SU : suivi utilisation
+- SM : suivi montage
+- EC : envoi à COMETE
+- ALT : article en alternative
+Cliquer sur le bouton pour valider votre saisie
+MODIFICATION SUR EN COURS
+Application des
+modifications
+28
+Manuel utilisateur "BT PIM" v1
+MODIFICATION SUR EN COURS
+Sélectionner dans le dossier Article
+Le code opération associé UTODOR s'affiche
+Saisir en Clé1 la référence de l'article
+Cliquer sur l'écran ci-après s'affiche
+30
+Manuel utilisateur "BT PIM" v1
+Cet écran fournit la liste des ITR utilisant une référence
+exemple : liste des ITR utilisant la référence 307-068-104-0
+MODIFICATION SUR EN COURS
+Menu contextuel
+32
+Manuel utilisateur "BT PIM" v1
+Se positionner sur l' ITR souhaitée
+Cliquer sur du menu contextuel
+Demander au Monteur d'activer la cache locale de leur terminal informatique afin de
+mettre à jour les ITR concernées par la modification
+MODIFICATION SUR EN COURS
+ÉDITIONS
+36
+Manuel utilisateur "BT PIM" v1
+ÉDITIONS
+Sélectionner dans le dossier OR le type d'édition à générer
+Le code opération associé s'affiche
+Cliquer sur l'écran ci-après s'affiche
+1
+3
+4
+2
+38
+Manuel utilisateur "BT PIM" v1
+ÉDITIONS
+1. Type de lancement : Identifiant de la réserve attribué par le système
+2. Date au plus tôt : Saisir la date souhaitée (par défaut la date du jour)
+3. Matricule OR : Saisir le numéro d'OR du module
+4. Nombre d'exemplaires : Saisir le nombre d'exemplaires souhaité
+Cliquer sur le bouton pour valider votre saisie
+MTL
+42
+Manuel utilisateur "BT PIM" v1
+MTL
+Sélectionner dans le dossier OR
+Le code opération associé s'affiche MTL03
+Cliquer sur l'écran ci-après s'affiche
+Nota : la MTL peut être extraite quel que soit le statut de l' ITR
+1
+3
+2
+44
+Manuel utilisateur "BT PIM" v1
+MTL
+1. Type de lancement : Saisir I : pour traitement immédiat
+Q : pour traitement quotidien
+2. Date au plus tôt : Saisir la date souhaitée (par défaut la date du jour)
+3. Sérial de tête : Saisir le numéro d'OR du module
+Cliquer sur le bouton pour valider votre saisie
+Un message est généré avec un fichier attaché et envoyé sur votre boite LOTUS
+(exemple ci-dessous)
+TRANSFERT
+DES
+DONNÉES
+47
+Manuel utilisateur "BT PIM" v1
+TRANSFERT
+Sélectionner dans le dossier
+Le code opération associé s'affiche TOR
+Cliquer sur l'écran ci-après s'affiche
+1 2 3
+49
+Manuel utilisateur "BT PIM" v1
+1. A : Saisir le code action
+C : pour création
+S : pour suppression
+2. Type de transfert : Saisir (voir tableau ci-dessous)
+3. Matricule : Saisir le numéro d'OR du module
+Cliquer sur le bouton pour valider votre saisie
+Le fichier est généré automatiquement
+TRANSFERT
+TORAB1 Transfert as built vers GE production
+TORAB2 Transfert as built vers GE produc support
+TORGE1 Transfert MTL CFM vers GE
+TORGE2 Transfert MTL MFP vers GE
+TORSI1 Transfert MTL MFP vers SIMMIX
+CONSULTATION
+DES DEMANDES
+DE TRANSFERT
+53
+Manuel utilisateur "BT PIM" v1
+CONSULTATION DEMANDE DE TRANSFERT
+Sélectionner dans le dossier
+Le code opération associé s'affiche LDT
+Cliquer sur l'écran ci-après s'affiche
+1
+55
+Manuel utilisateur "BT PIM" v1
+Cet écran permet de consulter toutes les demandes en attente de transfert
+Il est possible de supprimer une demande
+1. ACT : Saisir le code action S : pour suppression
+Cliquer sur le bouton pour valider votre saisie
+CONSULTATION DEMANDE DE TRANSFERT
+SOLDE
+QUALITÉ
+60
+Manuel utilisateur "BT PIM" v1
+Cliquer sur la boite de dialogue ci-contre s'affiche
+SOLDE QUALITÉ
+Saisir le matricule OR
+Menu contextuel
+62
+Manuel utilisateur "BT PIM" v1
+Se positionner sur l' ITR souhaitée
+Cliquer sur du menu contextuel
+L'écran ci-après s'affiche
+SOLDE QUALITÉ
+ 
+
+COPR RÉSERVES
+64
+Manuel utilisateur "BT PIM" v1
+Pour passer au statut "Solde qualité" l' ITR doit avoir :
+- la ou les réserves "soldées"
+- ses OR d’ensemble composants au statut "Terminé montage" ou "Soldé qualité"
+- le statut de la COPR "Terminé montage" ou "Soldé qualité"
+- le statut de la COOR "Terminé montage" ou "Soldé qualité"
+ L'écran de contrôle de cohérence s'affiche, si ces contrôles sont incorrects, le système pour :
+ La COPR, la ou les phases en défaut
+ La liste des réserves non soldées
+SOLDE QUALITÉ
+
+
+66
+Manuel utilisateur "BT PIM" v1
+ Cas où les contrôles sont corrects
+ L' ITR passe au statut "Soldé qualité"
+SOLDE QUALITÉ
+Menu contextuel
+
+
+68
+Manuel utilisateur "BT PIM" v1
+ Se positionner sur l' ITR
+Cliquer sur du menu contextuel
+ L'écran ci-contre s'affiche, on y retrouve :
+- le statut
+- la date de terminaison montage
+- le nom de l'intervenant ayant terminé l' ITR
+- la date du solde qualité
+- le nom de l'intervenant ayant soldée l' ITR
+SOLDE QUALITÉ
+Retrait du statut
+"Soldé qualité"
+Menu contextuel
+
+71
+Manuel utilisateur "BT PIM" v1
+ Se positionner sur l' ITR
+Cliquer sur du menu contextuel
+ Le statut de l' ITR passe du statut "Soldé qualité " à "Terminé montage"
+SOLDE QUALITÉ
+SUPPRESSION
+D'UNE ITR

@@ -1,0 +1,586 @@
+FORMATION
+Monteurs PIM
+KVM – L. HERVAULT
+Favourite
+Les processus et sous-processus impactés
+P20-05
+Concevoir – Industrialiser
+Les pièces et assemblages
+P20-05-02
+Etablir les gammes de fabrication
+De montage et de réception
+P20-05-03
+Définir et mettre en place les moyens spécifiques
+De fabrication, de contrôle,
+De montage et d’essais de réception
+P20-05-04
+Réaliser la validation industrielle des pièces
+Et de montages
+P20-06
+Piloter la fabrication des pièces et le montage
+Des moteurs de développement
+P40-03
+Réaliser et contrôler le produit
+P40-04
+Mettre en œuvre les moyens industriels
+Et outillages associés
+M10-03-02
+Instruire les non conformités
+S20-06
+Enquêter
+INTRODUCTION
+P20 – Développer (Concevoir – Industrialiser) P40 – Produire et Distribuer
+S20 – Manager l’assurance qualité
+Favourite
+Le contexte et les objectifs
+ Optimiser la fonction montage en intégrant les différents
+systèmes d'informations dans un environnement commun
+ Cet environnement doit permettre :
+ La gestion des instructions de travail montage
+ L'exécution des opérations documentaires de préparation de montage
+ La mise à disposition de la documentation sur les postes de montage
+ Le recueil des informations pertinentes pendant le montage
+ Le solde du montage
+ La préparation des livrets et des dossiers moteurs
+ L'alimentation automatique du système CLIM (M88)
+Contexte
+Objectifs du projet
+L'obsolescence du logiciel SDM destiné à Villaroche et la volonté d'informa
+tiser le montage à la direction militaire et à Vernon, ont concouru à la mise
+en place du projet PIM
+INTRODUCTION
+Favourite
+Les Process Les moteurs Établissements
+Le périmètre de PIM
+Vernon Villaroche
+CFM GP7200 GE90 SaM146
+Vulcain 2 Vinci HM7B TP400 M88
+Montage
+Préparation
+expédition
+Préparation
+essais
+Favourite
+Les rôles PIM à Villaroche
+QUI ET QUOI
+Bureau technique
+MODIF. SUR EN COURS
+Administrateur Fonctionnel
+Administrateur Informatique
+Consultant
+RÔLES TRANSVERSES
+Méthodiste
+Pilote de configuration
+APPLICATION
+Lanceur
+LANCEUR
+RÉALISATION
+MODIF. DE DONNÉES
+Monteur
+Technicien AQ
+Chaîne avionnage
+INDUSTRIALISATION
+Favourite
+Les plus de PIM
+DEMO. PIM MONTEUR
+INNOVATION
+AMELIORATION
+-Conservation de tous les enregistrements
+-Intégration des ITT / ITE.
+Les mouvements
+- Monter, démonter, remonter
+Nouveaux modes de fonctionnement
+- Individuel
+- En équipe
+- En partage
+Le Graphe
+- Visualisation enchaînements
+Avancements, Problèmes
+- Images en couleur
+- Animation (CATIA)
+- Vidéo, audio…
+Moins de papier
+-toutes les instructions sont dans le système
+(Kit, EMS, Prépa. Essais…)
+Nouvelle ergonomie
+- Interaction Images, données, textes
+Sous-traitance
+Plus de transfert de fichiers
+Saisie directe dans l'outil PIM
+Contrôle des doublons en temps réel
+Travail simultané
+- Même instruction
+- Depuis plusieurs terminaux
+Favourite
+Ouverture / Interfaces PIM
+Favourite
+Authentification 1er intervenant
+Authentifiez-vous avec votre user-id
+Et votre mot de passe Windows
+Assurez-vous que le poste indiqué est le véritable
+poste dans lequel est implanté le terminal
+Une session ouverte sans utilisateur
+Favourite
+Les trois modes de travail
+PRINCIPES ET VOCABULAIRE
+Équipe
+En équipe, où les intervenants (5 maximum) partagent le même terminal
+tout en travaillant sur la même instruction (co-signature)
+Individuel
+Individuel (signature individuelle à la validation de la phase)
+Partage
+En partage, où les intervenants partagent le même terminal tout en
+travaillant sur des instructions différentes (signature individuelle)
+s000001 s000002 s000001 s000002
+Dans une même session tous les intervenants doivent avoir le même profil
+Favourite
+Seul les objets (OPE, Phase) d’une même OPP peuvent être ouvert simultanément dans la même session
+s000001
+Gestion sessions et utilisateurs
+Fermer toutes les sessions
+et redémarrer le terminal
+Ouvrir une nouvelle session
+Supprimer l’utilisateur actif
+Si dernier de la session
+alors fermeture de le session
+Ajouter un intervenant
+A la session sélectionnée
+s000001 s000002
+Session N°3
+s000002
+Session N°1 Session N°2
+Utilisateur Actif
+Favourite
+Structures PIM
+Favourite
+Les mondes de PIM - ITR
+Lancement
+1 Ordre de Fabrication = OF
+pour
+1 Objet Réalisé = OR
+Instruction de travail Définie
+ITD
+Objet Défini
+OD
+BaaN
+PM
+Instruction de travail Réalisée
+ITR
+Composition d’Objet Réalisé
+COOR (liste de repères)
+Relevés de Mesures
+RMs (liste de sigles)
+Composition de Phase Réalisées
+COPR (liste signatures)
+Instructions Temporaires
+ITT Bibliothèque
+Instruction de Travail Exceptionnel
+ITE
+Évènements sur encours
+Réserve, Litiges, Manquants…
+Commentaire
+Systématique ou sur demande
+PRINCIPES ET VOCABULAIRE
+Favourite
+EME
+Périmètre d’une ITR
+PRINCIPES ET VOCABULAIRE
+Module
+1 ITR  1 OR composé
+Moteur
+KIT EMS
+Favourite
+Graphe OPE
+Graphe OPE
+Graphe OPE
+Graphe OPP
+Le découpage de l’ITR
+PHASE OPE OPP Graphes ITR
+Phases = Phases actuelles
+Opérations élémentaires (OPE) = OP actuelles
+Opérations principales (OPP) = regroupement d’OPE correspondant à un ensemble d'activités
+chronologiques réalisées à un poste de travail
+PRINCIPES ET VOCABULAIRE
+ITR
+OPP OPP OPP
+OPE OPE OPE OPE OPE OPE OPE
+Phase 1
+Phase 2
+Phase 3
+Phase 1
+Phase 2
+Phase 1
+Phase 2
+Phase 3
+Phase 1
+Phase 2
+Phase 3
+Phase 4
+Phase 1 Phase 1
+Phase 2
+Phase 1
+Phase 2
+Favourite
+Le graphe
+PRINCIPES ET VOCABULAIRE
+Graphe = Représentation synthétique et chronologique des activités à réaliser.
+110
+700
+727
+600
+110 110 EXP
+700
+727
+600
+Opération : 0120
+Poste de travail : EXP – W – Essais - Expédition
+Libellé OPP : *
+Statut : A faire
+Manquants : N
+Réserves : N
+Litiges : N
+Enchainements Conditions Graphe
+PHASE OPE OPP Graphe
+OPP
+Graphes
+OPE ITR
+Le Graphe est informatif et l’enchaînement des diverses opérations peut être entrepris de façon différente
+de celle présentée
+Il est toutefois conseillé de suivre les enchaînements spécifiés
+Les conditions peuvent être associées à des OPP et ou à des OPE mais pas à des phases
+Favourite
+L’identification des objets
+▪ Les opérations sont identifiées par :
+le poste de travail
+et un numéro attribué par le Méthodiste
+un numéro attribué par le Méthodiste
+PRINCIPES ET VOCABULAIRE
+OPP
+OPE
+▪ Les conditions sont identifiées par :
+Une ou plusieurs questions et les réponses associées
+Les opérations amont et aval
+?
+▪ Les Phases sont identifiées par :
+Un numéro attribué par le Méthodiste
+Une référence attribuée par le système 0000000436
+0010
+EXT
+9020
+0080
+Tranche réservée : 9000 à 9999 (les OPP fictives 9001 à 9009)
+Tranche réservée : 0020 à 8999 (les OPE fictives 0001 à 0009)
+Favourite
+Conditions
+▪ Les conditions doivent être levées au fil de l'eau au
+niveau du graphe des opérations
+▪ Les opérations écartées suite à la levée de condition ne
+sont plus modifiables
+▪ Il est impossible de modifier une réponse dès qu'une
+opération dépendant de la question est au statut «Encours»
+▪ Si une question est utilisée dans plusieurs graphes,
+la réponse concerne tous les graphes
+Favourite
+Exemple d’OPP et de postes
+833 EXP
+PES
+ESSAIS
+HORS PÉRIMÈTRE
+OPP 833
+443
+430
+430
+EXP - W - Essais - Expédition
+9180
+RET
+FICT
+430 443 430 833 PES EXP
+Favourite
+Ouverture une ou plusieurs ITR
+Favourite
+Zone de travail
+Les trois zones de l’interface
+Navigation
+Barre des intervenants
+Favourite
+Bureau PIM
+Les commandes disponibles
+En fonction de vos droits
+N° NETMAN du terminal
+Nom du bureau affiché
+Profil autorisé dans la session
+N° de la session active
+User-id actif dans la session
+Le poste d’implantation du terminal
+(environnement de travail)
+Favourite
+Les accès aux OR
+Permet d'afficher tous les OR
+non terminés / soldés
+pour un poste de travail défini
+Permet L’ouverture d’une phase
+Placée au préalable dans le presse papier Windows
+Permet d'afficher l’OR demandé et
+l’ensemble de ses sous-modules, Kits, EMS
+Permet d'afficher les OR
+non terminés / soldés
+Filtrés suivant des critères
+Tous les champs sont facultatifs
+Et autorisent le « Commencent par »
+Favourite
+Graphe
+Explorateur
+Graphe VS Explorateur
+Oui Non
+Oui Oui
+Oui Non
+Oui Non
+Oui Oui Uniquement après validation
+Oui Oui Uniquement après validation
+A travers les vignettes Oui Oui
+Oui Oui
+Oui Oui Uniquement après validation
+Oui Oui Uniquement après validation
+OPP
+OPE
+Phases
+Conditions
+Enchaînements
+Avancement
+Litiges
+Réserves
+Manquants
+Mise à jour
+Favourite
+Graphe
+Graphe VS Explorateur
+Explorateur
+OPP
+OPE
+Condition
+Phase
+Favourite
+Graphe VS Explorateur
+Tableau de données
+associées au niveau N-1
+Zone explorateur
+Type Windows (arborescence)
+Graphe des OPP
+Vignettes phases
+Graphe des OPE
+Favourite
+Favourite
+Les infos bulle
+Sur les boutons de commandes
+Sur les onglets des objets de la phase
+Sur les boutons de la barre des intervenants
+Sur Les objet des graphes
+Sur les onglets de navigation
+Sur l’onglet de la phase
+Sur ligne repère de la phase
+Favourite
+Menus contextuels
+Il faut sélectionner l’Objet avant
+de demander le menu contextuel
+Panneau actif
+Menu identique
+dans l’explorateur
+Favourite
+La phase
+Favourite
+L’interface de la phase
+Une illustration
+Texte de la phase
+Tableaux des données
+Navigation Vignettes
+- ingrédients,
+- outillages,
+- repères
+- mesures
+- Commentaires
+Barre des intervenants
+Favourite
+Les Présentations de la phase
+Favourite
+Phase sous condition
+A lever
+Ou
+invalide condition
+La phase et son verrouillage
+?
+Phase non verrouillée
+A faire
+Ou
+en cours
+
+Phase verrouillée
+en cours
+
+Phase non verrouillée
+visée
+
+Verrouiller
+Favourite
+Tableaux de données / Filtres / Tris
+Favourite
+Les tris sur les tableaux de données
+1er clic croissant
+2eme clic décroissant
+1
+2 3
+Tri cumulé Statut décroissant puis OR croissant
+3
+2
+Favourite
+Les filtres sur les tableaux de données
+1 Filtrer les ITR par statut = « A FAIRE »
+2 Filtrer =>Statut = « A FAIRE » et code gamme =01
+3 Supprimer tous les filtres
+Favourite
+Manipulation de repères
+Favourite
+Les mouvements
+Identifier Monter ĳ « _ » M OR de l’ITR Condition levée
+Phase verrouillée
+Pièce en accompagnement ĳ « _ » L OR de l’ITR Condition levée
+Phase verrouillée
+Démonter ĵ M D OR de l’ITR Condition levée
+Phase verrouillée
+Remonter ĵ D R OR de l’ITR Condition levée
+Phase verrouillée
+Icône Mouvement prévu en ITD Ħ
+I.M
+I.LPA
+V.D
+V.R
+Favourite
+Les mouvements
+« _ » L OR de l’ITR
+Condition levée
+Phase verrouillée
+Icône Mouvement prévu en ITD Ħ
+Livrer Hors Module ĵ
+L.LHM
+Favourite
+Les mouvements hors module
+Démonter Hors Module ĵ M D OR inférieur Voir encadré
+Remonter Hors Module ĵ D M OR inférieur Voir encadré
+ĳ L M OR inférieur
+Voir encadré
++ Repère OR inf.
+à l’état « L »
+Identifier Monter Hors Module
+- Condition levée - Phase verrouillée
+- Repère maître renseigné et visé - Repère OR inférieur de même Quantité, visé
+Icône Mouvement prévu en ITD Ħ
+I.MHM
+V.DHM
+V.RHM
+Favourite
+Les états non prévu en ITD
+Livrer Hors Poste
+ĵ
+« _ » L OR de l’ITR
+Condition levée ĵ Phase verrouillée
+Mouvement non prévu en ITD _
+« _ » OR de l’ITR « _ »
+Condition levée ĵ Manquant ĵ Phase verrouillée
+« _ » OR de l’ITR « _ »
+Condition levée
+En attente ĳ Phase verrouillée
+Seul l’état « En attente »
+Interdit le visa de la phase
+Favourite
+Changement de kit ou de module
+L Remplacement d’un matricule A (de kit ou de module) par un matricule B
+Déviser éventuellement la phase support de la déclaration du KIT ou du module à démonter
+Déviser éventuellement la ligne de déclaration du kit ou du module
+Si lors de la demande de dévalidation de la ligne de déclaration du kit ou du repère
+Vous avez le message suivant : « Changement d'OR impossible : le statut des phases liées ne le permet pas »
+Identifier les phases impactées par la déclaration du KIT ou module
+Vous pouvez visualiser l’ensemble des phases impactées par enchaînement sur la ligne du kit / module (clic droit)
+Par enchaînement (double clic) ouvrir la ou les phases impactées
+Nota : il n’est pas utile d’ouvrir les phases ayant un statut « à faire »
+Si la phase impactée est support de formules de calculs utilisant une GM importé déviser la phase
+Si la phase en au statut encours => ne rien faire
+Si la phase impactée est support de repère IMHM à l’état « M » faire une remise à zéro de cette dernière
+Déviser la ligne de déclaration du kit ou du module
+Saisir éventuellement le nouvel OR (matricule)
+Favourite
+Les onglets de la phase
+Favourite
+C Repères ĢA%
+Les onglets de la phase
+ǀ GM
+C
+ I.M.
+I.LPA
+V.D.
+V.R.
+Enregistrement des repères
+de l’ensemble monté
+ǡ
+I.MHM
+V.D.H.M
+V.R.H.M
+Enregistrement des repères
+D’un sous ensemble
+de l’ensemble monté
+Enregistrement Composition
+et Caractéristiques jeux CORSAIRE
+M
+Serrage, Freinage, Rivetage
+Montage et Lubrification
+D
+Affichage de repères
+manipulés (référencé) dans la phase
+F
+F Enregistrement
+des Mesures effectuées
+Ģ
+A
+Affichage des outillages
+Manipulés (référencé)
+dans la phase
+E
+E Import de Mesure
+d’un ensemble inférieur
+G
+G GM Calculées
+Issues d’une formule
+A
+Ģ Affichage des
+Ingrédients phase
+%
+% Affichage des
+Commentaires phase
+Z
+
+Document
+
+Affichage les
+Documents externes
+de la phase
+ƀ ƃ
+Ƅƅ
+ƈ
+Ɓ Ƃ
+X
+í Ɣ
+q
+ȳ
+ȳ
+Favourite
+Repère Jeu d’aubes
+Aubes plate formes étroites
+Aube verrou droite
+Aubes plate formes larges
+Aubes verrou Gauche
+avecSDM avecPIM
+JEU CORSAIRE
+Repère de jeu
+99CB01
+Favourite
+Exercices
+Manipulation outils DMI
+F I N

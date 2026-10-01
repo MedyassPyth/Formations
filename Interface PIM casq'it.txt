@@ -1,0 +1,1361 @@
+
+Projet Poste Intégré Montage - PIM
+ 
+
+
+
+
+
+
+
+
+
+
+		Version	2.2	
+Spécifications Fonctionnelles Détaillées
+PIM – Casq-it
+Projet : PIM
+
+	date:	 09/07/2019	
+
+
+
+Version	Auteur(s)	Valideur(s)	Approbateur(s)
+2.0.0	Thomas LESGOIRRES	Jessica JACCAZ	
+
+
+ 
+Historique des Versions
+
+Version	Date	Description de la version
+1.0	09/05/2017	
+1	06/12/2013	Mise à jour de la spécification suite aux évolutions PIM demandées depuis la fin du projet Nausiqua lot 3a :
+•	Gesfic 1666 : Créer un " Etat qualité série" des ensembles
+•	Gesfic 1937 : Casq-it/PIM : nouvel état qualité
+1a	09/12/2013	Gesfic 1946 :
+L’envoi à Casq-it est effectué :
+	A la création des modules à ITR :
+	Si le Suivi Utilisation de la référence article qui lui est associé est égale à « O » ou que le composé est un KIT 
+	A la création des modules Hispano :
+	Si le poste « ENVOI CASQIT » de table 101 est = à « O »
+	A la création d’un module issue d’une nomenclature de type SaM146 
+	S’il s’agit d’un moteur ( repère de la tête de nomenclature en table 42A ). 
+
+La gestion des retours Casq-it PIM03R est effectuée si référence article est présente dans la table « KIT »
+1b	10/01/2014	Gesfic 1946 :
+L’envoi à Casq-it est effectué :
+	A la création des modules à ITR :
+	Si le Suivi Utilisation de la référence article qui lui est associé est égale à « O » ou que le composé est un KIT 
+	A la création des modules Hispano :
+	Si le poste « ENVOI CASQIT » de table 101 est = à « O »
+	A la création d’un module issue d’une nomenclature de type SaM146 
+	S’il s’agit d’un moteur ( repère de la tête de nomenclature en table 42A ). 
+
+La gestion des retours Casq-it PIM03R est effectuée si référence article est présente dans la table « KIT »
+2	04/12/2018	FEB 1900 : Chargement XML : envoi des OR à Casq-it (autre que SaM146)
+2.1	07/06/2019	FEB 2193 : ajout des composants des modules STS
+2.2	09/07/2019	FEB 2651 : PIM25 et DDT : séparation technique
+
+
+
+
+ 
+SOMMAIRE
+
+HISTORIQUE DES VERSIONS	2
+SOMMAIRE	3
+1	PERIMETRE DU PROJET NAUSIQAA LOT 3A	8
+2	PREAMBULE	9
+2.1	Anticipation sur NAUSIQA lot 3B	9
+3	EVOLUTION TECHNIQUES NECESSAIRES A LA MISE EN PLACE DES ECHANGES	9
+3.1	Besoin :	9
+3.2	Evolution a mettre en œuvre :	9
+4	STRUCTURE D’ECHANGE PIM	9
+4.1	Besoin :	9
+AAMMJJ  JJ-MMM-AA	9
+SSAAMMJJ – JJ-MMM-AA	9
+NOTA : POUR L’INTEGRATION, LA DATE DU JOUR INTERNE PIM SERA UTILISEE.	10
+5	PIM03 : DECLARATION D’UN MATRICULE DANS CASQ-IT	10
+5.1	Besoin :	10
+5.1.1	Conditions d’envoi du composé vers CASQ-it ( Gesfic 1946 ) :	10
+5.1.1.1	A la réception des matricules à ITR issus de BAAN :	10
+5.1.2	Regravage d’un matricule :	10
+5.1.3	Suppression d’un matricule :	10
+5.1.4	A l’intégration des composés Hispano :	10
+5.1.5	A l’intégration des composés de type SaM146 :	11
+5.1.6	A l’intégration des composés de type XML autre que SaM146	11
+6	SCHEMA D’INTERFACE PIM03 -> CASQ-IT ET CASQ-IT PIM	11
+6.1	Création ou modification d’un matricule Casq-it :	11
+7	MODIFICATION APPLICATIVES PIM A EFFECTUER	12
+7.1	Ecriture d’un message PIM03 en tables interapplication et d’envoi WLI :	12
+7.2	Alimentations du PM06 :	13
+8	PIM11 : CREATION DE RESERVES DANS PIM ET EMISSION DE DA DANS CASQ-IT	14
+8.1	Rappels fontionnels	14
+8.2	Modification applicatives PIM a effectuer	14
+CREER UNE RESERVE POUR N°UVC	14
+LES RUBRIQUES REPERE – DENOMINATION – REFERENCE ARTICLE SONT NON MODIFIABLES	15
+8.2.1	Création de réserve depuis l’interface monteur :	15
+8.3	Création de réserve dans TRAM :	15
+8.3.1	Programme PM0007:	15
+RUBRIQUES SAISISSABLES :	15
+NOUVELLES VALEURS ADMISSIBLES :	15
+REMARQUE : LA NOTION DE « PRELIB » ET SA GESTION NOMINALE EST CONSERVEE DANS L’INTERFACE TRAM.	16
+8.3.2	Evolutions de la maquette d’écran « Généralités d’une réserve »	17
+8.3.2.1	Modifications de la table 916 : types de réserve	18
+8.3.2.2	Nouvelle table PTR : Poste de TRavail et centre de charge	18
+8.3.3	Création de réserve :	18
+LA CREATION DE RESERVE DOIT INITIALISER A SPACE LES NOUVELLES PROPRIETES :	18
+8.3.4	Modification de réserve :	18
+TOUS LES CODES DE MAJ SONT IMPOSSIBLES SI LA RESERVE EST ANNULEE.	18
+RUBRIQUES SAISISSABLES :	18
+8.3.5	Solde de réserve :	19
+8.3.5.1	Suppression de réserve avec DA ou litige :	19
+8.3.6	Nouvelles opérations réservées aux besoins administrateurs :	19
+8.3.6.1	Modifications des propriétés d’une réserve : Code opération NIGANT :	19
+8.3.6.2	Suppression de réserve avec DA ou litige : Code opération NSANT :	19
+8.3.6.3	Solde de réserve avec DA : Code opération NVANT :	19
+8.3.7	Aménagements interface TRAM:	19
+8.3.7.1	Ajout de l’événement « Créer une DA » sur la rubrique NUANO :	20
+TOUTE MODIFICATION DE VALEUR MESUREE AYANT UNE RESERVE ASSOCIEE, ENTRAINE :	20
+8.3.7.2	Incidence des réserves uvc associées à un composant :	20
+8.3.8	Aménagement interface monteur	20
+8.3.8.1	Afficher les réserves éligibles à la création de DA ou au solde réserve :	20
+8.3.8.2	Afficher les réserves annulées : Nouveau code opération TANORA	21
+8.3.8.3	Générer la « création de DA »  des réserves sélectionnées :	21
+8.4	Modifications applicatives PIM à effectuer	21
+NOUVEL ENCHAINEMENT « CREER DA AVEC PRISE EN COMPTE DE LA RESERVE » DEPUIS	22
+ENCHAINEMENT « CREER DA AVEC PRISE EN COMPTE DE LA RESERVE »	22
+MODIFICATION DE LA FONCTION « EVENEMENTS SUR ENCOURS »	22
+8.5	Schéma d’interface PIM11	23
+8.6	Demande de création de D.A. : Evènement déclenchant	23
+8.6.1	Nouveau code opération : NCDA - Appellé depuis TRAM :	23
+8.6.2	Nouveau code opération : TCDAGR - Appelé depuis l’interface PIM :	23
+8.7	Demande de suppression (annulation) de D.A. : évènements déclenchant	24
+8.8	Ecriture d’un msg PIM11 en table interapplication et envoi WLI :	24
+8.8.1	Nouveau sous-programme : PMxxxx pour générer les envois de réserves vers Casq-it	24
+8.8.1.1	Alimentations du PM06 :	24
+L’ALIMENTATION DE LA TABLE D’ENVOI WLI EST EFFECTUE SI L’ON ECRIT UN PM06-STATUT = ‘T’	25
+9	PIM14 : RELANCES AUTOMATIQUE DES LITIGES	26
+9.1	Rappels fonctionnels :	26
+9.2	Ecriture d’une relance :	26
+9.3	Envoi d’une relance :	26
+10	PIM22 : RESERVES UVC	27
+10.1	Rappels fonctionnels	27
+10.2	Schema d’interface PIM22 -> CASQ-IT	27
+10.2.1	Déclenchement de l’envoi de l’UVC vers AMSQ serial de CASQ-it :	27
+10.2.2	Ecriture d’un message PIM22 en tables interapplication et d’envoi WLI :	28
+10.2.2.1	Alimentations du PM06 :	28
+L’ALIMENTATION DE LA TABLE D’ENVOI WLI EST EFFECTUE SI L’ON ECRIT UN PM06-STATUT = ‘T’	28
+10.2.2.2	Modification d’une réserve UVC : NIGAN :	28
+10.2.2.3	Suppression d’une réserve UVC : NSAN :	29
+LA RUBRIQUE PM06-MVT EST ALORS EGALE A « S »	29
+11	INTEGRATION DES MESSAGES CASQ-IT : RETOURS PIM OU EMISSION CASQI-IT	29
+NOUVEAU PROGRAMME DE REINTEGRATION:	29
+11.1	PIM03R :Retour de l’identification d’une matricule	29
+11.1.1	Gestion des retours CASQI-IT	29
+ACCEDER A L’ENTITE D’ORIGINE : BH02-DBK = PM06-IDMES	29
+11.2	PIM11R	29
+11.3	PIM21A : Solde d’une DA pour solde des réserves associées	30
+11.4	Structure du message :	30
+11.5	Intégration applicative :	30
+REMARQUE : IL N’Y A PAS D’ACCUSE DE RECEPTION PIM21R SUR UN MESSAGE PIM21A	31
+12	PIM24 : GENERATION D’UNE NOMENCLATURE MULTINIVEAUX OR	31
+12.1	Rappels fonctionnels :	31
+12.2	Schema d’interface PIM24 -> CASQ-IT	31
+12.2.1	Interface de déclanchement de la génération :	31
+12.2.1.1	Nouvel écran et Nouvelle opération TORCAS  :	31
+12.2.2	Extraction des données	32
+(1)	: MATRICULE OR COMPOSE DU NIVEAU TRAITE	32
+(2)	 PART NUMBERT TECHNIQUE SI EXISTENTE, OU REFERENCE ARTICLE ASSOCIE A LA REFERENCE DU COMPOSE DU NIVEAU TRAITE .	32
+(3)	REFERENCE EDD DU COMPOSE DU NIVEAU TRAITE	32
+(4)	REPERE FONCTIONNEL DU COMPOSANT	32
+(5)	MATRICULE OU SERIAL DU COMPOSANT	32
+(6)	PART NUMBERT TECHNIQUE SI EXISTENTE, OU REFERENCE ARTICLE ASSOCIE A LA REFERENCE DU COMPOSANT	32
+(7)	DESIGNATION DU COMPOSANT TRAITE	32
+(8)	TYPE DE COMPOSANT : M SI LE COMPOSANT EST ASSOCIE A UNE ITR, SINON P	32
+EXTRACTION : NOUVEAU SCRIPT GOTXYPTN	32
+TRI DU FICHIER	33
+HYPOTHESE D'UN MOTEUR ASSEMBLE CONSTITUE DE :	33
+TRI DE L'ETAT QUALITE :	33
+EN FIN DE TRAITEMENT, SUPPRIMER LA DEMANDE GENEREE ( TU80 ORIGINE DU TRAITEMENT )	34
+GESFIC 1666 :  CREER UN " ETAT QUALITE SERIE" DES ENSEMBLES	34
+GESFIC 1937 : CASQ-IT/PIM : NOUVEL ETAT QUALITE	34
+13	EPURATION DES DONNEES ENGENDREES PAR LES ECHANGES INTER-APPLICATION	35
+14	MODIFICATIONS INDUITES PAR LE DECOUPAGE EN 2 LOTS	35
+14.1	Initialisation applicative des rubriques non utilisees en lot 3A:	35
+14.1.1	Envoi et création des composants CASQ-IT : BH03-CASQIT et BH03-MAJCAS:	35
+14.1.2	Statut RVQ d’un matricule : BH02-RVQ:	35
+14.1.3	Référence ITD associée à un OR : PM12-REFIT :	35
+15	MODIFICATIONS INTERNES PIM	36
+15.1	Visualisation des litiges CASQ-IT sur tout OR	36
+15.1.1	Code opération LITOR : Nouvel écran :	36
+EN SURLIGNE, LES RUBIQUES ECRANS CONDITIONNEES PAR LE CODE OPERATION	36
+15.1.2	Mise à jour des données :	37
+15.1.3	Ergonomie LITOR :	37
+SUR LES RUBRIQUES REFERENCE ARTICLE COMPOSE ET REFERENCE ARTICLE COMPOSANT, AVOIR LES DEBRANCHEMENTS SUR OPERATIONS ASSOCIEES A L’OD.	37
+CREER UNE NOUVELLE TABLE APPLICATIVE WLI : POUR LISTER LES CODES INTERFACES PIM  VIA WLI	37
+15.2	Visualisation des litiges CASQ-IT sur reserves tous OR confondus	38
+15.2.1	Code opération LITRES : Nouvel écran :	38
+EN SURLIGNE, LES RUBRIQUES ECRANS CONDITIONNEES PAR LE CODE OPERATION	38
+15.3	Mise à jour des données :	38
+15.4	Ergonomie LITRES :	38
+SUR LA RUBRIQUE REFERENCE ARTICLE COMPOSE, AVOIR LES DEBRANCHEMENTS SUR OPERATIONS ASSOCIEES A L’OD.	38
+SUR LA RUBRIQUE MATRICULE COMPOSE, AVOIR LES DEBRANCHEMENTS SUR OPERATIONS ASSOCIEES A L’OR.	39
+RESERVE ‘ANNULEE’ : ELLE SERA IDENTIFIEE PAR LE TYPE ACTION ( = A )	39
+COLONNE TA : LES CODES POSSIBLES SONT :	39
+16	MODIFICATION TECHNIQUES NECESSAIRES DANS PIM	40
+16.1	Création de tables	40
+16.1.1	PM06 : TO78 : Gestion échanges inter-application	40
+16.1.2	WLIENV : Segment PM07 ENVOI WLI ( PIM vers APPLICATION EXTERIEURE )	41
+16.1.3	WLIRET : Segment PM08  RETOUR WLI ( APPLICATION EXTERIEURE vers PIM )	41
+16.2	Modification de tables	41
+16.2.1	TO02 : Segment BH02 : OR daté	41
+16.2.2	TO96 : Segment VL05 : Composition Objet Réalisé	41
+16.2.3	TO16 : Segment BR01 : Réserve	42
+16.2.4	TO97 : Segment PM12 : Matricules BAAN à ITR	42
+17	SYNTHESE DES STRUCTURES DES MESSAGES ECHANGES	43
+17.1	PIM03 : déclaration d’un matricule	43
+17.2	PIM11 : association d’une réserve à une Demande d‘anomalie :	43
+17.3	PIM21 : solde d’une réserve suite au solde d’une DA	44
+17.4	PIM22 : réserve de type uvc pour amsq serial casq-it :	44
+18	REPRISE DE DONNEES	45
+18.1	Uniformiser les rôles d’observation sur réserve : Positionner toutes les réserves en ‘L’	45
+18.2	Conserver les N° de DA associés à une réserve avant la MEP Nausiqua :	45
+
+
+
+ 
+1	PERIMETRE DU PROJET NAUSIQAA LOT 3A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MAN01 est le nom de l’interface pour la nomenclature développement. La nomenclature PIM sera déposée au même endroit que la nomenclature GMD  
+
+ 
+2	PREAMBULE
+2.1	Anticipation sur NAUSIQA lot 3B
+Le projet NAUSIQUA a été découpé en 2 lots ( 3A et 3B ). Cette spécification prend en compte les besoins fonctionnels du lot 3A mais également les spécifications techniques du lot 3B. Ceci rendra la mise en œuvre du lot 3B beaucoup plus souple (même si des évolutions interviendront dans le lot 3B).
+
+
+3	EVOLUTION TECHNIQUES NECESSAIRES A LA MISE EN PLACE DES ECHANGES
+3.1	Besoin :
+Les échanges de données entre PIM et CASQ-IT doivent se faire via WLI, qui n‘est pas encore utilisé dans les processus d’échanges PIM. 
+
+
+3.2	Evolution a mettre en œuvre :
+­	Mise en place de la partie cliente WLI sur serveur PIM.
+­	Création d’une table « PM06 », inter-application d’échange WLI ( nécessaire pour les relances et la consultation de l’encours transmis et en litige ).
+­	Création de 2 tables d’échange WLI : une table d’envois « WLIENV » et une table des retours « WLIRET » .
+­	Le principe de fonctionnement cible entre PIM et WLI est que PIM appelle WLI dès qu’un nouvel enregistrement est à traiter dans la table d’expédition ( WLIENV ) et que WLI appelle PIM dès qu’un nouvel enregistrement est à traiter dans la table de réception ( WLIRET ).
+
+
+4	STRUCTURE D’ECHANGE PIM
+4.1	Besoin :
+La description des buffers d’échange est conforme au SGI en référence. 
+Pour information, la description contenue dans le SGE est une description interne WLI.
+Les rubriques date échangées seront sous forme « date standard oracle » : JJ-MMM-AA.
+	Une macro de conversion de dates devra être développée :
+		Pour l’envoi de message :
+			AAMMJJ  JJ-MMM-AA
+			SSAAMMJJ – JJ-MMM-AA
+	Prévoir un paramètre de la macro, pour mettre les 3 1ers caractères du mois, en français ou en anglais
+
+Nota : Pour l’intégration, la date du jour interne PIM sera utilisée.
+
+
+5	PIM03 : DECLARATION D’UN MATRICULE DANS CASQ-IT
+5.1	Besoin :
+Transmettre pour vérifications et création ou MAJ dans CASQ-it, l’identification des composés  recus .
+Si le matricule n’existe pas, la mise à jour dans CASQ-it consiste créer la matricule 
+Si le matricule existe, la mise à jour consiste à prendre en compte les nouvelles valeurs .
+
+
+5.1.1	Conditions d’envoi du composé vers CASQ-it ( Gesfic 1946 ) :
+5.1.1.1	A la réception des matricules à ITR issus de BAAN : 
+Lorsque PIM reçoit un OR de BaaN, un traitement automatique permet la création du dossier de montage de cet OR dans PIM ( ITR, Composition d’OR, Relevés de Mesures ). Une renumérotation du matricule OR reçu de BAAN peut être effectuée en fonction du générique contenu dans la référence EDD reçue ( table GMR ) et du matricule OR reçu ( table MAT ).
+
+Le matricule est envoyé systématiquement CASQ_IT si la définition associée à l’OR de lancement à un Suivi Utilisation (SU )  validé ou non validé qualité = ‘O’ ou si le type de composant est un KIT ( AO01-TYPECT = ‘7’ ).
+
+
+5.1.2	Regravage d’un matricule : 
+Lors de la modification de la référence EDD associée à l’OR, le nouvel EDD et part-number associé est transmis à CASQ_it pour Mise A Jour si la définition associée à l’OR de lancement à un Suivi Utilisation (SU )  validé ou non validé qualité = ‘O’ ou si le type de composant est un KIT ( AO01-TYPECT = ‘7’ ).
+
+
+5.1.3	Suppression d’un matricule : 
+La suppression ne génère pas d’envoi à Casq-it.
+
+Si la définition associée à l’OR de lancement à un Suivi Utilisation (SU )  validé ou non validé qualité = ‘O’ ou si le type de composant est un KIT ( AO01-TYPECT = ‘7’ ). il faut supprimer le litige CASQ-IT si existant.
+5.1.4	A l’intégration des composés Hispano : 
+Lors de la création des composés dans TRAM : 
+	Accéder à la table 101 avec le repère fonctionnel de la tête de nomenclature. 
+	Si le libellé associé au poste « ENVOI CASQIT » égal « O », le composé est à transmettre à CASQ-it.
+
+
+5.1.5	A l’intégration des composés de type SaM146 : 
+Lors de la création des composés dans TRAM, l’envoi CASQ-it est effectué uniquement pour le niveau moteur : 
+	Accéder à la table 42A avec le repère fonctionnel de la tête de nomenclature. Si le poste est trouvé, le composé est à transmettre à CASQ-IT
+
+5.1.6	A l’intégration des composés de type XML autre que SaM146
+Lors de la création des composés dans TRAM, l’envoi CASQ-IT est effectué uniquement pour l’OR de tête.
+
+Dans le cas ou un EDD est présent avec l’OR composé, les éléments Part Number / Référence article sont récupérés depuis le fichier XML et non depuis le Part Number lié à l’EDD en base.
+
+
+6	SCHEMA D’INTERFACE PIM03 -> CASQ-IT ET CASQ-IT PIM
+6.1	Création ou modification d’un matricule Casq-it :
+
+ 
+
+
+
+7	MODIFICATION APPLICATIVES PIM A EFFECTUER
+7.1	Ecriture d’un message PIM03 en tables interapplication et d’envoi WLI :
+Les transactions déclenchant l’envoi des OR via WLI appellent un nouveau sous-programme ( bâti sur le modèle du PM1000 : Envois PIM – COMETE ) qui permet d’assurer l’expédition du message 
+Les paramètres nécessaires 
+	CODRET CODE RETOUR INTER TRANSACTION   X(01)
+	CODME1 CODE DU MESSAGE                 X(02)
+	CODACT CODE ACTION                     X    
+	DBK    DBK DE RECORD                   9(10)
+	MATOR  MATRICULE OR COMPOSE            X(10)
+	MATORK MATRICULE OR COMPOSANT          X(10)
+	NUMORD NUMERO D'ORD                    99   
+	REPFCT REPERE FONCTIONNEL              X(9) 
+	REFOD  REFERENCE OBJET DEFINI          X(16)
+	QTECOR QUANTITE MONTEE SUR L'OR        X(04)
+	CODETA CODE ETAT OR COMPOSANT          X    
+	PHASE  PHASE                           X(14)
+	ECLPHA eclatement Phase                99   
+	NOJEU  NUMERO DE JEU                   X(10)
+	LITIGE LITIGE                          XX   
+
+
+7.2	Alimentations du PM06 :
+- NUENTI = « R » pour « OR »
+- CODINF = « PIMNAU00 »
+- IDMES = BH02-DBK
+- STATUT = ‘T’
+- DATECR et DATDMJ = Date du jour
+- HEUCRE et ELIB09 = Heure de la transaction
+- LITIGE = space
+- MATOR = BH01-MATOR
+- NUMORD = BH02-NUMORD
+- REPFCT = space
+- MATORC  = space
+- NUMOR2 = space
+- CARHIS = space
+- MSGWLI :
+	- CODINT = “PIMNAU00
+	- CODMES = “PIM03A“
+	- DBK1 = PM06-DBK du message d’émission
+	- CODRET = space
+	- Partie applicative :
+
+
+Rubrique	Format	Origine	Remarque
+MATOR 	X(10)	BH01-MATOR	Matricule de lancement  BAAN ( après renumérotation PIM le cas échéant )
+REFIT	X(14)	PM12-REFIT	= SPACE pour lot 3A
+PARTNB 	X(32)	AO01-PARTNB	Pour les EDD ( type composant = 0 ) :
+PART Number associé à la référence de MAJ sur encours ou à défaut la référence BAAN de lancement 
+Pour des autres : Mettre la référence de lancement BAAN
+NUMOF6	X(06)	BH02-NUMOF	Numéro de l’Ordre de Fabrication BAAN
+REFOD 	X(16)	PM12-REFOD	Pour les EDD uniquement :
+ Référence de lancement BAAN
+Sinon ne pas renseigner
+XLIB03	X(03)		Origine PIM : Valeur par défaut « OUI »
+
+ 
+8	PIM11 : CREATION DE RESERVES DANS PIM ET EMISSION DE DA DANS CASQ-IT
+8.1	Rappels fontionnels
+Cette interface permet :
+•	La création d’une DA dans CASQ-it, issue d’une réserve PIM.
+•	La création d’une DA issue de plusieurs réserves PIM (Ecran des réserves de la phase 
+Tous les types de réserve peuvent amener la demande de création d’une DA (UVC et pré-libération compris)
+
+Il n’est pas nécessaire que la réserve soit prise en compte par le TQP pour pouvoir faire une demande de création de DA. Dans le cas où la gravité réelle n’est pas prononcée, elle est forcée à « A » lors d’une demande de création (ou association quand plusieurs réserves sont à traiter simultanément) d’une DA à cette réserve.
+
+
+8.2	Modification applicatives PIM a effectuer
+Nouveaux enchaînements depuis le tableau des repères de la phase
+­	« Créer une réserve pour n°UVC» 
+Modification libellé de l’enchaînement « Créer une réserve cosmétique » + alimentation poste de travail .
+
+Créer une réserve pour n°UVC 
+Contrôler et retourner un message d’erreur si alternative non levée, si serial non levé et relevé serial à OUI (vous devez lever l’alternative / renseigner le serial avant de créer une réserve) 
+Afficher un nouvel écran de saisie des infos complémentaires
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Préinitialiser les rubriques  Type de réserve - Repère – Dénomination – Référence article – N° série si renseigné (si possible)
+Les rubriques Repère – Dénomination – Référence article sont non modifiables
+Si la rubrique n°série est renseignée automatiquement elle est non modifiable, sinon elle est obligatoire (Si l’indicateur de sérialisation est à ‘O’, la saisie du sérial est imposée avant la demande de création de réserve ) La  rubrique UVC  est modifiable et  obligatoire .  
+
+PIM exécute l’opération  NCAN, clé1=OR en alimentant les rubriques nécessaires. (+ ajout poste de travail réalisé pour  la phase)  
+En cas d’erreur	 affichage message d ‘erreur reprenant le libellé de TRAM
+SI OK		 récupération du n° de réserve créé et débranchement  vers l’écran de saisie des observations de la réserve
+
+
+8.2.1	Création de réserve depuis l’interface monteur :
+L’interface PIM enchaîne sur le code opération NCAN et OR composé en clé1, afin d’alimenter automatiquement les rubriques nécessaires :
+- Type de la réserve 
+	- «1» si COSMETIQUE
+	- «4» si UVC
+- Référence article composant si type 4 ( UVC )  : obligatoirement présent
+- Matricule OR composé
+- Repère fonctionnel
+- Phase
+- éclatement de phase
+- Sérial de l’OR composant ou date de fabrication ( Obligatoire si type 4)
+- N° UVC ou N° de PRELIB ( obligatoire si type 4)
+- le Poste de Travail 
+­	le commentaire dans les observations de rôle « L » de la réserve. Si la réserve est une prélibération, le N° de prélib sera saisi par le monteur dans les observations.
+Le commentaire n’est modifiable que par le créateur.
+
+
+8.3	Création de réserve dans TRAM :
+8.3.1	Programme PM0007:
+Par le code opération NCAN et OR composé obligatoire en clé1:
+Rubriques saisissables :
+	- BR01-TYPANO = ( type de la réserve ) Obligatoire 
+		Nouvelles valeurs admissibles :
+			- «4» si UVC
+			- «5» si PRELIB
+	- BR01-RADOD = Référence article composant si type 4 ( UVC ) ou type 5 (prelib) ( obligatoire et doit exister dans DTM : sinon message bloquant ‘REFERENCE INCONNUE DE DTM’
+	- BR02-MATOR = Matricule OR composé Obligatoire
+	- BR01-REPSIG = Repère fonctionnel
+	- BR01-PHASE = Phase
+	- BR01-ECLPHA = éclatement de phase
+	- BR01-MATORC = Sérial de l’OR composant ou date de fabrication (Obligatoire si type 4 ou 5)
+	- BR01-PREUVC = N° UVC ou N° de PRELIB ( obligatoire si type 4 ou 5 )
+le libellé de la rubrique est associé au type de la réserve :
+		- type non saisi 	 N° PRE-LIB ou UVC
+		- type = 4		 N° UVC
+		- type = 5		 N° PRE-LIB
+		Dans la base, on alimente la rubrique UVC ou PRELIB en fonction du type de réserve.
+	- BR01-PTR= Poste de Travail ( facultatif mais si saisi, doit exister dans la table PTR )
+­	Commentaires : A afficher et mettre à jour dans les observations de rôle « L » de la réserve
+ (pour uniformiser avec l’interface Monteur).
+
+Remarque : La notion de « PRELIB » et sa gestion nominale est conservée dans l’interface TRAM.
+
+
+ 
+8.3.2	Evolutions de la maquette d’écran « Généralités d’une réserve »
+Nouvelles rubriques :
+ 
+
+ 
+8.3.2.1	Modifications de la table 916 : types de réserve 
+Ajouter les postes :
+­	4 : UVC
+­	 5 : PRE-LIBERATION
+
+
+8.3.2.2	Nouvelle table PTR : Poste de TRavail et centre de charge 
+­	Le poste contient le Poste de Travail
+­	Le libellé contient le centre de charge sur 3 caractères suivi d’un libellé facultatif :
+		Exemple :
+		POSTE	LIBELLE
+		PTR1	CC1 : CENTRE DE CHARGE N°1
+
+
+8.3.3	Création de réserve :
+La création de réserve doit initialiser à space les nouvelles propriétés :
+
+REFDA	Référence Demande Anomalie 
+PRELIB	N° Prélibération
+LITIGE	Etat ou litige CASQ-it
+UVC	N° UVC
+MATORC	Matricule Composant
+RADOD	Référence article
+PTR	PTR
+MATNEU	Matricule d’annulation
+DATNEU	Date d’annulation
+
+
+8.3.4	Modification de réserve :
+Tous les codes de MAJ sont impossibles si la réserve est annulée.
+Par le code opération NIGAN:
+
+Rubriques saisissables :
+Le type de réserve n’est plus modifiable ( afin d’assurer les contrôles d’intégrité ) 
+Seule la prise en compte est possible si la réserve à été crée en automatique ( de type 2, 3 et 6 )
+La gravité n’est pas modifiable si la gravité est renseignée et que le type de réserve est « 4 »
+
+
+8.3.5	Solde de réserve :
+Par le code opération NVAN:
+- Si la réserve est associée à une DA ou si le litige de la réserve est = ‘T’, interdire le solde . 
+- Si la réserve est annulée, interdire le solde . 
+- De plus de la MAJ du solde de la réserve, si la réserve est non prise en compte, forcer la gravité réelle à « E » ( Acceptée En l’Etat ),  le matricule de prise en compte = utilisateur connecté, la date de prise en compte = date du jour.  
+
+
+8.3.5.1	Suppression de réserve avec DA ou litige :
+Par le code opération NSAN:
+Interdire la suppression de réserve si la réserve à été crée en automatique ( de type 2, 3 et 6 )
+Si la réserve est associée à une DA, ne pas supprimer la réserve mais la déclarer annulée ( renseigner BR01-MATNEU et BR01-DATNEU ) et envoi d’un PIM11 vers Casq-it si la réserve n’est pas soldée.
+
+
+8.3.6	Nouvelles opérations réservées aux besoins administrateurs :
+8.3.6.1	Modifications des propriétés d’une réserve : Code opération NIGANT : 
+Ce code mis en place sert à assurer une cohérence PIM – CASQ-IT. Il n’y a pas de PIM11 de généré si modification du N° DA.
+Lever tous les contrôles et rendre toutes les rubriques saisissables.
+Si le litige est supprimé, supprimer la relance.
+
+
+8.3.6.2	Suppression de réserve avec DA ou litige : Code opération NSANT :
+Lever tous les contrôles de NSAN.
+Si présence de litige, supprimer la relance.
+Ce code mis en place sert à assurer une cohérence PIM – CASQ-IT. Il n’y a pas de PIM11 de généré.
+
+
+8.3.6.3	Solde de réserve avec DA : Code opération NVANT :
+Lever tous les contrôles de NVAN.
+Si un litige est présent, positionner le litige à ‘V’ et supprimer la relance.
+Ce code mis en place sert à assurer une cohérence PIM – CASQ-IT. Il n’y a pas de PIM11 de généré.
+
+
+8.3.7	Aménagements interface TRAM:
+8.3.7.1	Ajout de l’événement « Créer une DA » sur la rubrique NUANO :
+Suppression de réserve (ou neutralisation) si modification de la valeur mesurée : 
+Par les codes opération 
+	- VORMS : Modification d’une valeur associée à un sigle
+	- IMPME : Importation de mesure via fichier
+	- NCOORD : Modification d’un vendor sous réserve
+	- NCOORJ : Démontage d’un jeu d’aubes en COOR
+	- RAZPH : Remise à zéro de la phase
+
+Toute modification de valeur mesurée ayant une réserve associée, entraîne :
+	- La suppression de la réserve si la réserve n’a pas de DA associée.
+	- La neutralisation de la réserve si la réserve est associée à une DA ( avec envoi d’un PIM11 vers Casq-it si la réserve est non soldée ). Le N° de réserve est supprimé de la mesure ( KA02-NUANO = space )
+
+* Pour VORMS, si la nouvelle mesure est hors tolérance, une nouvelle réserve est générée.
+
+8.3.7.2	Incidence des réserves uvc associées à un composant :
+* Le démontage d’un composant ayant une réserve entraîne :
+	  - La suppression de la réserve si celle-ci n’est pas rattachée à une DA.
+- L’annulation de la réserve si celle-ci est rattachée à une DA ou le litige est à « T »
+
+
+8.3.8	Aménagement interface monteur
+8.3.8.1	Afficher les réserves éligibles à la création de DA ou au solde réserve :
+Les onglets d’interface monteur font appel à la transaction TANOR avec un paramétrage de la clé 2 :
+Phase ou Phase/CODE OPERATION.
+- Si phase renseignée, on fait une restriction des réserves de l’OR à la phase.
+
+- Les différents codes opération possibles sont :
+­	space =>
+­	NTCOOR
+­	NTOR
+­	SOLDOR  
+Si la clé 2 est non renseignée, toutes les réserves non neutralisées sont affichées.
+
+Modification du segment HZ97 ( Buffer de TANOR ) :
+	Ajouter XLIB01 pour Eligibilité de la réserve
+	Ajouter LITIGE pour le litige associé à la réserve
+Alimentation du Buffer de TANOR : ORSA10 
+* Alimenter HZ97-XLIB01 : 
+	Afficher « O » si : 
+		- La gravité réelle de la réserve doit être différente de « B »
+		et La réserve est non soldée et non annulée
+		et La réserve n’a pas de DA associée et le litige CASQ-IT # ‘T’
+	Afficher « A » si :
+		- La réserve présente pour l’occurrence est annulée.
+	Afficher « N » sinon.
+
+* Alimenter HZ97-LITIGE : 
+	Afficher le litige associé à la réserve si le litige est différent de « V » ( Vérifié ).
+
+* Restriction d’affichage des réserves en fonction de la clé 2 : 
+
+	- si CODE = NTOR ou SOLDOR : Rajouter l’affichage des réserves sous litige.
+
+
+8.3.8.2	Afficher les réserves annulées : Nouveau code opération TANORA
+A partir du même buffer que TANOR, seules les réserves « annulées » sont retournées ( pas de gestion de la clé2 ). Dans ce cas XLIB01 = « A ».
+
+8.3.8.3	Générer la « création de DA »  des réserves sélectionnées :
+- Permettre la sélection groupée
+- Afficher la liste des réserves sélectionnées et demander la confirmation utilisateur des réserves acceptées. Afficher celles sélectionnées et refusées.
+
+Appeler la fonction TRAM avec les réserves sélectionnées :
+	- Si demande de création/association de DA /réserve, appeler le code opération NCDAGR .
+
+8.4	Modifications applicatives PIM à effectuer
+Modification des tableaux des réserves de la phase / de l’OR / évènements sur en cours /  terminer montage / solde OR
+­	Changer le libellé « N° CASQ’IT »  par « N° DA Casqu’it »
+­	Déplacer la colonne après « statut »
+­	Ajouter la colonne « Sélection possible Casq’It » (libellé à préciser)  après gravité – valeurs à gérer en table applicative – afficher le libellé (oui-non-annulé)
+­	La colonne N°DA doit être visible sans ascenseur : si nécessaire déplacer user de création
+	Si présence 
+Nouvel enchaînement « Créer DA avec prise en compte de la réserve » depuis
+­	Tableau des réserves de la phase
+­	Tableau des réserves de l’OR
+­	Onglet réserves des événements sur encours
+­	Onglet réserves du terminé montage
+­	Cet enchaînement est à sélection multiple 
+Les 2 enchaînements précédents font l’objet d’une fenêtre de confirmation :
+­	Affichage des réserves sélectionnées à tort (indicateur ]= oui)  message d’erreur : Les réserves affichées ci-dessus ne peuvent pas faire l’objet d’une demande de solde ou de création de DA
+­	On est limité à un nombre max de réserves (suivant la taille du buffer)  contrôle à mettre en place. Si nombre > à limite,  ne traiter que les premières réserves et mettre les autres en erreur. 
+­	Affichage des réserves sélectionnées  message de confirmation : Confirmez-vous la demande de création d’une DA Casq_it à partir des réserves affichées ci-dessus ? 
+­	Annule  ne  fait rien
+­	OK  Enchaînement vers la transaction TRAM correspondante
+
+Enchaînement « Créer DA avec prise en compte de la réserve »
+­	Transaction aveugle NCDAGR
+Buffer à définir (référence OR – Liste de réserves)  le nombre de réserves est limité à la taille du buffer. On ne gère pas de suite.
+Modification de la fonction « Evénements sur encours »
+Les réserves annulées seront affichées en fin de tableau (appel transaction TANOR avec space en cle2)
+Cet onglet n’apparaîtra que s’il est non vide.
+Les seuls enchaînements autorisés sur une ligne de réserve «annulée » sont Consulter la réserve / Visualiser la phase
+Terminaison montage et solde qualité :
+Si présence de litige sur réserve, bloquer la terminaison montage et le solde qualité. Afficher les réserves dans l’onglet ‘Réserves’.
+
+ 
+8.5	Schéma d’interface PIM11
+Erreur !
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8.6	Demande de création de D.A. : Evènement déclenchant
+8.6.1	Nouveau code opération : NCDA - Appellé depuis TRAM :
+Afficher l’écran des généralités d’une réserve . Aucune rubrique n’est saisissable. 
+L’activation du bouton « VALIDER » est possible si :
+­	La réserve ne présente pas de N° de DA
+­	La réserve ne doit pas être sous litige « T » transmis CASQ-IT
+­	La réserve n’est pas soldée
+L’activation du bouton « VALIDER » génère l’envoi de la réserve à CASQ-IT pour créer une DA associée à cette réserve.
+- Si le PTR est non renseigné, accès GIT pour retrouver le PTR associé à la phase.
+- Positionner à « A » la gravité, si la gravité est non renseignée.
+
+
+8.6.2	Nouveau code opération : TCDAGR - Appelé depuis l’interface PIM :
+GIT transmet à TRAM la liste des réserves sélectionnées qui répondent aux critères de sélection qui permettent d’y associer une DA.
+TRAM via une Transaction Aveugle, détermine un identifiant unique (AAMMJJHHMMSSCC) et opère les mêmes fonctions que NCDA pour chacune des réserves reçues. 
+
+
+8.7	Demande de suppression (annulation) de D.A. : évènements déclenchant
+Par les codes opération 
+­	VORMS : Modification d’une valeur associée à un sigle
+­	NCOORD : Modification d’un vendor sous réserve
+­	NCOORJ : Démontage d’un jeu d’aubes en COOR
+­	RAZPH : Remise à zéro de la phase
+­	IMPME : Import de fichiers de mesures
+Toute modification de valeur mesurée ayant une réserve associée avec une DA, entraîne l’annulation de la réserve et si la réserve est non soldée, un envoi d’un PIM11 avec code action « S » vers Casq-it.
+
+
+8.8	Ecriture d’un msg PIM11 en table interapplication et envoi WLI :
+8.8.1	Nouveau sous-programme : PMxxxx pour générer les envois de réserves vers Casq-it
+8.8.1.1	Alimentations du PM06 :
+- NUENTI = « N » pour « RESERVE »
+- CODINF = « PIMNAU00 »
+- IDMES = BR01-DBK
+- STATUT = ‘T’
+- DATECR et DATDMJ = Date du jour
+- HEUCRE et ELIB09 = Heure de la transaction
+- LITIGE = space
+- MSGWLI :
+ 
+
+Rubrique	Format	Valeur
+Code interface (PIMNAUxx ou NAUPIMxx)	8	PIMNAU00
+Code message :	5	PIM11A
+N° Séquence d'appel :	10	PM06-DBK
+Code Retour :	2	Space
+CODE_ACTION : C, M ou S : 	3	C pour Création ( 1ère réserve d’une demande groupée ou demande élémentaire )
+M pour Modification (si demandes groupée à partir de la seconde si plus d’une réserve )
+S pour suppression
+NUM_DA : 	10	N° de DA ( space en création )
+Type de réserve = à  automatiquement :	20	Valeur par défaut : "RESERVES PIM"
+Identifiant de regroupement en date heure minute seconde centièmes :	14	AAMMJJHHMMSSCC
+Matricule du TQP origine de la demande : 	7	BR01-MATDMJ
+DATE_DEMANDE :	10	Date format SSAA-MM-JJ
+MATRICULE OR COMPOSE :	10	BR02-MATOR
+PART NUMBER ou REFERENCE ARTICLE :	32	AO01 du composé
+Centre de Charge :	3	3 1ers caractères de la table PTR correspondant au Poste de travail ( si renseigné ) sinon « ZZZ »
+Centre de Charge détecteur :	3	Space
+NUM_RESERVE :	9	BR01-NUANO
+SIGLE_GM  ou REPERE FONCTIONNEL :	13	BR01-REPSIG
+VALEUR MINI  ( si mesure ) :	11	BN03-VALMIN si type mesure
+VALEUR MAXI ( si mesure ) :	11	BN03-VALMAX si type mesure
+VALMES et UNITE concaténés sans séparateur ( UNITE si mesure ) :	18	BN03-VALMES & BN03-UNITE si type mesure
+Nbre de réserves à associer pour la DA :	4	« 1 » Valeur par défaut
+
+L’alimentation de la table d’envoi WLI est effectué si l’on écrit un PM06-STATUT = ‘T’
+
+
+ 
+9	PIM14 : RELANCES AUTOMATIQUE DES LITIGES
+9.1	Rappels fonctionnels :
+- Lors de l’écriture d’un enregistrement dans la table des retours WLIRET, WLI active le script GOTxyPWN, de prise en compte du retour par l’application PIM .
+- Traitement PIM :
+•	Si le code retour du message est en erreur, écriture d’une relance.
+•	Ecriture du message dans la table inter-applications PIM.
+
+9.2	Ecriture d’une relance :
+Nouveau script : GOTxyPWN
+
+Nouveau programme d’intégration : 
+Nouveau script de traitement des retours WLI : GOTxyPWN
+Boucle sur les messages de retour non traités ( WLIRET ) et pour chacun d’eux :
+	* Si DBK1 est différent de space ( c’est un msg de retour et non un message d’origine CASQ-IT), accéder à la table des échanges inter-applications (PM06 ):
+	Accéder au message origine de l’envoi ,avec le N° de séquence du message origine 
+		- Supprimer le message d’envoi.
+	- Si le code retour est différent de OK, écriture d’une relance périodique en dupliquant le message d’envoi. Modifier les propriétés suivantes :
+		- STATUT = ‘ ’
+		- DATDMJ = Date du jour
+		- ELIB09 = Heure de la transaction
+		- MSGWLI :
+		- DBK1 = PM06-DBK du nouveau message
+
+	* Ecriture du message de retour dans la table inter-application à l’identique du message lu en table WLIRET.
+
+- Appel du script GOTxyPGN, pour traiter le message dans l’applicatif .
+
+9.3	Envoi d’une relance :
+Nouveau script : GOTxyPLN
+
+Nouveau programme d’envoi PIM vers WLIENV : 
+
+Par le traitement ( GOTxyPLN ) périodique toutes les 10 minutes :
+
+Boucle sur la table des envois ( PM06 ) avec le code interface PIMNAU00 et suivant la chronologie d’écriture des messages :
+Si le statut est à « », écrire dans la table des envois WLIENV et positionner le statut du message à ‘T’ ( PM06-STATUT ) .
+
+
+10	PIM22 : RESERVES UVC
+10.1	Rappels fonctionnels
+Le but est d’interfacer les réserves UVC de PIM au module AMSQ Serial de CASQ-IT
+Une pièce, sérialisée ou non, présentant un défaut visuel, ou un aspect visuel atypique est soumis à la « procédure » UVC. La pièce est livrée au montage avec une étiquette spécifique mentionnant le numéro d’UVC.
+Si un défaut visuel est généré en cours de montage ou d’essais, cette même procédure UVC est mise en œuvre.Le besoin dans le cadre de Nausiqua Montage est d’enregistrer au niveau d’un moteur ou d’un module :
+•	Le(s) numéro(s) d’UVC portant sur des pièces montées avec les références, quantité (et éventuellement n° de sérialisation) concernées par ces UVC
+•	Le(s) numéro(s) d’UVC portant sur le module ou moteur.
+Lors du montage d’une pièce avec étiquette « UVC », le monteur ou le TQP créera une réserve « UVC » dans PIM. Lors de la prise en compte de la réserve par le TQP, ces réserves UVC créeront dans AMSQ Sérial, un évènement au statut soldé, de type « UVC » au niveau du module ou moteur dans CASQ-it.
+La prise en compte d’’une réserve ( quelque-soit la valeur ) génère un PIM22A.
+Pour information, l’évènement UVC créé dans CASQ-it sera automatiquement « soldé » : Les évènements UVC servent à tracer ce type de réserve mais n’implique aucune action coté CASQ-it.
+
+
+10.2	Schema d’interface PIM22 -> CASQ-IT
+
+
+
+
+
+
+
+10.2.1	Déclenchement de l’envoi de l’UVC vers AMSQ serial de CASQ-it : 
+Lors de la prise en compte d’une réserve de type ‘4’ (BR01-TYPANO = 4)
+- Positionner BR01-LITIGE à « T »
+- Ecrire un PIM22 dans PM06 (table inter-application) pour tracer l’envoi et un WLIENV (envoi de message), suivant l’alimentation décrite dans le paragraphe spécifique.
+10.2.2	Ecriture d’un message PIM22 en tables interapplication et d’envoi WLI :
+10.2.2.1	Alimentations du PM06 :
+	- NUENTI = « N »
+	- CODINF = « PIMNAU00 »
+	- IDMES = BR01-DBK
+	- STATUT = ‘T’
+	- DATECR et DATDMJ = Date du jour
+	- HEUCRE et ELIB09 = Heure de la transaction
+	- LITIGE = space
+	- MSGWLI :
+		- CODINT = “PIMNAU00
+		- CODMES = “PIM22A“
+		- DBK1 = PM06-DBK du message d’émission
+		- CODRET = space
+		- Partie applicative :
+
+Rubrique	Format	Valeur
+MVT	
+X	« “C » pour Création
+ « S » pour suppression 
+NUANO	X(09)	BR01-NUANO : N° de la réserve
+UVC	X(16)	BR01-UVC : N° UVC
+MATOR	X(10)	BR02-MATOR : OR composé associé à la réserve
+LIGOB	X(600) 	AS11-LIGOB : Description saisie
+REFOD	X(32)	BR01-RADOD référence pièce du composant
+MATORC	X(10)	BR01-MATORC : composant ou date de fabrication
+DATEEF	X(10)	BR01-DATDMJ au format SSAA-MM-JJ
+MATDEF	X(7)	BR01-MATDMJ
+
+L’alimentation de la table d’envoi WLI est effectué si l’on écrit un PM06-STATUT = ‘T’
+
+
+10.2.2.2	Modification d’une réserve UVC : NIGAN :
+PM0007 : Généralités d’une réserve
+Il est possible de modifier une réserve UVC ( de type 4 ) si elle n‘est pas prise en compte par le TQP.
+- Si la réserve est de type ‘4 ‘, Le N° UVC est obligatoire et réciproquement. Le serial ou date de fab est obligatoire aussi que la référence composant.
+
+10.2.2.3	Suppression d’une réserve UVC : NSAN :
+PM0007 : Suppression d’une réserve
+Il est possible de supprimer une réserve UVC.
+La suppression d’une réserve de type UVC prise en compte par le TQP, entraîne la génération d’un PIM22 . 
+	La rubrique PM06-MVT est alors égale à « S »
+
+
+11	INTEGRATION DES MESSAGES CASQ-IT : RETOURS PIM OU EMISSION CASQI-IT
+Nouveau script : GOTxyPGN :
+	Pour traiter dans l’applicatif, les messages de Casq-it reçus dans la table inter-applications.
+
+Nouveau programme de réintégration:
+Boucle ( suivant la chronologie d’arrivée ) sur les messages de retour non traités en table des échanges inter-application :
+	Accéder à la table des échanges inter-applications ( PM06 ) avec l’identifiant NAUPIM00 :
+	Pour chacun des enregistrements en fonction du code message ( PM06-CODMES )
+
+
+11.1	PIM03R :Retour de l’identification d’une matricule
+11.1.1	Gestion des retours CASQI-IT
+Le retour fonctionnel Casq-it est réintégré dans PIM uniquement si la référence article associée au composé est présente dans la table « KIT » ( non envoyé à COMETE )
+
+Accéder à l’entité d’origine : BH02-DBK = PM06-IDMES 
+En fonction du code retour :
+	Si PM06-CODRET = ‘OK’ :
+		•	Alimenter BH02-COMET2 à ‘V’ ( Vérifié ) 
+		•	Supprimer le message d’échange inter-applications initialement lu
+	Si PM06-CODRET # ‘OK’ :
+		•	alimenter BH02-COMET2 avec PM06-CODRET
+		•	Supprimer le message d’échange inter-applications initialement lu créer une relance.
+
+
+11.2	PIM11R
+Accéder à l’entité d’origine : BR01-DBK = PM06-IDMES 
+	Si PM06-CODRET = ‘OK’ :
+		•	Alimenter BR01-LITIGE à ‘V’ ( Créé dans Casq-it )
+		•	Supprimer le message d’échange inter-applications initialement lu
+	Si PM06-CODRET # ‘OK’
+		•	Alimenter BR01-LITIGE avec PM06-CODRET
+		•	Supprimer le message d’échange inter-applications initialement lu créer une relance.
+
+11.3	PIM21A : Solde d’une DA pour solde des réserves associées
+Une fois la DA soldée dans Casq-it, ce dernier envoi un message à PIM afin que PIM solde la ou les réserve(s) associée(s).
+
+11.4	Structure du message :
+	- CODINF = « NAUPIM00 »
+	- IDMES = space
+	- STATUT = space
+	- DATECR et DATDMJ = Date du jour
+	- HEUCRE et ELIB09 = Heure de la transaction
+	- LITIGE = space
+	- MSGWLI :
+		- CODINT = “NAUPIM00
+		- CODMES = “PIM21A“
+		- DBK1 = space
+		- CODRET = space
+		- Partie applicative :
+
+Rubrique	Format	Valeur
+REFDA	X(10)	N° de DA
+MATOR	X(10)	Matricule OR composé associé à la réserve
+NUANO	X( 09 )	Numéro de Réserve
+MATVRQ	X(7)	Matricule ayant Soldé la DA
+SUITE	X( 3964 )	Space
+
+
+11.5	Intégration applicative :
+Boucler sur les réserves de la DA ( accès spécifique  sur TO16 / BR01 )
+- Pour chacune des réserves  : 
+- Alimenter BR01-MATVRQ avec PM06-MATVRQ et BR01-DATVRQ avec la date du jour.
+- Ecrire un accusé de réception PIM21R à partir du PIM21A lu
+- Supprimer le message d’échange inter-applications initialement lu pour effectuer le traitement applicatif. 
+
+Remarque : Il n’y a pas d’accusé de réception PIM21R sur un message PIM21A 
+
+
+12	PIM24 : GENERATION D’UNE NOMENCLATURE MULTINIVEAUX OR
+12.1	Rappels fonctionnels :
+Pouvoir disposer en fin de montage module majeur, avant essais moteurs, lors de la prise en recette, d’un état qualité du module ou du moteur.
+
+
+12.2	Schema d’interface PIM24 -> CASQ-IT
+
+
+
+
+
+
+
+12.2.1	Interface de déclanchement de la génération : 
+12.2.1.1	Nouvel écran et Nouvelle opération TORCAS  : 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Seuls, l’adresse mail  et le matricule de l’OR sont saisissables. 
+L’adresse est alimentée par défaut par l’adresse de l’utilisateur connecté. L’utilisateur peut mettre l’adresse d’une Bal partagée PIM, comme cela se fait avec une DDT).
+Une demande de transfert (AB81 - TU80) est générée (consultable par LDT le temps du traitement)
+Le type de transfert est alimenté en automatique à « TORCAS » 
+Le site récepteur n’est pas contenu dans une table applicative : il est alors « CASQ-IT »
+La validation lance en back ground un traitement (GOTxyPTN avec paramètre = clé de l’AB81) qui consiste à extraire la nomenclature multi-niveaux du matricule.
+L’annulation de la demande est impossible.
+La demande de transfert initiée est supprimée à la fin de l’extraction.
+
+Pour le suivi des TORCAS, le code opération LDT permettra de suivre les demandes.
+Aménagements LDT : 
+Le code action « A » est interdit si la demande est TORCAS car la suppression est impossible étant donné que le traitement est déjà lancé.
+
+Les modules STS (HISPANO)  et leurs composants font parties des sérials PIM envoyés (TYPECT = X).
+12.2.2	Extraction des données
+Structure attendue : 
+Chacune des rubriques sera suivie d’un « ; », y compris la dernière.
+
+(1)	(2)	(3)	(4)	(5)	(6)	(7)	(8)
+Matricule Module/moteur
+(PIM)	PNT module/moteur
+(PIM)	EDD Module/moteur
+(PIM)	Repère composant (PIM)	Sérial composant
+(PIM)	Référence composant
+(PIM)	Désignation
+(PIM)	Type de composant : Module/moteur (M) ou Pièce (P)
+(PIM)
+123456	000-000-000-0			123456	000-000-000-0	Moteur	M
+654321	000-000-111-0			654321	000-000-111-0	Module LPT	M
+654321	000-000-111-0			BA000000	111-111-111-0	Disque	P
+654321	000-000-111-0			BA000002	111-111-333-0	Arbre	P
+987654	000-000-222-0			BA000003	111-111-444-0	Redresseur	P
+987654	000-000-222-0			BA000004	111-111-555-0	Chambre	P
+987654	000-000-222-0			BA000004	111-111-555-0	Chambre	P
+987654	000-000-222-0			BA000004	111-111-555-0	Chambre	P
+987654	000-000-222-0			BA000005	111-111-666-0	Flasque avant	P
+
+(1)	: Matricule OR composé du niveau traité
+(2)	 Part Numbert Technique si existente, ou référence article associé à la référence du composé du niveau traité .
+(3)	Référence EDD du composé du niveau traité
+(4)	Repère fonctionnel du composant
+(5)	Matricule ou sérial du composant
+(6)	Part Numbert Technique si existente, ou référence article associé à la référence du composant
+(7)	Désignation du composant traité
+(8)	Type de composant : M si le composant est associé à une ITR, sinon P
+
+Extraction : Nouveau script GOTxyPTN 
+Niveau 010 : Extraction des données :
+Balayage de la nomenclature multiniveaux via le repère fonctionnel :
+Pour le matricule composé, écrire systématiquement un enregistrement avec propriétés composé et composant identiques
+
+Pour chacun des constituants de la COOR, si le composant est renseigné, ( et ligne non historisée ) extraire les données relatives à ce composant :
+	(1)	: Matricule OR composé du niveau traité : BH03-MATOR
+	(2)	Part Number Technique si existante, ou référence article associé à la référence du composé du niveau traité : AO01-PARTNB sinon AO01-REFOD du composant
+	(3)	Référence EDD du composé du niveau traité : BH02-NORPCA
+	(4)	Repère fonctionnel du composant : BH03-REPFCT
+	(5)	Matricule ou sérial du composant : BH03-MATORC
+	(6)	Part Numbert Technique si existante, ou référence article associé à la référence du composant : AO01-PARTNB sinon AO01-REFOD du composant
+	(7)	Désignation du composant traité : AO01-DENODF du composant
+	(8)	Type de composant : M si le composant est associé à une ITR, sinon P
+
+
+Tri du fichier
+
+Hypothèse d'un moteur assemblé constitué de :
+
+MA	PEM1	R1
+		MM1	R2	PEM3		R6
+				Mm1		R27	PEM7	R12
+							PEM8	R13
+				PEM4		R8
+				Mm3		R17	PEM12	R18
+		PEM2	R3
+		MM2	R4	PEM5		R9
+				Mm2		R10	PEM9	R14
+							PEM10	R15
+				PEM6		R11
+		KIT1	R5	PEM11		R16
+
+Tri de l'état qualité :
+
+	MA	MA
+	MA	PEM1	R1
+	MA	PEM2	R3
+	MM1	MM1	R2
+	MM1	PEM3	R6
+	MM1	PEM4	R8
+	Mm1	Mm1	R27
+	Mm1	PEM7	R12
+	Mm1	PEM8	R13
+	Mm3	Mm3	R17
+	Mm3	PEM12	R18
+	MM2	MM2	R4
+	MM2	PEM5	R9
+	MM2	PEM6	R11
+	Mm2	Mm2	R10
+	Mm2	PEM9	R14
+	Mm2	PEM10	R15
+	KIT1	KIT1	R5
+	KIT1	PEM11	R16
+
+En fin de traitement, supprimer la demande générée ( TU80 origine du traitement )
+
+Niveau 020 : Transfert ftp du fichier vers CASQ-it :
+
+Le nom du fichier :	<Code Opération PIM><Sérial d’entête>^^<TimeStamp>^^<email du user>.csv
+soit : TORCAS123456^^HHMMSS^^SXXXXXX@SNECMA.FR.csv
+Serveur : 	Attente information
+Arborescence :	Attente information
+
+
+Gesfic 1666 :  Créer un " Etat qualité série" des ensembles
+Nouvelle opération TORCAM :  
+•	un nouveau code opération est demandé pour extraire, dans l'asbuilt d'un ensemble donné, que les OR typés M (uniquement les modules à ITR)
+
+Gesfic 1937 : Casq-it/PIM : nouvel état qualité
+  
+* Dupliquer les opérations :
+TORCAS en TORCS1 : ETAT QUALITE (PIM25)
+TORCAM en TORCM1 : ETAT QUALITE DES ENSEMBLES (PIM25)
+* Génération de la demande :
+   - Faire une dérivée des codes existants
+ * Production des fichiers : 
+   - Le script GOTxyPTN devra permettre la prise en charge d'un paramètre afin d'identifier la demande et produire le nom de fichier en fonction de la demande. ( PIM25 )
+
+Le nom du fichier :	<Code Opération PIM><Sérial d’entête>^^<TimeStamp>^^<email du user>.csv
+soit : TORCAS123456^^HHMMSS^^SXXXXXX@SNECMA.FR.csv
+13	EPURATION DES DONNEES ENGENDREES PAR LES ECHANGES INTER-APPLICATION
+Adaptation du script GOTxyPLJ pour prise en compte des nouvelles tables d’échange entre PIM et WLI.
+PM06, WLIENV et WLIRET.
+Pour les échanges via mqséries, la durée de conservation des données est actuellement de 20 jours.
+
+
+14	MODIFICATIONS INDUITES PAR LE DECOUPAGE EN 2 LOTS
+14.1	Initialisation applicative des rubriques non utilisees en lot 3A:
+14.1.1	Envoi et création des composants CASQ-IT : BH03-CASQIT et BH03-MAJCAS: 
+Initialiser systématiquement les rubriques à ‘N’ :
+Programmes concernés :
+	PM0001 : NCOORD, NCOORK : Identification des composants et des Kits optionnels
+	PM0015 : COORHS : Mise à jour des nomenclatures Hispano
+	PM2004: GOTxyPPN : Constitution  de la COOR à blanc
+	PM2015 : GOTxyPRN : Chargement de la composition d’un jeu d’aubes 
+	PM2020 : GOTxyPEJ : Chargement des composants des nomenclatures Hispano
+
+
+14.1.2	Statut RVQ d’un matricule : BH02-RVQ: 
+Initialiser systématiquement la rubriques à ‘N’ :
+Programmes concernés :
+	PM2002 : Création des matricules OR
+	PM2009 : Création tête de nomenclature Hispano
+	PM2015 : Création composants jeu d’aubes
+	PM2020 : Créat. OR et COOR nomenclature Hispano
+	PM0001 : Identification des composants en COOR
+	PM0015 : Mise a jour d'une MTL Hispano
+	PM0023 : INTEGRATION JEU AUBE DANS COOR
+
+
+14.1.3	Référence ITD associée à un OR : PM12-REFIT : 
+Initialiser systématiquement la rubrique à space :
+Programme concerné :
+PM2002 : Création des matricules OR
+
+
+ 
+15	MODIFICATIONS INTERNES PIM
+15.1	Visualisation des litiges CASQ-IT sur tout OR
+L’écran est compatible du lot 3B ( intégration des identifications / démontages des composants ) 
+
+15.1.1	Code opération LITOR : Nouvel écran : 
+Lecture de la table PM06 et boucle sur les envois actifs PIM-> CASQ-it relatifs aux OR ( CLPM06 = PIMNAU00 et nuenti = ‘R’)
+Pour chacun des messages : Afficher les données prévues dans la maquette.
+
+Maquette d’écran :
+C	T 
+A	MATRIC
+ COMPOSE	REF ARTICLE
+ COMPOSE	REPFCT	REFERENCE ARTICLE 
+COMPOSANT	MATRICULE 
+COMPOSANT	QTE NUMERO JEU	DATE
+	LITIGE ET LIBELLE	DATE HEURE 
+CREATION	CODE
+	C	WM029299	351-001-304-0				1	05/11	Q8: PART NUMBER  	13/11 08:30:00	PIM03
+	M	699166	338-092-006-0	KLA00	336-473-106-0	KC016091	1	07/11	T : Transmis CASQ-IT	13/11 10:30:59	PIM08
+	M	699166	338-092-006-0	KLA01	336-473-107-0	KC016092	1	07/11	T : Transmis CASQ-IT	13/11 20:35:10	PIM09
+											
+1	1	10	16	9	16	10	15	5	26	6	5
+
+En surligné, les rubiques écrans conditionnées par le code opération
+En surligné, le format des rubriques affichées
+
+Colonne T A ( Type d’action ) est alimenté par défaut à C ( Création ) si code message = PIM03 et à S ( Solde ) si code message = PIM21. Pour les autres codes message, il provient du code action véhiculé dans le message.
+15.1.2	Mise à jour des données :
+Seul le code action A est autorisé. 
+Dans ce cas, l’action consiste à supprimer le litige ( relance ) et le reblanchiment du code retour CASQ-IT au niveau de l’entité ( OR ).
+Un rafraichissement de la phase est lancé.
+
+15.1.3	Ergonomie LITOR :
+Sur les rubriques matricule composé et matricule composant, avoir les débranchements sur opérations associées à l’OR.
+Sur les rubriques référence article composé et référence article composant, avoir les débranchements sur opérations associées à l’OD. 
+Colonne CODE : l’affichage d’un libellé plutôt qu’un code était souhaitable. Disposer d’une table applicative TRAM qui donne le lien entre le code et le libellé (PIM03 : Création/maj. OR composé dans Casq_it). Prévoir un débranchement vers la table « WLI ».
+
+Créer une nouvelle table applicative WLI : pour lister les CODES interfaces PIM  via WLI
+
+ 
+15.2	Visualisation des litiges CASQ-IT sur reserves tous OR confondus
+15.2.1	Code opération LITRES : Nouvel écran : 
+Lecture de la table PM06 et boucle sur les envois actifs PIM-> CASQ-it relatifs aux Réserves ( CLPM06 = PIMNAU00 et nuenti = ‘N’)
+Pour chacun des messages : Afficher les données prévues dans la maquette.
+
+Maquette d’écran :
+C	T 
+A	MATRIC
+ COMPOSE	REF ARTICLE
+ COMPOSE	NUMERO
+RESERVE	TYPE	N. DA
+CASQ-IT	STATUT RESERVE	DATE
+	LITIGE ET LIBELLE	DATE HEURE 
+CREAION	CODE
+	C	699166	338-092-006-0	00000001V	PIECE (PB. COSMETIQUE)		PRISE EN COMPTE	05/11	XX : XXXXXXXXXXXXXXX	13/11 08:30:00	PIM11
+	C	699166	338-092-006-0	00000002V	PIECE (PB. COSMETIQUE)	DA00000001	PRISE EN COMPTE 	07/11	T : Transmis CASQ-IT	13/11 12:15:35	PIM22
+											
+1	1	10	16	9	16	10	15	5	26	6	5
+
+En surligné, les rubriques écrans conditionnées par le code opération
+En surligné, le format des rubriques affichées
+
+15.3	Mise à jour des données :
+Seul le code action A est autorisé. Dans ce cas, l’action consiste à supprimer le litige ( relance ) et le reblanchiment du code retour CASQ-IT au niveau de l’entité ( réserve ).
+
+15.4	Ergonomie LITRES :
+Si code opération LITRES, sur la rubrique réserve, avoir les débranchements sur opérations associées à la réserve.
+Sur la rubrique référence article composé, avoir les débranchements sur opérations associées à l’OD. 
+Sur la rubrique matricule composé, avoir les débranchements sur opérations associées à l’OR. 
+Colonne CODE : l’affichage d’un libellé plutôt qu’un code était souhaitable. Disposer d’une table applicative TRAM qui donne le lien entre le code et le libellé (PIM03 : Création/maj. OR composé dans Casq_it). Prévoir un débranchement vers la table « WLI » . 
+Réserve ‘ANNULEE’ : Elle sera identifiée par le Type Action ( = A )
+Colonne TA : les codes possibles sont :
+« C » pour Création :  systématique PIM03 et PIM11 si CODACT = ‘C’,
+ « A » pour Annulation : si CODINT = PIM11 et CODACT = ‘S’
+
+
+ 
+16	MODIFICATION TECHNIQUES NECESSAIRES DANS PIM
+16.1	Création de tables
+16.1.1	PM06 : TO78 : Gestion échanges inter-application
+Table TO83 pour échanges via MQ Séries 	 	Table PM06 pour échanges via WLI
+RUBRIQUE	LIBELLE	FORMAT	 	RUBRIQUE	LIBELLE	FORMAT
+				NUENTI	IDENFIFIANT ENTITE	X
+CODINF	IDENTIFIANT INTERFACE	X(8)	 	CODINF	IDENTIFIANT DES APPLICATIONS	X(8)
+				CODMES	IDENTIFIANT DE L’INTERFACE	X(5)
+				IDMES	IDENTIFIANT DE L’ENTITE	9(10)
+				LITIGE	LITIGE RETOURNE	XX
+MESS_1	MESSAGE_1 mqs	X(255)		MSGWLI	RUBRIQIUES XL2000 
+                       XL2MIL	X(2000)
+X(2000)
+				XL2MIL	RUBRIQIUE DE 2000 C	X(2000)
+DATECR	DATE DE CREATION	X(8)	 	DATECR	DATE DE CREATION	X(8)
+HEUCRE	HEURE DE CREATION	9(6)	 	HEUCRE	HEURE DE CREATION	9(6)
+ELIB09	HEURE DE RELANCE	9(9)	 	ELIB09	HEURE DE RELANCE	9(9)
+DATDMJ	DATE DE RELANCE	X(8)	 	DATDMJ	DATE DE RELANCE	X(8)
+MATOR	MATRICULE DE L'OR	X(10)	 	MATOR	MATRICULE DE L'OR	X(10)
+NUMORD	NUMERO D'ORD	99	 	NUMORD	NUMERO D'ORD	99
+REPFCT	REPERE FONCTIONNEL	X(9)	 	REPFCT	REPERE FONCTIONNEL	X(9)
+MATORC	MATRICULE OR COMPOSANT	X(10)	 	MATORC	MATRICULE OR COMPOSANT	X(10)
+NUMOR2	NUMERO D'ORD	99	 	NUMOR2	NUMERO D'ORD	99
+CARHIS	CARACTERE HISTORISE	X	 	CARHIS	CARACTERE HISTORISE	X
+COMET2	LITIGE COMETE	XX	 			
+PHASE	PHASE	X(14)	 	PHASE	PHASE	X(14)
+				STATUT	STATUT D’ENVOI DU MSG A WLI	X
+DBK	DBK DE RECORD	9(10)	 	DBK	DBK DE RECORD	9(10)
+TDATCR	DATE CREATION 	X(08)	 	TDATCR	DATE CREATION 	X(08)
+THEUCR	HEURE DE CREATION 	X(06)	 	THEUCR	HEURE DE CREATION 	X(06)
+TMATCR	MATRICULE DE CREATION 	X(07)	 	TMATCR	MATRICULE DE CREATION 	X(07)
+TCODCR	CODOPE DE CREATION 	X(06)	 	TCODCR	CODOPE DE CREATION 	X(06)
+TDATMJ	DATE MISE A JOUR 	X(08)	 	TDATMJ	DATE MISE A JOUR 	X(08)
+THEUMJ	HEURE DE MISE A JOUR 	X(06)	 	THEUMJ	HEURE DE MISE A JOUR 	X(06)
+TMATMJ	MATRICULE DE MISE A JOUR	X(07)	 	TMATMJ	MATRICULE DE MISE A JOUR	X(07)
+TCODMJ	CODOPE DE MISE A JOUR	X(06)	 	TCODMJ	CODOPE DE MISE A JOUR	X(06)
+TFLADE	FLAG DE DELETE 	X(01)	 	TFLADE	FLAG DE DELETE 	X(01)
+
+Partie d’échanges entre applications
+
+IDMES est la DBK de la référence de l’entité modifiée origine du message
+STATUT est le positionnement si le message est envoyé directement ou objet d’une relance périodique
+
+Rubriques nécessaires pour la suppression des litiges
+
+
+16.1.2	WLIENV : Segment PM07 ENVOI WLI ( PIM vers APPLICATION EXTERIEURE )
+Nom de champ	Libellé	clés	Format	Valeurs / format
+CODE	Code message	Clé 1	CHAR (8)	‘PIMNAU00’ par défaut
+MATOR	Matricule composé	Clé 2	CHAR (10)	Matricule OR composé
+DATE1	Date de création	Clé 3	DATE   	
+TIME	Heure de création	Clé 4	NUMBER (8)	HHMISSSS (secondes et milli secondes)
+SEQN	Numéro de séquence	Clé 5	NUMBER (10)	N° de séquence oracle
+ XL2000	Contenu du message 		CHAR (2000)	Contient le message à véhiculer
+XL2MIL	Contenu du message 		CHAR (2000)	Contient le message à véhiculer
+STAT	Statut du message		CHAR (1)	‘N’ (non traité) ou ( ‘T’ traité)
+
+
+16.1.3	WLIRET : Segment PM08  RETOUR WLI ( APPLICATION EXTERIEURE vers PIM )
+Nom de champ	Libellé	clés	Format	Valeurs / format
+CODE	Code message	Clé 1	CHAR (8)	‘NAUPIM00’ par défaut
+DATE1	Date de création	Clé 3	DATE   	
+TIME	Heure de création	Clé 4	NUMBER (8)	HHMISSSS (secondes et milli secondes)
+SEQN	Numéro de séquence	Clé 5	NUMBER ( 10)	N° de séquence oracle
+ XL2000	Contenu du message 		CHAR (2000)	Contient le message à véhiculer
+XL2MIL	Contenu du message 		CHAR (2000)	Contient le message à véhiculer
+STAT	Statut du message		CHAR (1)	‘N’ (non traité) ou (‘T’ traité)
+
+
+16.2	Modification de tables
+16.2.1	TO02 : Segment BH02 : OR daté
+RUBRIQUE	LIBELLE	FORMAT
+RVQ	RENDEZ-VOUS QUALITE	X(1)
+
+
+16.2.2	TO96 : Segment VL05 : Composition Objet Réalisé
+RUBRIQUE	LIBELLE	FORMAT
+CASQIT	ENVOI CASQ-IT	X(1)
+MAJCAS	CREE DANS CASQ-IT	X(1)
+
+
+16.2.3	TO16 : Segment BR01 : Réserve
+RUBRIQUE	LIBELLE	FORMAT
+REFDA	Référence Demande Anomalie	X(10)
+PRELIB	N° Prélibération	X(16)
+LITIGE	Etat ou litige CASQ-it	X(2)
+UVC	N° UVC	X(16)
+MATORC	Matricule Composant	X(10)
+PTR	Poste de Travail	X( 5)
+MATNEU	Matricule de Neutralisation	X(07)
+DATNEU	Date de neutralisation	X(08)
+
+
+16.2.4	TO97 : Segment PM12 : Matricules BAAN à ITR
+RUBRIQUE	LIBELLE	FORMAT
+REFIT	Référence ITD	X(14)
+
+ 
+17	SYNTHESE DES STRUCTURES DES MESSAGES ECHANGES
+17.1	PIM03 : déclaration d’un matricule
+MSGWLI	MESSAGE WLI	4000	 
+CODINT	IDENTIFIANT INTERFACE	8	PIMNAU00
+CODMES	CODE MESSAGE	6	PIM03A
+DBK1	DBK DE RECORD D'ENVOI	10	PM06-DBK
+CODRET	CODE RETOUR DU MESSAGE	2	XX
+WLISUI	PARTIE MESSAGE APPLICATIF 		 	FORMAT
+ 	 	 	MATRICULE OR OBJET DE L'ITR	10
+ 	 	 	Référence ITD	14
+ 	 	 	PART Number associé à la référence BAAN 	32
+ 	 	 	NUMéro de l' Ordre de Fabrication	6
+ 	 	 	Référence BAAN de lancement 	16
+ 	 	 	Gestion de la nomenclature dans PIM	3
+
+
+17.2	PIM11 : association d’une réserve à une Demande d‘anomalie :
+MSGWLI	MESSAGE WLI	4000	 
+CODINT	IDENTIFIANT INTERFACE	8	PIMNAU00
+CODMES	CODE MESSAGE	6	PIM11A
+DBK1	DBK DE RECORD D'ENVOI	10	PM06-DBK
+CODRET	CODE RETOUR DU MESSAGE	2	XX
+WLISUI	PARTIE MESSAGE APPLICATIF 		 	 FORMAT
+ 	 	 	CODE_ACTION	3
+ 	 	 	NUM_DA	10
+ 	 	 	Type de réserve = à "RESERVES PIM" automatiquement	20
+ 	 	 	Identifiant de regroupement en date heure minute seconde centièmes	14
+ 	 	 	USER du TQP générant la demande	7
+ 	 	 	DATE_DEMANDE (*)	10
+ 	 	 	MATRICULE OR COMPOSE	10
+ 	 	 	PART NUMBER ou REFERENCE ARTICLE composé	32
+ 	 	 	Centre de Charge	3
+ 	 	 	Centre de Charge détecteur	3
+ 	 	 	NUM_RESERVE	9
+ 	 	 	SIGLE_GM	13
+ 	 	 	VALEUR MINI	11
+ 	 	 	VALEUR MAXI	11
+ 	 	 	VALMES et UNITE	18
+ 	 	 	Nombre de réserves à associer pour une DA 	4
+
+	(*) Date en format date oracle SSAA-MM-JJ
+
+
+
+
+17.3	PIM21 : solde d’une réserve suite au solde d’une DA
+MSGWLI	MESSAGE WLI	4000	 
+CODINT	IDENTIFIANT INTERFACE	8	NAUPIM00
+CODMES	CODE MESSAGE	6	PIM21A
+DBK1	DBK DE RECORD D'ENVOI	10	Space
+CODRET	CODE RETOUR DU MESSAGE	2	XX
+WLISUI	PARTIE MESSAGE APPLICATIF 		 	 FORMAT
+ 	 	 	NUM_DA	10
+ 	 	 	MATRICULE OR COMPOSE	10
+ 	 	 	NUM_RESERVE	9
+ 	 	 	USER	7
+
+
+17.4	PIM22 : réserve de type uvc pour amsq serial casq-it :
+MSGWLI	MESSAGE WLI	4000	 
+CODINT	IDENTIFIANT INTERFACE	8	PIMNAU00
+CODMES	CODE MESSAGE	6	PIM22A
+DBK1	DBK DE RECORD D'ENVOI	10	PM06-DBK
+CODRET	CODE RETOUR DU MESSAGE	2	XX
+WLISUI	PARTIE MESSAGE APPLICATIF 		 	 FORMAT
+ 	 	 	CODE_ACTION	1
+ 	 	 	NUM_RESERVE	9
+ 	 	 	N° UVC	16
+ 	 	 	MATRICULE OR COMPOSE	10
+ 	 	 	Description de la réserve	128
+ 	 	 	PART NUMBER ou REFERENCE ARTICLE composé	32
+ 	 	 	MATRICULE OR COMPOSANT	10
+ 	 	 	DATE_DEMANDE (*) 	10
+ 	 	 	USER du TQP générant la demande	7
+
+(*) Date en format date oracle SSAA-MM-JJ
+
+ 
+18	REPRISE DE DONNEES
+18.1	Uniformiser les rôles d’observation sur réserve : Positionner toutes les réserves en ‘L’ 
+Par SQL (Gesfic _1183.sql) changer le rôle de observations de réserves générées en rôle ‘D’.
+
+
+18.2	Conserver les N° de DA associés à une réserve avant la MEP Nausiqua :
+* si la rubrique BR01-REFSEC différente de space, ( existence d’un N° NAUSIQUA avec Nausiqua lot 3A ) mettre la référence en observation de rôle L avec la matricule identique au matricule de création de la réserve. Reblanchir la rubrique BR01-REFSEC.
+
+
+
+
+

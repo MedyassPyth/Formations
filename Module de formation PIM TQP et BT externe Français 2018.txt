@@ -1,0 +1,476 @@
+C2 - Restricted
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+Module de formation PIM
+TQP/BT externe
+/ Janvier 2018 /
+C2 - Restricted
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+Module de formation PIM TQ
+externe
+/ Janvier 2018 /
+C2 - Restricted
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+2 /
+SOMMAIRE
+/01/
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+3 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+SOMMAIRE
+ Prérequis
+ Les litiges
+ Les réserves
+ La remise à zéro d’une phase
+ Démontage/remontage d’un sous-module
+ Déverrouillage simple et forcé
+ Les évènements sur encours
+ L’état qualité série (PIM25)
+ La terminaison montage
+ Les enquêtes dans PIM
+ TQP seulement : Casq_it montage (formation 2 heures)
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+4 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+PRE-REQUIS : LES FONCTIONS DES TQP EXTERNES
+ Les TQP ont les accès :
+ des monteurs
+ plus des accès réservés aux TQP.
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+5 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES LITIGES
+ 3 types de litiges
+Type litige : P, T or C
+P comme PIRAT (remplacé par CORSAIRE) : bloquant visa phase
+T comme TRAM : bloquant visa phase
+C comme COMETE (remplacé par TRAPE en mars 2015) : non bloquant visa phase mais
+bloquant ‘Terminaison montage’
+Litige : code de l’erreur (voir planche 26 à 28 – les codes)
+ Comment les voir
+Dans la phase ou dans les évènements sur encours ou via ‘Interrogations diverses’
+ Litiges Comete/TRAPE (particularité)
+Recyclés toutes les 15’.
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+6 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES RÉSERVES
+ Les différents types
+1 Pièce (pb. cosmétique) manuelle
+2 Mesures et/ou calcul (hors tolérances) automatique
+3 Vendor (inconnu de DTM) automatique
+4 UVC manuelle
+5 Pre-libération manuelle
+6 PIRAT/CORSAIRE automatique
+7 Mesure importée par fichier (TRIDIM) automatique
+9 Montage manuelle
+ Les statuts
+1. Non prise en compte
+2. Prise en compte
+3. Soldée
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+7 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES RÉSERVES
+ La prise en compte d’une réserve
+• Permet au monteur de viser sa phase => l’écart est instruite en parallèle.
+• Peut se faire : à partir de la liste des réserves de l’ITR ou de la phase ou des évènements sur encours.
+• Prise en compte = gravité dans PIM. Peut prendre les valeurs :
+ BLOQUANT : ne pas utiliser car bloquera le ‘terminé montage’
+ ACCEPTE EN L’ETAT : écart ne nécessite ni investigation, ni action
+ NON BLOQUANT : écart nécessite investigation/action et on prend le risque de poursuivre le
+montage.
+ L’observation d’une réserve
+• Possible tant que la réserve n’est pas soldée
+• Doit être traduite en français ou en anglais.
+ Le solde de la réserve
+• Manuel (sauf pour réserve UVC).
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+8 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES RÉSERVES ET CASQ-IT
+ Interface réserve PIM / DA Casq_it
+Possibilité de créer une DA ‘RESERVE PIM’ dans Casqit à partir d’une ou plusieurs réserves PIM.
+=> Uniquement si autorisé à créer des DA/DER montage dans Casq-it.
+ Conséquences
+La DA est créé (type = RESERVE PIM) au titre du module avec les infos de la réserves.
+La réserve ne sera soldée qu’au solde de la DA
+Si DA liée à DER, le solde de la DA sera fait après le solde de la DER.
+ Particularité des réserves ‘Mesures et/ou calcul’
+• Une réserve liée à une GM hors tolérance est ‘annulée’ et non supprimée si elle est liée à une DA Casq-it.
+ Particularité des réserves ‘UVC’
+• Une réserve ‘UVC’ est soldée automatiquement et créé un évènement sous serial visible sur l’état qualité.
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+9 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LA REMISE À ZÉRO D’UNE PHASE
+ Dans quels cas ?
+• Afin de pouvoir modifier une réponse à condition (changement de chemin graphe)
+• Afin de pouvoir démonter un sous-module (Voir § Démonter un sous-module)
+• Exceptionnel : afin de permettre à SnW d’appliquer une ITE (Instruction de Travail
+Exceptionnel) sur l’encours de montage.
+ Ne jamais le faire :
+ A - Sur des phases comportant des repères LHM historisés (Etat = ‘L’ et Visa = ‘H’)
+ B - Sur des phases comportant des déclarations de repères maîtres (càd de module inférieur)
+ C – pour démonter un repère simple
+ D – Palier à un problème (identifié à tort comme un dysfonctionnement PIM)
+ E – Recommencer à zéro un travail déjà effectué
+ Comment fait-on ?
+ Noter les enregistrements
+ Démonter un à un les serials
+ Ne peut se faire que sur phase verrouillée
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+10 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+DÉMONTAGE/REMONTAGE D’UN SOUS-MODULE
+WRS/CAA/P. Jarosinski
+1° a) Déviser les phases dans lesquels les repères composants (Hors Modules) du module sont identifiés (IMHM)
+Comment les trouver :
+•Ouvrir la phase d’identification du kit/module
+•Clic droit sur la ligne de repère du module, puis ‘Liste des phases impactées par le démontage’
+Un double clic permet d’ouvrir les phases concernées.
+Inutile d’ouvrir une phase déjà au statut ‘à faire’.
+b) si la phase concernée contient
+- Des formules de calculs utilisant des GM importées, deviser la phase (inutile si déjà au statut ‘à faire’ (blanche) ou ‘en cours’ (bleue))
+- Des repères IMHM à l’état ‘M’ :
+-Démonter les serials de pièces ou de jeu d’aubes.
+-Faire une remise à zéro de la phase.
+Attention : veiller à noter les données saisies si besoin.
+2° Deviser la phase d’identification du repère du module
+• Deviser la ligne du repère.
+Si PIM affiche le message ‘Changement d’OR impossible-Le statut des phases liées ne le permet pas’, reprendre au 1°
+(ceci signifie que des phases liées ne sont pas au bon statut)
+• Blanchir le serial kit/module du repère
+3° Re-identifier le repère du kit/module (càd saisir le serial du nouveau module)
+Valider la phase d’identification du module.
+4° Faire une mise à jour des phases dans lesquels sont identifiés les repères HM du module (IMHM)
+nota : ce n’est pas instantané. Une relance de la recherche peut être nécessaire.
+Attention : si le nouveau matricule module est déjà monté sur un autre moteur, il faut impérativement
+le démonter ainsi que ses composants (selon procédure ci-dessus).
+C2 - Restricted
+11 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+DÉMONTAGE/REMONTAGE D’UN SOUS-MODULE
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+12 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+DÉVERROUILLAGE FORCÉ/SIMPLE
+ Déverrouillage simple
+ Permet de libérer la phase que l’on a bloqué.
+ Déverrouillage forcé
+ Permet de prendre la main sur une phase verrouillée par un autre utilisateur.
+ Attention : l’autre utilisateur ne voit pas le déverrouillage et peut continuer à travailer =>
+s’assurer qu’il ne le fait pas.
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+13 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES ÉVÈNEMENTS SUR ENCOURS
+ Pourquoi faire ?
+ Ils permettent de visualiser, à un instant t, l’état d’avancement d’un module/moteur.
+ Comment y accède-t-on ?
+ Via menu contextuel de l’ITR en mono ou multi-niveaux.
+ Que contiennent-ils ?
+ Plusieurs onglets : Réserves, COPR , COOR , Mesures, Commentaires
+ Onglet ‘Réserves’ : toutes les réserves soldées ou pas.
+ Onglet ‘COPR’ : toutes les phases ‘à faire’, ‘en cours’, ‘sous litige’, ‘non validé’
+ Onglet ‘Mesures’ : toutes les mesures non relevées ou calculées
+ Onglet ‘Commentaires’ : tous les commentaires de visa/dévisa phase des monteurs.
+Tous les commentaires sont à traduite en français ou en anglais.
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+14 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES ÉVÈNEMENTS SUR ENCOURS
+WRS/CAA/P. Jarosinski
+ Onglet COOR : tous les repères
+Non visés
+Sous litige (PIRAT/CORSAIRE, Comete/TRAPE, TRAM)
+Avec ‘Manquant’ ou ‘LHP’ ou ‘LHM’
+Ayant fait l’objet d’une mise à jour sur encours
+Ayant un état ‘démonté’
+Non monté (absent de l’ITD)
+•Voir exemple planche 33.
+C2 - Restricted
+15 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+L’AS BUILT
+WRS/CAA/P. Jarosinski
+• Analyse du fichier Excel as built
+ Colonne K : toutes les alternatives sont levées c’est-à-dire absence de ALT ou ALTERNATIVE
+ Colonne J : Si présence d’une *, ceci signifie que le serial était connu avant son montage => vérification à faire car peut
+cacher un double serial sur du suivi montage (non contrôlé par TRAPE/COMETE).
+C2 - Restricted
+16 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LA TERMINAISON MONTAGE
+ Pourquoi faire ?
+ S’assurer que le module/moteur, physiquement terminé, ne présente aucun problème bloquant.
+ Toutes les lignes de la COOR sont visées.
+ Plus aucun litige
+ Plus de réserve au statut ‘ non pris en compte ‘
+ Toutes les phases sont au statut ‘Validée ‘ ou ‘non validée’
+ Plus de composant au statut ‘Démonté’
+ Plus de composant au statut ‘ LHM ’
+ Passage obligé avant la prise en recette.
+ Faciliter la prise en recette en réglant au plus tôt les éventuels points bloquants.
+ Comment y accède-t-on ?
+ Menu contextuel de l’ITR
+ Traçabilité
+ Dans les observations de l’OR
+ Conséquences pour le monteur
+ ITR accessible en consultation uniquement
+ OR, COOR, COPR sont au statut ‘Terminé montage
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+17 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+L’ÉTAT QUALITÉ OU PIM25
+ Voir GUO-0347
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+18 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES ENQUÊTES DANS PIM
+ Quelles enquêtes?
+ Via ITR : sur un module donné
+ Via ‘Interrogations diverses’
+ Pour les plus complexes, demander à un administrateur qui fera une demande à l‘informatique.
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+19 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+CASQ_IT MONTAGE
+ Qu’est ce que Casq_it ?
+Progiciel qualité de gestion des évènements qualités :
+Déclaration d’Anomalie interne/externe
+Demande de dérogation interne/externe
+Permis de Produire
+ Formation TQP
+½ journée.
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+20 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+DOCUMENTATION DISPONIBLE
+ Manuel utilisateur PIM BT/TQ externe
+ Casq_it montage :
+o GUO Casq_it dans SDPS
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+Module de formation PIM BT
+externe
+/ janvier 2018
+C2 - Restricted
+22 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+SOMMAIRE
+ Pre-requis : les fonctions des TQP
+ Qui est responsable de quoi ?
+ La messagerie des BTA
+ L’état qualité série
+ Le ‘solde qualité’ d’un ensemble
+ Les demandes de transfert
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+23 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+PRE-REQUIS : LES FONCTIONS DES BT EXTERNES
+ Les BT ont les accès :
+ des monteurs
+ des TQP
+ plus des accès réservés.
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+24 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+BTA EXTERNE/INTERNE : QUI EST RESPONSABLE DE
+QUOI
+ BT interne de SnW
+ Valide la nomenclature ‘à monter’ afin la création de l’ITR PIM
+ Gère les évolutions de nomenclatures sur l’encours de montage.
+ Traite certains litiges COMETE/TRAPE à la demande des BT externes et certains litiges
+TRAM.
+ BT externe
+ Pre-analyse les litiges TRAPE/COMETE et TRAM
+ Prend en charge les réserves
+ Analyse les évènements sur encours
+ Met les statuts ‘Terminé montage’ et ‘ solde qualité’
+ Analyse l’as built, la MTL
+ Analyse PIM25
+ Extrait de PIM les documents nécessaires au dossier module
+ Envoi les données MTL et as built vers le système GE
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+25 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LA MESSAGERIE DES BTA
+ La messagerie des BTA externe est alimentée par PIM :
+ Des CR d’envois des MTL et As Built
+Nom des messageries OUTLOOK : chaque entité doit créer une messagerie partagée pour les BTA.
+Le nom de la messagerie doit être communiquée aux administrateurs pour informer PIM.
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+26 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+AS BUILT ET MTL
+WRS/CAA/P. Jarosinski
+ MTL : vérifier que
+ Le nombre de lignes est correct
+ Les serials font tous 8 digits (excepté les matricules de modules CFM56)
+ ‘Vérifié Comete’ est présent sur chaque ligne
+ Si ce n’est pas le cas:
+ Vérifier dans TRAPE si le serial est monté et si l’acte précise qu’il s’agit du même module/repère
+que PIM.
+ Si TRAPE dit le contraire, envoyer un mail avec la pièce jointe au BTA de SnW et à CAAT
+(administrateur PIM)
+ As built : vérifier que
+ Colonne K : toutes les alternatives sont levées c’est-à-dire absence de ALT ou ALTERNATIVE
+ Colonne J : Si présence d’une *, ceci signifie que le serial était connu avant son montage => vérification
+à faire car peut cacher un double serial sur du suivi montage (non contrôlé par TRAPE/COMETE).
+C2 - Restricted
+27 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+L’ÉTAT QUALITÉ SÉRIE
+ GUO-0347 (en français)
+ Pourquoi faire ?
+S’assurer qu’aucun évènement qualité ouvert est présent au niveau module ou pièce
+S’assurer que les PP appliqués sont dans la période de validité
+S’assurer qu’aucun serial sous restriction n’est assemblé sur module/moteur de série et
+qu’aucune dérogation majeur existe pour ce serial.
+ Quand ?
+A chaque fin de montage d’un module et impérativement avant chaque prise en recette.
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+28 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LE SOLDE QUALITÉ D’UN ENSEMBLE
+ Quand l’apposer ?
+A chaque prise en recette.
+Il est mis sur l’OR, la COOR, la COPR
+ Pourquoi & Conséquences
+Permet à PIM d’effectuer les derniers contrôles :
+ Le module/moteur et ses modules mineurs sont tous au statut ‘Terminé montage’
+ Tous les articles sont visés qualité (responsabilité SnW)
+ Toutes les réserves sont soldées.
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+29 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES DEMANDES DE TRANSFERT
+ Pourquoi ?
+ Pour envoyer les données vers un autre système :
+ Vers GE (MTL et As Built)
+ Toutes les MTL sont envoyées à 4h50 pm
+ Tous les as built sont envoyés à 11h00 pm
+ Vers Casq_it (Etat qualité/PIM25)
+ Comment y accède-t-on ?
+ Menu contextuel de l’ITR
+ Comment annuler l’envoi ?
+ Bureau PIM/Interrogations diverses/Liste des demandes
+de transfert.
+WRS/CAA/P. Jarosinski
+CFM56
+CFM56/LEAP
+LEAP
+C2 - Restricted
+30 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES DEMANDES DE TRAVAIL
+ Qu’est-ce que c’est ?
+ Une Demande De Travail (ou DDT) permet d’effectuer un traitement dans PIM en léger différé
+(10 minutes).
+ Le résultat est un fichier Excel ou un document .pdf.
+ Permettent d’obtenir :
+ La MTL en fichier .pdf
+ L’As Built en fichier Excel
+ Le dossier moteur/module
+ Comment y accède-t-on ?
+ Via le menu contextuel de l’ITR.
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+31 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+DOCUMENTATION DISPONIBLE
+ Manuel utilisateur PIM BT/TQ externe
+ GUO-0347 dans SDPS
+ Casq_it montage :
+o GUO Casq_it dans SDPS
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+32 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+QUESTIONS ?
+Questions ?
+WRS/CAA/P. Jarosinski
+C2 - Restricted
+33 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES CODES LITIGES PIRAT
+WRS/CAA/P. Jarosinski
+A PIRAT : AM-REDISTRIBUTION D'UN JEU DEJA MONTE (NON BLOQUANT)
+D PIRAT : TQP-AM=QTE VENANT DE PIRAT INCOMPATIBLE AVEC ATTENDU
+E PIRAT : TQP-AM=DEFINITION JEU PIRAT INCOMPATIBLE AVEC ATTENDU
+H PIRAT : JEU EN COURS DE MONTAGE OU DE DEMONTAGE
+I PIRAT : PSP-AUCUN RM ASSOCIE AU FRM DU JEU
+J PIRAT : PSP=PROBLEME DEFINITION JEU PIRAT:ECART NB DE SIGLE
+K PIRAT : PSP-ECART MESURES FICHIER PIRAT ET NB MESURES DU FRM
+P PIRAT : AM-JEU MONTE DANS PIM ET NON RECU DE PIRAT
+C2 - Restricted
+34 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+ES CODES LITIGES COMETE/TRAPE
+WRS/CAA/P. Jarosinski
+DG COMETE-TRAPE : DOUBLE AVEC PIECE GE
+EC COMETE-TRAPE : ECART REFERENCE TPE/PIM SUR MODULE/MOTEUR
+ER COMETE-TRAPE : ECART DE REFERENCE TPE/PIM SUR PIECE
+FC COMETE-TRAPE : MODULE<>8 CAR ET PAS DE FAMILLE DANS TPE
+FI COMETE-TRAPE : SERIAL<>8 CAR ET PAS DE FAMILLE DANS TPE
+PB COMETE-TRAPE : ALERTE SUR PIECE-NE PAS MONTER
+PR COMETE-TRAPE : PIECE REBUTEE
+RC COMETE-TRAPE : REFERENCE MODULE/MOTEUR INCONNUE DE TPE
+RI COMETE-TRAPE : REFERENCE PIECE INCONNUE DE TPE
+SC COMETE-TRAPE : MATRICULE MODULE/MOTEUR INCONNU DE TPE
+SI COMETE-TRAPE : SERIAL INCONNU DE TPE
+SP COMETE-TRAPE : STATUT PIECE INCOMPATIBLE DANS TPE
+C2 - Restricted
+35 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+ES CODES LITIGES TRAM (PIM)
+WRS/CAA/P. Jarosinski
+TRAM est un module de PIM
+B TRAM : AM-COMPOSANT A ITR NON EXISTANT DANS TRAM
+C TRAM : BTA-EDD DU COMPOSANT INCOMPATIBLE AVEC LA DEFINITION
+G TRAM : ECART DE PARTNB ENTRE COOPERANT ET SNECMA
+X1 TRAM : BTA-OR/MATRICULE INCONNU (TYPE ARTICLE X)
+X2 TRAM : BTA-INCOHERENCE DE REFERENCE (TYPE ARTICLE X)
+C2 - Restricted
+36 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+LES ÉVÈNEMENTS SUR ENCOURS (EXEMPLE)
+WRS/CAA/P. Jarosinski
+Explication :
+Colonne ‘Statut composant’ : si ‘Manquant’ => informatif seulement
+Colonne ‘Litige’ : si renseigné => bloquant TM et SQ
+Colonne ‘N°modif.’ : si renseigné => a fait l’objet d’une maj sur encours => informatif seulement
+Colonne ‘Quantité : si 0 => informatif mais analyse à faire.
+Colonne ‘Référence article’ : si commence par ‘ART’ ou = ‘ALTERNATIVE’ => informatif mais analyse à faire.
+Colonne ‘Dénomination’ :
+*** ERREUR REPERE MTL **** : SNS de la MTL non monté => à analyser
+*** LIGNE VISEE/NON MONTEE *** : ligne déclarée monté avec quantité=0 => informatif – à analyser
+*** ARTICLE NON VISE QUALITE *** : évolution attributs : bloquant SQ, alerter SnW (BTA)
+C2 - Restricted
+37 /
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+FORMATION TQ/BT EXTERNE
+WRS/CAA/P. Jarosinski
+Fin

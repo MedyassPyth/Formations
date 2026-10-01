@@ -1,0 +1,1705 @@
+Manuel utilisateur
+Technicien Qualité interne
+Bureau Technique interne
+« Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma. » Concepteur : Christian Constanty
+2
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Ce manuel destiné aux personnes ayant le rôle de
+Technicien Qualité interne PIM
+Bureau Technique interne PIM
+a pour objet de décrire le processus et les fonctionnalités associées à la navigation et à
+l'enrichissement des Instructions de Travail Réalisées (ITR)
+dans l'application PIM
+OBJECTIF DU MANUEL
+3
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.TABLE DES MATIERES TABLE DES MATIÈRESLe bureau PIM 6Les litiges 10Redistribution d’un jeu d’aubes 21Jeu non monté 23Jeu monté – ITR en cours 28Jeu monté – ITR terminé montage 40Remise à zéro d’une phase 47Démontage / remontage d’un sous-module 51Déverrouillage simple/forcé d’une phase 58Les réserves 61La demande de DA Casq_it 65
+La prise en compte 66L’observation 73Le solde 75La suppression 79La création 82Les commentaires multi-lingues de la phase 104
+4
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.TABLE DES MATIERES TABLE DES MATIÈRESLa COPR 108La COOR 115Les évènements sur encours 125Le ‘terminé montage’ 139Le retrait du ‘terminé montage’ 148La visualisation des statuts d’une ITR 153Les demandes de travail 158Les interrogations 161Les fonctions des bureaux techniques 172Le visa qualité d’un article 174La mise à jour sur encours 177La création d’un article dans DTM 187L’état qualité série 192Le ‘solde qualité’ d’un module à ITR 196Le retrait du ‘solde qualité’ d’un module à ITR 205Les demandes de transfert 210Les modules/moteurs sans ITR 215
+6
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LE BUREAU PIM
+7
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les points d’entrée sur le bureau PIM pour les
+techniciens qualité et les bureaux techniques sont :
+Voir planche suivante
+LE BUREAU PIM LITIGES
+8
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LE BUREAU PIM
+9
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.‘ Liste des ITR non soldées ’ :
+Affiche les ITR au statut ‘à faire’ ou ‘en cours’
+‘ Liste des ITR soldées ’ :
+Affiche les ITR au statut ‘ Terminé montage’ ou ‘soldé qualité’
+‘ Liste des ITR par poste de travail ’ :
+Affiche les ITR du poste de travail sélectionné.
+‘ Liste des ITR multi-niveaux par OR ‘ :
+Affiche les ITR d’un module donné et les ITR des sous-modules associés quel que soit le statut des ITR.
+‘ Liste des modules/moteurs sans ITR :
+Affiche les modules/moteurs sans ITR (As Built du moteur SaM146).
+‘ Liste des ITT par généralités :
+Affiche les ITT en cours ou disponible à l’atelier.
+‘ Interrogations diverses ‘ :
+Permet d’effectuer certaines interrogations
+‘ Ouverture phase autre session ‘ :
+Permet d’ouvrir une autre phase d’une session PIM à partir d’une autres session PIM.
+LE BUREAU PIM LITIGES
+10
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les litiges
+12
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.On distingue 3 types de litige : - COMETE Système qualité effectuant le contrôle des sérials de la MTL et leur traçabilité- PIRAT Système production permettant la répartition et l’envoi de la composition d’unjeu d’aubes à PIM. - TRAM Module de PIM dans lequel est tracé la totalité des données produit, Effectue des contrôles de cohérences de données avec la définition.
+a. Les litiges de type PIRAT et TRAM sont bloquants, le monteur ne peut valider sa phase.
+b. Les litiges de type COMETE ne bloquent pas la validation de la phase. Cependant le monteur
+doit impérativement alerter le TQ ou le BT avant de poursuivre le montage.
+c. Les 3 types de litiges sont bloquants lors de la demande du statut « terminé montage « de
+l’ITR.
+LES LITIGES LITIGES
+13
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES LITIGES LITIGESIl existe plusieurs façons de visualiser les litiges :
+- dans la phase
+- dans le menu contextuel de l’explorateur d’ITR
+- en globalité (pour les litiges Comete uniquement)
+14
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES LITIGES LITIGESVisualiser les litiges dans la phase :
+La colonne ‘ Type litige ‘ prend les valeurs :
+C pour Comete
+T pour TRAM
+P pour PIRAT
+La colonne ‘ Litige ‘ affiche le code du litige.
+L’info bulle affiche le libellé du litige.
+Cet affichage est temporaire et n’est présent que lorsque la souris est positionnée sur le code litige.
+Le libellé est composé :
+du système à l’origine de l’anomalie (Comete ou TRAM ou PIRAT) (ici : COMETE)
+suivi de la personne à contacter (ici : TQP)
+suivi du libellé du litige. (ici : DOUBLE SNECMA)
+1
+2
+3
+123
+15
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES LITIGES LITIGESVisualiser les litiges dans le menu de l’explorateur d’ITR
+Clic droit sur l’ITR du module concerné pour
+afficher le menu contextuel de l’ITR.
+2
+1
+1
+2 Choisir Réserves/Litiges puis Liste des litiges de l’OR
+16
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES LITIGES LITIGESVisualiser les litiges dans le menu de l’explorateur d’ITR1 La colonne ‘Libellé du litige’ affiche le libellé du litige.
+1
+17
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES LITIGES LITIGESVisualiser la totalité des litiges Comete
+1 Sur le bureau PIM, clic droit sur ‘ Interrogations diverses ‘ 1
+22 Choisir ‘ Liste des litiges Comete tous OR confondus
+Equivalent au code via accès rapide : LITIGE(sans clé1 ni clé 2)
+18
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES LITIGES LITIGESVisualiser la totalité des litiges Comete
+1 Les matricules modules ayant un litige Comete
+2 Les pièces entrée montage (PEM) ayant un litige Comete
+1
+2
+3
+3 Le type de litige
+19
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Comment les lever : - COMETE Les litiges sont recyclés toutes les 15 minutes.
+2 possibilités de lever le litige selon les cas :
+Soit en corrigeant la saisie s’il y a eu erreur
+Soit en intervenant dans le système Comete. - PIRAT Aucun recyclage.
+Le litige sera levé après démontage du jeu dans PIM, intervention sur les données si nécessaire (PIRAT ou PIM) puis remontage dujeu ou d’un nouveau jeu dans PIM. - TRAM Aucun recyclage.
+Le litige sera levé après démontage du serial dans PIM, intervention sur les données (PIM) si nécessaire puis remontage du serial ou d’un autre serial.
+LES LITIGES LITIGES
+21
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu
+d’aubes
+23
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes
+1
+er Cas : jeu non
+monté
+24
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.PIRAT envoie la nouvelle composition du jeu à PIM.
+PIM remplace automatiquement l’ancienne composition par la nouvelle (pas d’historisation de l’ancienne composition).
+Action transparente pour l’utilisateur PIM.
+Redistribution jeu d’aubes : Jeu non monté
+25
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes : Jeu non monté
+Visualisation des jeux non montés
+1 Sur le bureau PIM, clic droit sur ‘ Interrogations diverses ‘ 1
+2
+2 Choisir ‘ Liste des jeux non montés’ .
+Equivalent au code via accès rapide : JEUXNM (clé1 = premiers caractères du n° du jeu, sans clé 2)
+26
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes : Jeu non monté
+Visualisation des jeux non montés
+1 Inscrire le début ou la totalité du n° du jeu d’aubes
+1
+2 Liste des jeux non montés
+2
+28
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes
+2
+ème Cas : jeu monté
+ITR en cours
+29
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes – jeu monté et ITR ‘en cours’Lors de la redistribution du jeu d'aubes déjà monté sur une ITR au statut ‘en cours’ :
+Si un écart est détecté sur la composition d’un jeu (N° alvéole, référence, sérial, quantité, poids moment) ou sur les propriétés du jeu
+(Référence disque, numéro disque, balourd disque nu, angle balourd disque nu, balourd roue ailetée, angle roue , écart maxi,
+alvéole mini, alévole maxi)
+1. Un message ‘’ NOUVEAU PIRATAGE D UN JEU D AUBES MONTE ‘’ est envoyé dans la messagerie du bureau technique.
+2. Un litige PIRAT A est généré sur le jeu d’aubes (même si la phase a déjà été validée par le Monteur).
+Si aucun écart n’est détecté alors pas d’alerte ni de litige.
+2 cas possibles :
+1
+er cas : Le jeu d'aubes a été redistribué à raison
+Demander au Monteur de démonter le jeu puis de le remonter afin que PIM prenne en compte la dernière composition du jeu.
+2
+ème cas : Le jeu d'aubes a été redistribué à tort
+Annuler le litige PIRAT (Voir planches suivantes)
+30
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes – jeu monté et ITR ‘en cours’Comment savoir si la nouvelle composition du jeu a évolué ?
+Comparer la composition du jeu déjà monté avec la nouvelle composition reçue de PIRAT et
+comparer les propriétés du jeu PIRAT.
+Si écart, 1er cas
+Si pas d’écart, 2ème cas
+31
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes – jeu monté et ITR ‘en cours’1 Un litige PIRAT A est affecté au n° de jeu.
+1Jeu redistribué post montage
+32
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes – jeu monté et ITR ‘en cours’Jeu redistribué post montage
+Comparer la composition du jeu monté avec la composition du jeu reçu de PIRAT1 Clic droit sur l’ITR du module concerné pour afficher le menu contextuel.
+2 Sélectionner ‘ Repères ‘ puis ‘Afficher les repères de l’OR ‘
+1
+Equivalent au code via accès rapide : ECOJEU (clé1 = n° du jeu , sans clé 2)
+33
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes – jeu monté et ITR ‘en cours’Se positionner sur le repère du jeu d’aubes à comparer1Clic droit puis sélection de ‘ Comparaison composition jeu d’aubes monté et redistribué’
+21
+2
+Jeu redistribué post montage
+Comparer la composition du jeu monté avec la composition du jeu reçu de PIRAT
+34
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes – jeu monté et ITR ‘en cours’Jeu redistribué post montage
+Comparer la composition du jeu monté avec la composition du jeu reçu de PIRATInformations sur les données de la nouvelle
+composition reçue de PIRAT.
+1 2 Information sur la composition déjà montée.
+1 2
+Seules les lignes en écart sont affichées.
+35
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes – jeu monté et ITR ‘en cours’Jeu redistribué post montage
+Comparer les propriétés du jeu d’aubes
+Afficher la composition du jeu redistribué via ‘Interrogations diverses du bureau PIM.
+Pour visualiser les propriété du jeu
+1
+Afficher les Relevés de Mesures du module via clic droit sur ITR puis ‘Mesures’ puis
+‘RM de l’OR’.
+Sélectionner le RM correspondant puis ‘Valeurs d’un RM/OR’
+Comparer la totalité des valeurs de chaque propriété du jeu.
+2
+Equivalent au code via accès rapide : Voir planche suivante
+36
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes – jeu monté et ITR ‘en cours’Jeu redistribué post montage
+Comparer les propriétés du jeu d’aubes
+1
+2
+Equivalent au code via accès rapide : JEUXNM (clé1
+= n° du jeu, sans clé 2)
+Visualiser les propriété du jeu Equivalent au code via accès rapide : RMOR (cle1 =
+matricule du module)
+1
+2
+2Clic droit sur la
+colonne ‘Libellé du
+FRM’ pour le connaitre
+37
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes – jeu monté et ITR ‘en cours’Jeu redistribué post montage
+Cas où le jeu d'aubes a été redistribué à tort (aucun écart) : annulation du litige PIRAT AClic droit sur l’ITR pour afficher le menu puis ‘Repères’ puis ‘Afficher les repères de
+l’OR’.
+1
+Sélectionner la ligne ayant le litige PIRAT A puis clic droit. ‘Consulter les statuts de
+l’OR’
+2
+2
+38
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes – jeu monté et ITR ‘en cours’Jeu redistribué post montage
+Cas où le jeu d'aubes a été redistribué à tort (aucun écart) : annulation du litige PIRAT A1 Clic droit sur la ligne ‘Litige de l’OR’ puis ‘Supprimer le litige PIRAT’
+1
+Equivalent au code via accès rapide : NIEOR (cle1 = N° du jeu)
+40
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes
+3
+ème Cas : jeu monté
+ITR terminé montage
+41
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes : jeu monté et ITR terminé montageLors de la redistribution du jeu d'aubes déjà monté sur une ITR au statut ‘Terminé montage’ :
+Si un écart est détecté sur la composition d’un jeu (N° alvéole, référence, sérial, quantité, poids moment) ou sur les propriétés du jeu
+(Référence disque, numéro disque, balourd disque nu, angle balourd disque nu, balourd roue ailetée, angle roue , écart maxi, alvéole mini, alévole maxi)
+1. Un message ‘’ NOUVEAU PIRATAGE D UN JEU D AUBES MONTE ‘’ est envoyé dans la messagerie du bureau technique.
+2. Un indicateur de redistribution du jeu est affecté au n° du jeu. Aucun litige PIRAT n’est généré sur le jeu d’aubes
+2 cas possibles :
+1
+er cas : Le jeu d'aubes a été redistribué à raison
+Remettre l’ITR au statut ‘en cours’ puis Demander au Monteur de démonter le jeu puis de le remonter afin que PIM prenne en compte la dernière composition du jeu.
+2
+ème cas : Le jeu d'aubes a été redistribué à tort
+Annuler la redistribution (Voir planches suivantes)
+Comment savoir si la dernière composition de jeu a évolué ?
+Comparer la composition du jeu déjà monté avec la nouvelle composition reçue de PIRAT. (voir planches précédentes)
+Si écart, 1er cas
+Si pas d’écart, 2ème cas
+42
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes : jeu monté et ITR terminé montageJeu redistribué post montage
+L’indicateur de redistribution du jeu
+Sur le bureau PIM, clic droit sur ‘ Interrogations
+diverses ‘ puis ‘ Liste des jeux montés ‘.
+1
+1
+1 Saisir le début du n° du jeu ou la totalité.‘
+1
+Equivalent au code via accès rapide : JEUXM (cle1 = premiers caractères du n° du jeu)
+43
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes : jeu monté et ITR terminé montageJeu redistribué post montage
+Cas où le jeu d'aubes a été redistribué à tort (aucun écart) : annulation de l’indicateur de redistributionSélectionner la ligne puis clic droit pour visualiser le menu
+contextuel puis ‘Ignorer la nouvelle composition du jeu PIRAT
+reçue post montage’
+1
+1
+44
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes : jeu monté et ITR terminé montageJeu redistribué post montage
+Cas où le jeu d'aubes a été redistribué à tort (aucun écart) : annulation de l’indicateur de redistributionSélectionner la ligne de montage
+du
+jeu puis clic droit pour visualiser le
+menu contextuel
+1
+L’annulation est tracée dans les observations du n° de jeu d’aubes
+1Equivalent au code via
+accès rapide : OBOR (cle1
+= matricule du module)
+45
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Redistribution jeu d’aubes : jeu monté et ITR terminé montage
+46
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+47
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Remise à zéro d’une phase
+Remise à zéro d’une
+phase
+48
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVESPourquoi effectuer la ‘remise à zéro d’une phase ‘
+Pour remettre la phase au statut ‘à faire’
+Dans quels cas
+• Afin de pouvoir modifier une réponse à condition (changement de chemin graphe)
+• Afin de pouvoir appliquer une ITE (Instruction de Travail Exceptionnel)
+• Afin de pouvoir démonter un sous-module (Voir § Démonter un sous-module)
+A ne jamais utiliser
+A - Sur des phases comportant des repères LHM historisés (Etat = ‘L’ et Visa = ‘H’)
+B - Sur des phases comportant des déclarations de repères maîtres (càd de module inférieur)
+C – pour démonter un repère simple
+D – Palier à un problème (identifié à tort comme un dysfonctionnement PIM)
+E – Recommencer à zéro un travail déjà effectué …
+Avant toute remise à zéro :
+Il est impératif de démonter proprement les serials saisis (serials de pièce, de jeu d’aubes…)
+ainsi que les mesures. Attendre le démontage complet notamment s’il s’agit d’un jeu d’aubes.
+Remise à zéro d’une phase LES RESERVES
+49
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Remise à zéro d’une phase LES RESERVES1 Ouvrir la phase puis la verrouiller
+1
+Clic droit sur le n° de la phase pour ouvrir le
+menu contextuel puis ‘ Remise à zéro ‘.
+2
+2
+Un message d’avertissement vous demande
+de démonter proprement les repères
+(serials, référence, code producteur relevés
+ou n° de jeux d’aubes).
+Clic sur OK pour confirmer la remise à zéro.
+3
+3
+50
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+51
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Démontage / remontage d’un sous-ensembleDémontage / Remontage
+d’un sous-ensemble
+52
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVESComment procéder ?
+Démontage/remontage d’un sous-ensemble
+1° a) Déviser les phases dans lesquels les repères composants (Hors Modules) du module sont identifiés (IMHM)
+Comment les trouver :
+•Ouvrir la phase d’identification du kit/module
+•Clic droit sur la ligne de repère du module, puis ‘Liste des phases impactées par le démontage’
+Un double clic permet d’ouvrir les phases concernées.
+Inutile d’ouvrir une phase déjà au statut ‘à faire’.
+b) si la phase concernée contient
+- Des formules de calculs utilisant des GM importées, deviser la phase (inutile si déjà au statut ‘à faire’ (blanche) ou ‘en cours’ (bleue))- Des repères IMHM à l’état ‘M’ :
+-Démonter les serials de pièces ou de jeu d’aubes.
+-Faire une remise à zéro de la phase.
+Attention : veiller à noter les données saisies si besoin.
+2° Deviser la phase d’identification du repère du module
+• Deviser la ligne du repère.
+Si PIM affiche le message ‘Changement d’OR impossible-Le statut des phases liées ne le permet pas’, reprendre au 1°
+(ceci signifie que des phases liées ne sont pas au bon statut)
+• Blanchir le serial kit/module du repère
+3° Re-identifier le repère du kit/module (càd saisir le serial du nouveau module)
+Valider la phase d’identification du module.
+4° Faire une mise à jour des phases dans lesquels sont identifiés les repères HM du module (IMHM)
+nota : ce n’est pas instantané. Une relance de la recherche peut être nécessaire.
+Attention : si le nouveau matricule module est déjà monté sur un autre moteur, il faut impérativement
+le démonter ainsi que ses composants (selon procédure ci-dessus).
+53
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVESComment procéder ?
+Démontage/remontage d’un sous-ensembleUn sous-module possède une nomenclature de repères. Les repères sont présents dans différentes phases.
+Comment retrouver la liste des repères impactés par le démontage ?
+• Ouvrir la phase d’identification du sous-module. • Demander la liste des phases impactées par le démontage’
+Ouvrir la phase d’identification du sous-module à démonter.
+Sélectionner le ligne puis clic droit pour afficher le menu contextuel.
+Puis ‘ Liste des phases impactées par le démontage ‘ 1
+1
+54
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVESComment procéder ?
+Démontage/remontage d’un sous-ensemble
+La liste des phases est affichée. Sur chaque phase, la colonne ‘Statut ‘ est renseignée.
+Pour chaque phase :
+Si le statut de la phase est : ‘ à faire ‘ ou ‘Invalidé Condition ‘ , passer à la phase suivante
+Pour les autres statuts : ouvrir la phase.
+1
+Si la phase contient
+- Des formules de calculs utilisant des GM importées, deviser la phase (inutile si déjà au statut ‘à faire’ (blanche) ou ‘en cours’ (bleue))- Des repères IMHM à l’état ‘M’ :
+-Démonter les serials de pièces ou de jeu d’aubes.
+-Faire une remise à zéro de la phase.
+Attention : veiller à noter les données saisies si besoin.
+55
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVESComment procéder ?
+Démontage/remontage d’un sous-ensemble
+Lorsque l’étape précédente est terminée, le démontage du sous-module est possible.
+Deviser la phase d’identification du sous-module
+• Deviser la ligne du repère.
+Si PIM affiche le message ‘Changement d’OR impossible-Le statut des phases liées ne le permet pas’, revérifier la liste
+des phases impactées par le démontage (planche précédente).
+Blanchir le serial du sous-module
+56
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVESComment procéder ?
+Démontage/remontage d’un sous-ensemble
+Il est à présent possible de remonter le sous-module :
+Re-identifier le repère du sous-module puis valider la phase d’identification du sous-module.
+Faire une mise à jour des phases dans lesquels sont identifiés les repères Hors Modules ( repères HM) du sous-modulenota : ce n’est pas instantané. Une relance de la recherche peut être nécessaire.
+Attention : si le nouveau matricule du sous-module est déjà monté sur un autre moteur, il faut impérativement
+le démonter ainsi que ses composants (selon procédure ci-dessus).
+1
+57
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+58
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Déverrouillage forcé / simple
+Déverrouillage
+forcé/simple
+59
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Déverrouillage forcé / simple LES RESERVES2 types de déverrouillage existent :
+Déverrouillage simple :
+Permet à l’utilisateur de libérer la phase qu’il avait verrouillé
+Déverrouillage forcé :
+Permet à l’utilisateur de libérer une phase qu’une autre utilisateur a verrouillé
+61
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES
+Les réserves
+62
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVESIl existe différents types de réserves :
+1 Pièce (pb. cosmétique)
+2 Mesures et/ou calcul (hors tolérances)
+3 Vendor (inconnu de DTM)
+4 UVC
+5 Pre-libération
+6 PIRAT
+7 Mesure importée par fichier (TRIDIM)
+9 Montage
+LES RESERVES LES RESERVESLes différents types de réserves
+63
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESRéserve de type ‘ 1 Pièce (pb. cosmétique) ‘ :
+Est créée manuellement par un utilisateur (monteur, TQP ou BT).
+Sert à tracer une anomalie sur pièce (non déjà couverte par UVC).
+Elle bloque le visa phase et nécessite donc l’intervention d’un TQP pour déblocage visa phase.
+Réserve de type ‘ 2 Mesures et/ou calcul (hors tolérances) ‘ :
+Est créée automatiquement par le système dès qu’une mesure est détectée hors tolérances.
+Elle bloque le visa phase et nécessite donc l’intervention d’un TQP pour déblocage visa phase.
+Réserve de type ‘ 3 Vendor (inconnu de DTM) ‘ :
+Est créée automatiquement par le système dès qu’un code producteur validé (vendor) n’est pas dans le référentiel
+Elle bloque le visa phase et nécessite donc l’intervention d’un TQP pour déblocage visa phase.
+Réserve de type ‘ 4 UVC ‘ :
+Est créée manuellement par un utilisateur (monteur, TQP ou BT).
+Elle est prise en compte puis soldée automatiquement par le système.
+Sert à tracer une UVC importée (étiquette UVC accompagne la pièce)
+Elle ne bloque pas le visa phase.
+Les différents types de réserves
+(suite)
+64
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESRéserve de type ‘ 5 Pre-libération ‘ :
+Est créée manuellement par un utilisateur (monteur, TQP ou BT).
+Elle bloque le visa phase et nécessite donc l’intervention d’un TQP pour déblocage visa phase.
+Sert à tracer une pièce sous pre-libération. Le solde de la réserve est soumis au solde de la pre-libération papier.
+Réserve de type ‘ 6 PIRAT ‘ :
+Est créée automatiquement par le système dès qu’un écart de définition est constaté entre les données PIRAT et celles
+attendues par PIM.
+Elle bloque le visa phase et nécessite donc l’intervention d’un TQP pour déblocage visa phase.
+Réserve de type ‘ 7 Mesure importée par fichier ‘ :
+Est créée automatiquement par le système dès qu’un écart de définition est constaté entre les données issue de la TRIDIM et celles attendues par PIM
+Elle bloque le visa phase et nécessite donc l’intervention d’un TQP pour déblocage visa phase..
+Réserve de type ‘ 9 Montage ‘ :
+Est créée manuellement par un utilisateur (TQP ou BT).
+Sert à tracer une anomalie de montage non tracée dans PIM.
+Elle bloque le visa phase et nécessite donc l’intervention d’un TQP pour déblocage visa phase.
+Les différents types de réserves
+(suite)
+65
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa demande de DA Casq_it
+1 Clic droit sur la ou les réserves concernées puis ‘Créer DA avec prise en compte de la réserve’.
+1
+2
+2 Casq_it restitue à PIM un n° de DA Casq_it.
+66
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVESLa prise en compte d’une réserve permet :
+Au monteur de viser sa phase
+Au TQP/BT de commencer à instruire l’anomalie constatée si besoin.
+LES RESERVES
+La prise en compte d’une réserve
+La prise en compte une réserve dans PIM peut se faire :
+Au niveau des réserves de la phase
+Au niveau des réserves de l’ITR
+Au niveau des réserves des évènements sur encours – Voir § Evènements sur encours
+67
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa prise en compte d’une réserve
+Prise en compte d’une réserve dans une phase PIM :
+Clic droit sur le n° de la phase puis ‘
+Réserves ‘ puis ‘Liste des réserves
+de la phase ‘ 1
+1
+68
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa prise en compte d’une réserve
+1 La réserve est au statut ‘ Non pris en compte ‘.
+Prise en compte d’une réserve dans une phase PIM :
+2 1Sélectionner la réserve puis clic droit ‘ Consulter/modifier la
+réserve ‘.
+2
+Equivalent au code via accès rapide : NIGAN (cle1 = n° de la réserve)
+69
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa prise en compte d’une réserve
+1 La prise en compte s’effectue en renseignant le champ ‘Gravité ‘.
+1
+70
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa prise en compte d’une réserve
+La prise en compte s’effectue en renseignant le champ ‘ gravité ‘.
+Ce champ peut prendre les valeurs :
+Non bloquante permet de signifier que l’anomalie est à instruire.
+Bloquante permet de bloquer le montage. La terminaison montage sera impossible.
+Acceptée en l’état permet de signifier que l’écart constaté est minime et ne nécessite pas d’instruction.
+71
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa prise en compte d’une réserve
+Prise en compte d’une réserve dans les réserves de l’ITR :
+Clic droit sur l’ITR concernée pour obtenir le
+menu contextuel puis ‘ Réserves / Litiges ‘
+puis ‘ Réserves de l’OR ‘.
+1
+1
+72
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa prise en compte d’une réserve
+Prise en compte d’une réserve dans les réserves de l’ITR :
+1 La réserve set au statut ‘ Non pris en compte ‘.
+Sélectionner la réserve puis clic droit ‘ Consulter/modifier la
+réserve ‘.
+2
+L’écran de la réserve s’affiche. Voir planche 67 & 68.
+1
+2
+73
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESL’observation d’une réserve
+• Les observations de réserves sont facultatifs. • Une observation saisie à partir d’un client PIM chinois sera considéré par PIM comme du chinois même
+si celle-ci a été saisie en français/anglais. • Ceci est valable pour tous les clients PIM. • Toute observation écrite à partir d’un client PIM autre que français/anglais doit être traduite en français
+ou en anglais. • La traduction ne peut se faire qu’à partir du client d’origine c’est dire à SnZ ou SnX. SnW ne peut donc
+rien traduire, par contre SnW peut voir si des observation sont non traduites (voir planche suivante).
+74
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESL’observation d’une réserve
+• Comment obtenir les observations à traduire ?
+• Lister les réserves du module concerné (via liste des réserves de la phase ou de l’ITR ou des évènements
+sur encours). • Ouvrir chaque réserve. • Si le champ ‘ Observation à consulter ‘ = Oui alors ouvrir les observations de la réserves
+• Si le contenu de l’observation est
+IL EXISTE AU MOINS UNE OBSERVATION EN
+THERE IS AT LEAST ONE OBSERVATION
+CHNOIS (ou ESPAGNOL…)
+La traduction est à faire.
+75
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLe solde d’une réserve
+Le solde d’une réserve dans PIM peut se faire :
+Au niveau des réserves de la phase
+Au niveau des réserves de l’ITR
+Au niveau des réserves des évènements sur encours – Voir § Evènements sur encours
+76
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLe solde d’une réserve
+Solde d’une réserve dans une phase PIM :
+Clic droit sur le n° de la phase puis ‘
+Réserves ‘ puis ‘Liste des réserves
+de la phase ‘ 1
+1
+77
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLe solde d’une réserve
+Solde d’une réserve dans une phase PIM :
+Sélectionner la réserve à solder puis ‘
+Solder la réserve’.
+1
+1
+La réserve est automatiquement soldée.
+Attention : • Un refresh de l’écran est nécessaire pour voir évoluer le statut. • Toute réserve attachée à une DA Casq_it ne peut être soldée dans PIM. C’est le solde de la
+DA qui déclenche le solde de la réserve.
+22
+78
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESSolde d’une réserve dans les réserves de l’ITR :
+Clic droit sur l’ITR concernée pour obtenir le
+menu contextuel puis ‘ Réserves / Litiges ‘
+puis ‘ Réserves de l’OR ‘.
+1
+Le solde d’une réserve
+79
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa suppression d’une réserve
+La suppression manuelle d’une réserve dans PIM ne peut se faire que :
+Si la réserve a été créée manuellement par un utilisateur
+Si la réserve n’est pas soldée (à l ’exception des réserves de type UVC).
+Si la réserve n’est pas attachée à une DA Casq_it.
+Nota : les réserves créées automatiquement dans PIM ne peuvent être supprimées manuellement. Il faut modifier la valeur à l’origine de la réserve.
+La suppression manuelle d’une réserve dans PIM peut se faire :
+Au niveau des réserves de l’ITR
+Au niveau des réserves des évènements sur encours – Voir § Evènements sur encours
+Attention : une réserve attachée à une DA Casq_it n’est pas supprimée mais est mise au
+statut ‘ANNULEE’. Seuls les évènements sur encours permettent de lister les
+réserves ANNULEES .
+80
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa suppression d’une réserve
+Suppression d’une réserve dans les réserves de l’ITR :
+81
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa suppression d’une réserve
+Suppression d’une réserve dans les réserves de l’ITR (suite) :
+82
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve
+Un utilisateur (monteur, TQP, BT) peut créer manuellement une réserve.
+Les types de réserves autorisés sont :
+1 – Pièce (pb. cosmétique)
+4 - UVC
+5 - Pré-libération
+9 - Montage
+83
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘ 1 - Pièce (Pb cosmétique) ‘
+Sur phase verrouillée, sélectionner le repère concerné
+puis ‘Créer une réserve cosmétique’ 1
+1
+84
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘ 1 - Pièce (Pb cosmétique) ‘
+Les informations liées à la pièce s’affichent. Clic sur OK 1 pour valider la demande de création de réserve
+1
+2
+L’écran d’observation de la réserve s’ouvre.
+Vous pouvez soit inscrire une observation (pas en
+chinois) puis clic sur Valider
+Soit ne pas inscrire d’observation puis refermer la
+fenêtre
+2
+3
+3
+85
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘ 1 - Pièce (Pb cosmétique) ‘
+La réserve est créée. Il faut la prendre en compte.
+Voir § ‘ Prise en compte d’une réserve ‘.
+86
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘ 4 - UVC ‘
+Sur phase verrouillée, sélectionner le repère concerné
+puis ‘Créer une réserve UVC’.
+1
+Cas d’une UVC sur pièce sérialisée
+1
+87
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘ 4 - UVC ‘
+Cas d’une UVC sur pièce sérialisée
+1 Renseigner le n° de l’UVC inscrit sur l’étiquette
+1
+Les autres issus de PIM sont non modifiables
+88
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘ 4 - UVC ‘
+Cas d’une UVC sur pièce sérialisée
+Renseigner une observation (facultatif) puis clic sur
+Valider pour l’enregistrer, sinon, refermer la fenêtre
+1
+1
+89
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘ 4 - UVC ‘
+Cas d’une UVC sur pièce sérialisée
+1 La réserve est soldée automatiquement et un évènement est envoyé à casq_it pour tracer cette UVC.
+1
+90
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘ 4 - UVC ‘
+Sur phase verrouillée, sélectionner le repère concerné
+puis ‘Créer une réserve UVC’.
+1
+Cas d’une UVC sur pièce non sérialisée ou dont le serial n’est pas relevé dans PIM.
+1
+91
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘ 4 - UVC ‘
+Cas d’une UVC sur pièce non sérialisée ou dont le serial n’est pas relevé dans PIM.
+1 Renseigner le n° d’UVC
+1
+2
+2 Renseigner le n° de serial gravé ou la date de fabrication
+92
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘ 4 - UVC ‘
+Cas d’une UVC sur pièce non sérialisée ou dont le serial n’est pas relevé dans PIM.
+1 Renseigner une observation (facultatif) puis clic sur
+Valider pour l’enregistrer, sinon, refermer la fenêtre
+1
+93
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘ 4 - UVC ‘
+Cas d’une UVC sur pièce non sérialisée ou dont le serial n’est pas relevé dans PIM.
+1 La réserve est soldée automatiquement et un évènement est envoyé à casq_it pour tracer cette UVC.
+1
+94
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVES
+95
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘ 5 – Pre-libération ‘
+Sur phase verrouillée, sélectionner le repère concerné
+puis ‘Créer une réserve pre-lib’.
+1
+Cas d’une Pré-lib sur pièce sérialisée
+1
+96
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘5 – Pre-libération ‘
+Cas d’une Pré-lib sur pièce sérialisée
+1 Renseigner le n° de la pre-lib inscrit sur l’étiquette
+1
+97
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘5 – Pre-libération ‘
+Cas d’une Pré-lib sur pièce sérialisée
+1 Renseigner une observation (facultatif) puis clic sur
+Valider pour l’enregistrer, sinon, refermer la fenêtre
+1
+98
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘5 – Pre-libération ‘
+Cas d’une Pré-lib sur pièce sérialisée
+1 La réserve est créée au statut ‘ Non pris en compte ’.
+1
+99
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘5 – Pre-libération ‘
+Sur phase verrouillée, sélectionner le repère concerné
+puis ‘Créer une réserve pre-lib’.
+1
+Cas d’une Pré-lib sur pièce non sérialisée ou dont le serial n’est pas relevé dans PIM.
+1
+100
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘5 – Pre-libération ‘
+Cas d’une Pré-lib sur pièce non sérialisée ou dont le serial n’est pas relevé dans PIM.
+1 Renseigner le n° de pre-lib
+2 Renseigner le n° de serial gravé ou la date de fabrication
+2
+1
+101
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘5 – Pre-libération ‘
+Cas d’une Pré-lib sur pièce non sérialisée ou dont le serial n’est pas relevé dans PIM.
+1 Renseigner une observation (facultatif) puis clic sur
+Valider pour l’enregistrer, sinon, refermer la fenêtre
+1
+102
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES LES RESERVESLa création manuelle d’une réserve de type‘5 – Pre-libération ‘
+Cas d’une Pré-lib sur pièce non sérialisée ou dont le serial n’est pas relevé dans PIM.
+1 La réserve est créée au statut ‘ Non pris en compte ‘.
+1
+104
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les commentaires multi-lingues de la phase
+Les commentaires multi-linguesde la phase
+105
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les commentaires multi-lingues de la phase
+La traduction des commentaires multi-lingues de la
+phase
+• Les commentaires sont demandés au niveau d’une phase. Ils sont obligatoires au dévisa de phase. • Un commentaire saisi à partir d’un client PIM chinois ou espagnol sera considéré par PIM comme du
+chinois même si celui-ci a été écrit en français/anglais. • Ceci est valable pour tous les clients PIM. • Tout commentaire écrit à partir d’un client PIM autre que français/anglais doit être traduit en français
+ou en anglais. • Cette traduction doit se faire au niveau du client PIM à l’origine du commentaire (SnZ ou SnX) afin de
+pouvoir visualiser le contenu du commentaire avant traduction. SnW ne peut donc traduire ces
+commentaires. Ils peuvent par contre visualiser la liste des commentaires non traduits.
+106
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les commentaires multi-lingues de la phase
+Clic droit sur l’ITR puis ‘ Liste des
+commentaires non traduits de l’ITR’
+1
+Comment lister les commentaires non traduits de l’ITR ?1
+107
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Si la liste affichée est vide, tous les commentaires ont été traduits.
+Dans le cas contraire (comme ici), les traductions sont à faire.
+Liste des commentaires non traduits de l’ITR1
+1
+Les commentaires multi-lingues de la phase
+108
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COPR (COmposition de Phase Réalisée)
+La COPR
+COmposition de Phase
+Réalisée
+109
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COPR (COmposition de Phase Réalisée) LES RESERVESLa COPR (COmposition de Phase réalisée)• La COPR représente la liste des phases selon le découpage défini par le
+méthodiste. Ce découpage est fait en OPP, OPE et phase.
+• PIM trace chaque visa / dévisa de phase.
+• PIM permet de :
+• Retrouver l’historique des phases visées.
+• Le statut des phases à un instant donné.
+110
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COPR (COmposition de Phase Réalisée) LES RESERVESLa COPR (COmposition de Phase réalisée)L’historique des phases
+1 Se positionner sur l’ITR concernée
+1
+2
+Clic droit pour visualiser le menu
+contextuel puis’ Phases ‘ puis ‘ Liste
+des phases historiées (COPR).
+2
+111
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COPR (COmposition de Phase Réalisée) LES RESERVESLa COPR (COmposition de Phase réalisée)
+L’historique des phases
+La colonne ‘ Historisation ‘ permet de retrouver : • La phase active (lettre Z) • La ou les phases historiées (lettre A à Y : la lettre A
+étant la plus ancienne)..
+1
+1 2
+Les colonnes ‘ Date statut ‘ et ‘ Heure Statut ‘permettent
+de retrouver la date et heure du visa de la phase.
+2
+112
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COPR (COmposition de Phase Réalisée) LES RESERVESLa COPR (COmposition de Phase réalisée)
+Les phases à un instant t
+1 Se positionner sur l’ITR concernée
+Clic droit pour visualiser le menu
+contextuel puis’ Phases ‘ puis ‘ Liste
+des phases (COPR).
+2
+1
+2
+113
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COPR (COmposition de Phase Réalisée) LES RESERVESLa COPR (COmposition de Phase réalisée)
+1 Le profil demandé par la phase est affiché.
+1 2
+2 Le statut de la phase est indiqué.
+115
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COOR (COmposition d’Objet Réalisé)
+La COOR
+COmposition d’Objet Réalisé
+116
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COOR (COmposition d’Objet Réalisé LES RESERVESLa COOR (COmposition d’Objet réalisé)• La COOR représente la liste des repères présents en nomenclature complétée des
+repères dits ‘ fictifs ‘ : repères jeux d’aubes, ULC.
+• La COOR permet :
+• De retrouver la phase de déclaration du repère
+• De visualiser la liste des repères de la nomenclature y compris les repères fictifs
+• D’obtenir des informations sur le composant (article monté).
+117
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COOR (COmposition d’Objet Réalisé LES RESERVESLa COOR (COmposition d’Objet réalisé)
+La phase de déclaration du repère
+Sélectionner l’ITR concernée puis clic
+droit pour afficher le menu contextuel .
+1
+Sélectionner ‘ Repères ‘ puis ‘ Liste
+des repères utilisés dans l’ITR (par
+phase)’.
+2
+1
+2
+118
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COOR (COmposition d’Objet Réalisé LES RESERVESLa COOR (COmposition d’Objet réalisé)
+La phase de déclaration du repère
+Sélectionner la phase de déclaration du
+repère puis : • Double clic pour ouvrir la phase.
+Ou
+• Clic droit puis ‘ Visualiser la Phase
+1
+1
+La phase de déclaration du repère s’ouvre.
+119
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COOR (COmposition d’Objet Réalisé LES RESERVESLa COOR (COmposition d’Objet réalisé)
+La liste des repères
+Sélectionner l’ITR concernée puis clic
+droit pour afficher le menu contextuel .
+1
+Sélectionner ‘ Repères ‘ puis ‘ Afficher
+les repères de l’OR’.
+2
+120
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COOR (COmposition d’Objet Réalisé LES RESERVESLa COOR (COmposition d’Objet réalisé)
+La liste des repères
+Permet de visualiser l’état des repères à un instant t : les manquants, les litiges, …
+Sélectionner la ligne puis clic droit pour
+afficher le menu contextuel.
+1
+1
+121
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COOR (COmposition d’Objet Réalisé LES RESERVESLa COOR (COmposition d’Objet réalisé)
+La liste des repères : le menu contextuel
+Sélectionner une ligne de la COOR puis clic permet, selon les informations contenues, d’effectuer
+certaines interrogations : • Généralités de l’OR : affiche les information relatives au composant (référence article, dénomination, …) Code TRAM équivalent : IGOR ; matricule du module
+• Observation de l’OR : affiche les observations de type : date des statuts annulation de redistribution jeu d’aubes, date des statuts terminé montage/solde qualité ou des retraits … Code TRAM équivalent : OBOR ; matricule du module ou du jeu d’aube
+• Consulter les statuts de l’OR : permet de supprimer le litige PIRAT A en cas de redistribution à tort.
+Code TRAM équivalent : NIEOR ; matricule du module ou du jeu PIRAT
+• Utilisation de l’OR : affiche le composé sur lequel est affecté le composant. Code TRAM équivalent : UTOR ; matricule du module ou du jeu PIRAT ou du serial de PEM
+• Utilisation historisée de l’OR : affiche les différents mouvements du composant (montage, démontage). Code TRAM équivalent : UTORH ; matricule du module ou du jeu PIRAT ou du serialde PEM• Généralités de l’OD : affiche les informations de la référence composant (dénomination, référence transposée, vendor, …) Code TRAM équivalent : NIGOD ; référence article
+• Utilisation d’un OD en OR : affiche les serials ou matricule module associés à la référence article composant
+Code TRAM équivalent : UTODOR ; référence article
+• Comparaison composition jeu d’aubes montés et redistribué : affiche les écarts entre un jeu d’aubes monté et une jeu nouvellement redistribué. ECOJEU ; N° du jeu PIRAT
+122
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COOR (COmposition d’Objet Réalisé LES RESERVESLa COOR (COmposition d’Objet réalisé)Les lignes historisées de la COORSélectionner l’ITR concernée puis clic
+droit pour afficher le menu contextuel .
+1
+Sélectionner ‘ Repères ‘ puis ‘ Afficher
+les lignes historisées de la COOR’. 2
+123
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LA COOR (COmposition d’Objet Réalisé LES RESERVESLa COOR (COmposition d’Objet réalisé)
+Les lignes historisées de la COORPermet de visualiser les montages/démontages de repères de la COOR.
+La colonne ‘ Visa ‘
+permet de savoir si la
+ligne est historisée .
+H signifie : historié
+V signifie ligne active
+1
+1
+124
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.LES RESERVES
+125
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les évènements sur encours des modules à ITR
+126
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les évènements sur encours LES RESERVESLes évènements sur encours permettent d’obtenir un état des lieux du montage dans
+PIM à un instant t :
+Des réserves
+De la COOR
+De la COPR
+Des mesures
+Des commentaires
+Les évènements sur encours peuvent être demandés :
+En mono niveau
+En multi niveaux
+127
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les évènements sur encours LES RESERVESSélectionner l’ITR puis clic droit pour
+visualiser le menu contextuel.
+1
+1
+2Sélectionner ‘ Evènements sur encours ‘ puis
+‘ Evènements sur encours multi-niveaux de l’ITR ‘
+‘ Evènements sur encours de l’ITR ‘
+Selon le besoin.
+2
+Comment y accéder ?
+128
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les évènements sur encours LES RESERVESAffiche une synthèse des différents onglets . • La couleur rouge indique la présence
+d’un onglet • La couleur verte indique l’absence
+d’onglet car pas d’informations à signaler.
+1
+1
+Le résultat : l’onglet ‘ Evènements ITR ‘
+129
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les évènements sur encours LES RESERVESLe résultat : l’onglet ‘ Réserves ‘
+Affiche les réserves associées au matricule
+module quel que soit le statut de la réserve.
+1
+1
+130
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les évènements sur encours LES RESERVESLe résultat : l’onglet ‘ Réserves annulées‘
+Cet onglet affiche les réserves dites ‘ annulées ‘ :
+Toute réserve liée à une DA (Déclaration d’Anomalie) Casq_it doit être conservée
+dans PIM pour garder la cohérence entre PIM et casq_it.
+Cette information permet aux TQP de solder la DA dans Casq_it en indiquant
+‘réserve associée supprimée’.
+131
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les évènements sur encours LES RESERVESLe résultat : l’onglet ‘ Evènements COOR ‘
+Cet onglet restitue : • Les lignes non visées
+• Les lignes sous litige (Comete, PIRAT, TRAM) • Les lignes avec ‘ Manquant ‘ ou ‘ LHP’ ‘ou ‘ LHM ‘ • Les lignes ayant fait l’objet d’une mise à jour sur encours
+• Les lignes ayant un état : ‘ Démonté’
+1
+1
+2
+Des informations sont également affichées en lieu et place de la dénomination de l’article composant : • ***Article non visé qualité***
+• ***Ligne visée/non montée***
+• *** Repère non monté ***
+2
+132
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les évènements sur encours LES RESERVESLe résultat : l’onglet ‘ Evènements COPR’
+Cet onglet restitue : • Les phases au statut ‘ en cours ‘, ‘ à faire ‘, ‘ bloquée méthode ‘ , ‘ à lever ‘, ‘ erreur synchro ‘
+1
+133
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les évènements sur encours LES RESERVESLe résultat : l’onglet ‘ Ecart OR composé’
+Cet onglet affiche les OR composés en écart :
+• Ayant un litige Comete.
+134
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les évènements sur encours LES RESERVESLe résultat : l’onglet ‘ Mesures non visées’
+Cet onglet affiche les mesures non visées :
+• Mesures non renseignées
+• Mesures renseignées mais phase non visée
+135
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les évènements sur encours LES RESERVESLe résultat : l’onglet ‘ Commentaires’
+Cet onglet affiche la liste des commentaires :
+• Commentaires de validation de phase
+• Commentaire de dévalidation de phase
+• Commentaire libre lié à la phase
+136
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les évènements sur encours LES RESERVESLe résultat : l’onglet ‘ Commentaires’
+1 Le contenu de chaque commentaire est visible en double cliquant sur la ligne.
+1
+138
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘Terminé montage’ des
+modules à ITR
+139
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘ terminé montage ‘ LES RESERVESLe statut ‘ terminé montage ‘ permet à PIM d’effectuer un certain nombre de contrôles :
+Toutes les lignes de la COOR sont visées.
+Plus aucun litige
+Plus de réserve au statut ‘ non pris en compte ‘
+Toutes les phases sont au statut ‘Validée ‘ ou ‘non validée’
+Plus de composant au statut ‘Démonté’
+Plus de composant au statut ‘ LHM ’
+Au terme de ces contrôles, les 3 composants de l’ITR passent au statut ‘Terminé montage’ :
+COOR
+COPR
+OR
+Ainsi l’ITR n’est plus accessible en mise à jour.
+Nota : selon le type de problème restant, la COPR ou COOR ou OR n’auront pas le statut ‘Terminé montage’.
+140
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘ terminé montage ‘ LES RESERVESComment y accéder ?
+L’entrée du bureau PIM est obligatoirement ‘ Liste des ITR multiniveaux par OR’
+141
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘ terminé montage ‘ LES RESERVESComment y accéder ?
+Sélectionner l’ITR puis clic droit pour
+visualiser le menu contextuel.
+1
+Sélectionner ‘ Terminer montage l’OR ‘ ou ‘Terminer
+montage l’OR multi niveaux’ selon le besoin.
+2
+1
+2
+142
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘ terminé montage ‘ LES RESERVESCet onglet permet d’avoir une vue
+synthétique des statuts des modules et
+sous-modules.
+1
+Le résultat : l’onglet ‘ OR multiniveaux ‘
+1
+2
+2 Le statut des 3 éléments composant l’ITR.
+143
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘ terminé montage ‘ LES RESERVESLe résultat : l’onglet ‘ Evènements COPR ‘
+Cet onglet permet de lister les phases
+posant problème.
+1
+1
+2
+La colonne ‘ Statut ‘ permet d’identifier le
+problème.
+Un double clic sur la ligne permet d’ouvrir la
+phase.
+2
+144
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘ terminé montage ‘ LES RESERVESLe résultat : l’onglet ‘ Evènements COOR ‘
+Cet onglet permet de lister les repères 1 posant problème.
+1
+2 3 4
+5 6
+La colonne ‘Statut’ permet d’identifier les 2 repères non montés
+Les colonnes ‘Code litige’ et ‘litige’
+permettent d’identifier les repères sous litige
+(Comete, PIRAT ou TRAM)
+3
+La colonne ‘n° Modif’ permet d’identifier les
+repères ayant fait l’objet d’une mise à jour
+sur encours – Informatif et non bloquant à
+la terminaison montage’.
+4
+La colonne ‘ Dénomination ‘ , si contient un
+message permet d’identifier les repères à
+problème.
+5
+La colonne ‘User Visa ‘ permet d’identifier 6 les repères non visés.
+Nota : un double clic permet d’ouvrir la
+phase concernée.
+145
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘ terminé montage ‘ LES RESERVESLe résultat : l’onglet ‘ Evènements COOR (OR)‘
+Cet onglet permet de lister les repères 1 posant problème.
+147
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le retrait du statut ‘ terminé montage ‘
+Retrait du statut ‘Terminé
+montage’ des modules à ITR
+148
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le retrait du statut ‘ terminé montage ‘ LES RESERVESLe statut ‘ terminé montage ‘ empêche toute mise à jour de l’ITR :
+Les phases ne sont plus accessibles en mise à jour.
+Pour ‘reprendre la main ‘ sur une ITR au statut ‘Terminé montage’, il faut retirer ce statut et
+remettre les composants au statut ‘en cours’ :
+COOR
+COPR
+OR
+149
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le retrait du statut ‘ terminé montage ‘ LES RESERVESComment y accéder ?
+L’entrée du bureau PIM est obligatoirement ‘ Liste des ITR multiniveaux par OR’
+150
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le retrait du statut ‘ terminé montage ‘ LES RESERVESComment y accéder ?
+Sélectionner l’ITR puis clic droit pour
+visualiser le menu contextuel.
+1
+2 Sélectionner ‘ Retrait Terminé montage‘.
+Une ITR au statut ‘terminé montage’
+est de couleur vert clair.
+Après exécution, l’ITR repasse au statut ‘en cours’ et
+donc de couleur bleu.
+Nota : les OR des modules supérieurs passent
+également au statut ‘’en cours’. Les COOR et OR
+correspondant restent au statut ‘Terminé montage’
+1
+2
+151
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+152
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Visualiser les statuts d’une ITR
+Visualiser les statuts d’un module à ITR
+153
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Visualiser les statuts d’une ITR LES RESERVESPIM trace l’apposition des statuts d’ITR.
+L’état en cours est visible via l’explorateur d’ITR.
+La traçabilité des statuts est faite dans les
+observations de l’OR.
+154
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Visualiser les statuts d’une ITR LES RESERVESComment visualiser l’historique des appositions et retrait de statut ?Sélectionner l’ITR puis clic droit pour
+visualiser le menu contextuel.
+1
+Sélectionner ‘ Informations de l’OR ‘ puis ‘
+Observations de l’OR ‘
+2
+1
+2
+155
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Visualiser les statuts d’une ITR LES RESERVESComment visualiser l’historique des appositions et retrait de statut ?
+157
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les demandes de travail
+Les demandes de travail
+158
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les demandes de travail LES RESERVESLes demandes de travail, appelées DDT, sont traitées toutes les 10 minutes par le système.
+3 types de demandes de travail sont possibles :
+• La MTL.
+• Permet d’obtenir un fichier .pdf de la totalité de la MTL
+• Le résultat est envoyé dans la messagerie indiquée par l’initiateur de la demande.
+• L’asbuilt.
+• Permet d’obtenir un fichier Excel de l’asbuilt du module et des sous-modules.
+• Le résultat est envoyé dans la messagerie indiquée par l’initiateur de la demande.
+• Le dossier module
+• Permet d’obtenir le dossier module constitué de :
+• La liste des sous-modules
+• La liste des cotes frontières
+• La liste des pièces significatives
+• Le résultat est envoyé dans la messagerie indiquée par l’initiateur de la demande.
+159
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+160
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les interrogations
+Les interrogations
+161
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les interrogations LES RESERVESPIM permet d’effectuer un certain nombre de recherche.
+Ces recherches sont accessibles :
+• Via le bureau PIM
+• Via l’explorateur d’ITR
+• Via les codes opérations TRAM
+162
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les interrogations LES RESERVESLes interrogations via le bureau PIM
+Clic droit pour accéder aux différentes
+interrogations.
+1
+1
+163
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les interrogations LES RESERVESLes interrogations via le bureau PIM
+Clic droit pour accéder aux différentes
+interrogations.
+1
+1
+Les interrogations via le bureau PIM sont relatives à plusieurs OR.
+164
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les interrogations LES RESERVESLes interrogations via le bureau PIM
+Liste des jeux non montés (code TRAM équivalent : JEUXNM)
+À partir d’un n° de jeu donné, liste des jeux en attente de montage
+Liste des jeux montés (code TRAM équivalent : JEUXM)
+A partir d’un n° de jeu donné, liste des jeux déjà montés.
+Cet état permet également de voir les jeux redistribués post montage liés à des ITR
+‘terminé montage’.
+Afficher la composition d’un jeu (code TRAM équivalent : COJEUX)
+Permet, à partir d’un n° de jeu donné, monté ou pas, d’afficher la composition d’un jeu.
+Liste des litiges Comete tous OR confondus (code TRAM équivalent : LITIGE)
+Permet d’afficher la totalité des litige Comete, quelque soit l’OR.
+Ces litiges sont recyclés toutes les 15 minutes.
+165
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les interrogations LES RESERVESListe des demandes utilisateur (code TRAM équivalent : DDTUTI)
+Permet d’afficher les demandes de travail (DDT), la date/heure de la demande et le statut
+de la demande.
+Les demandes peuvent être annulées avant traitement (code A puis Valider).
+Liste des demandes de transfert (code TRAM équivalent : LDT)
+Permet d’afficher les demandes de transfert.
+Toute demande peut être annulée avant traitement.
+Liste des OR en litige Casq_it (code TRAM équivalent : LITOR)
+Permet d’afficher les OR non créés dans Casq_it.
+Liste des réserves en litige Casq_it (code TRAM équivalent : LITRES)
+Permet d’afficher toutes les réserves ayant un litige Casq_it suite à une demande de DA
+Casq_it.
+Les interrogations via le bureau PIM
+166
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les interrogations LES RESERVESUtilisations d’un serial (OR) (code TRAM équivalent : UTOR)
+Permet de connaître le module sur lequel est monté le serial.
+Utilisations historisées d’un serial (OR) (code TRAM équivalent : UTORH)
+Permet de connaître le module sur lequel est monté le serial ainsi que le ou les modules
+sur lequel il a été démonté.
+Utilisations multi-niveaux d’un serial (OR) (code TRAM équivalent : NUTORM)
+Permet de connaître le module sur lequel est monté un serial ainsi que le module de tête.
+Les interrogations via le bureau PIM
+167
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les interrogations LES RESERVESLes interrogations via l’explorateur d’ITR
+1
+2
+168
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les interrogations LES RESERVESLes interrogations via les codes accès rapide
+Type d'action Code opération TRAM Clé1 Clé2 CommentaireConsultation COJEU n° jeu aube Composition PIRAT d'un jeu d'aube
+COORJ Matricule module/moteur N° jeu aube Composition d'un jeu d'aube en CMRMCOORMN Matricule module/moteur CMRM multi-niveaux
+JEUXNM N° jeu aube complet ou début n° du jeu Liste des jeux montés non montés
+JEUXM N° jeu aube complet ou début n° du jeu Liste des jeux montés
+ECOJEU n° jeu aube complet Ecart jeu monté en COOR et nouvelle composition PIRATLITIGE Liste des litiges Comete tous matricules confondusNCOOD ODmodule indicé [Repère] Définition PM d'un OD Module indicé
+NCOOR Matricule module/moteur [Repère] CMRM mono-niveau
+NCOORH Matricule module/moteur [Repère] CMRM mono-niveau historisées
+NCOORU Serial pièce [Repère] Permet de connaître l'ULC d'un composant donnéNIGEDD EDD Généralité d'un EDD (P/N technique, ref T, Ref ass, attributs articles, …)NOOD ODmodule indicé Liste des EDD d'un OD module indicé
+Observation d'un OR
+Matricule module/moteur ou serial pièce ou n° de
+OBOR jeu PIRAT
+OREDD EDD Liste des matricules d'un EDD donné
+OROD ODmodule indicé Liste des OR d'un OD module
+UTOR Matricule module ou serial Utilisation d'un composant
+UTORH Matricule module ou serial Historique de l'utilisation d'un composant
+NUTORM Matricule module ou serial Utilisation d'un composant multi-niveaux
+Liste de toutes les ITR (y compris les 'terminé montage' et 'soldé qualité') utilisant un article donné
+Si clé 2 renseignée, liste des ITR 'à faire' ou 'en cours' utilisant un article donné
+[matricule ou
+UTODOR Référence article début de matricule]
+Permet d'extraire les valeurs du sigle dans une tranche de matricule donnée
+Matricule
+MEGMOR Sigle début/matricule fin
+Permet d'extraire les valeurs du sigle dans une tranche de date donnéeMEGMDA Sigle Date debut/date fin format date : jjmmaaaa
+169
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les interrogations LES RESERVESLes interrogations via les codes accès rapide
+Mise à Jour IGODQ Référence article Prise en compte des évolutions d'attributs articlesIGOR Matricule module/moteur ou serial pièce Généralité d'un serial/matricule + Maj EDD et P/N TechniqueSJEU Suppression d"'un jeu PIRAT reçu mais non montéNCAN Matricule module Crée une réserve sur le matricule
+Transfert TOR Demande de transfert vers GE, SIMMIXTORCAM Demande l'état qualité d'un ensemble
+LDT Liste des demandes de transfert vers GE, SIMMIXEditions DDTUTI Liste des demandes de travail de l'utilisateur
+CLIM01 Demande de génération du fichier CLIMTP400A Demande de génération du fichier TP400
+MTL03 Demande d'extraction Excel de la COOR multi-niveauxMTL04 Demande d'extraction de la MTL
+EDOR01 Demande d'édition des cotes frontieres
+EDOR02 Demande d'édition des sous-modules
+EDOR03 Demande d'édition des pièces significatives
+EDOR04 Demande d'édition des cotes de fluage
+EDOR05 Demande d'édition des pièces nécessitant une FAA FormEDOR06 Demande d'édition des pièces en accompagnement
+EDOR07 Demande d'édition de la FEL
+DFA-01 Demandes d'édition du dossier FAN CFMDTU-01 Demandes d'édition du dossier Turbine CFMDSA-01 Demandes d'édition du dossier support accessoire CFMLMA-01 Demandes d'édition du dossier moteru assemblé CFMCHP-01 Demandes d'édition du dossier CHP GE90M40-01 Demandes d'édition du dossier M40 GE90FAN-01 Demandes d'édition du dossier FAN GE90
+170
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+171
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les fonctions des bureaux
+techniques
+172
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+173
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le visa qualité d’un article
+174
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le visa qualité d’un article LES RESERVESCode opération : IGODQ ; référence article (=clé1)
+2 Inscrire O ou N pour accepter ou refuser les évolutions d’attributs article.
+2
+175
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+176
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.La mise à jour sur encours
+177
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.La mise à jour sur encours LES RESERVES1 Sélectionner le repère puis clic droit sur le repère..
+Code opération : NCOOR ; matricule module/moteur (=clé1)
+1
+1
+2 ‘Maj Composition par la Qualité’ puis ‘Enchainement’
+178
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.La mise à jour sur encours LES RESERVES1 Colonne ‘C’, inscrire ‘M’ pour Modifier le repère ou ‘C’ pour créer un repère dans la phase affichée ou ‘A’ pour supprimer un repère.
+1
+2 Voir planches suivantes les possibilités..
+2
+179
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.La mise à jour sur encours LES RESERVES1. Colonne C : Saisir
+M pour mise à jour des propriétés d'une ligne repère
+A pour supprimer une ligne repère
+C pour créer un repère dans la phase concernée.
+1. Les rubriques modifiables :
+- repère fonctionnel
+- référence article
+- quantité
+- numéro de modification : saisir le numéro de la MOD (obligatoire)
+- SU : suivi utilisation
+- SM : suivi montage
+- SOL : article solutions d’une alternative
+- TI : Type d’Immatriculation
+- Codes producteurs validés
+3. Les rubriques non modifiables :
+- PHASE : N° de la phase
+- RV : Relevé Vendor
+- DENOMINATION OD : dénomination de la référence article
+Cliquer sur le bouton VALIDER pour enregistrer votre saisie
+=> Vérifier que le système répond ‘’OPERATION COORQ : MISE A JOUR EFFECTUEE ‘’ en bas à droite de l’écran.
+180
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.La mise à jour sur encours LES RESERVESa) REPERE FONCT. : le repère fonctionnel
+Il est présent dans l’ITD et dans la COOR. Donc si ajout ou suppression de repère, le BT doit modifier la définition de l’OR
+et le méthodiste doit obligatoirement appliquer une ITE.
+b) REF. ARTICLE : La référence article
+Cas 1 : Évolution de référence
+La nouvelle référence, si inconnue de DTM, est créée par recopie de l’ancienne référence article à l’exception de
+la référence concepteur, des codes producteurs validés, de la référence transposée et de la référence associée.
+Cas 2 : Transformation repère simple en repère sous alternative.
+a) Créer la ligne ALTERNATIVE :
+REFERENCE = ALTERNATIVE
+SU = N et SM = -
+SOL = N et TI = C
+b) Si référence du repère actuel devient solution, modifier la ligne repère initiale comme suit : :
+SOL = O et TI = E
+c) Créer une nouvelle référence solution.
+Si référence inconnue de DTM => création possible avec le code opération TRAM : NCOD (voir planches
+suivantes)
+SOL = O et TI = E
+Le refresh des caches serveur (menu ITR) et mise en cache des phases (poste monteur ) est obligatoire.
+Les rubriques modifiables
+181
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.La mise à jour sur encours LES RESERVESb) REF. ARTICLE : La référence article (suite)
+Cas 3 : Transformation d’un repère sous alternative en repère simple
+a) Si une des solutions du repère devient la seule et unique référence
+Modifier la ligne de la solution retenue comme suit :
+SOL = N et TI = A
+b) Si une nouvelle référence devient la seule et unique référence
+Créer une nouvelle ligne comme suit :
+Si référence inconnue de DTM => création possible avec le code opération TRAM : NCOD (voir
+planches suivantes)
+SOL = N et TI = A
+REPERE, REFERENCE, QTE, NUMERO MODIF, SU, SM sont à renseigner.
+c) Suppression de la ligne ‘ALTERNATIVE’ et des solutions devenues inutiles :
+Mettre A en colonne C pour supprimer la ligne
+Le refresh des caches serveur (menu ITR) et mise en cache des phases (poste monteur ) est obligatoire.
+Les rubriques modifiables
+182
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.La mise à jour sur encours LES RESERVESc) QTE : la quantité
+Elle est présente dans l’ITD et dans la COOR. Donc si modification de quantité, le BT doit modifier la définition de
+l’OR et le méthodiste doit obligatoirement appliquer une ITE.
+d) NUMERO MODIF : le numéro de modification
+Le n° de MOD est obligatoire.
+e) SU : Suivi Utilisation
+Prend les valeurs O ou N
+Nota : Si O alors le serial relevé sera envoyé à Comete pour contrôle de double.
+Attention : Le refresh des caches serveur (menu ITR) et mise en cache des phases (poste monteur ) est
+obligatoire.
+f) SM : Suivi Montage
+Prend les valeurs O ou –
+=> Si SU = O alors SM = -
+=> Si SU = N alors SM = O ou –
+Attention : Le refresh des caches serveur (menu ITR) et mise en cache des phases (poste monteur ) est
+obligatoire.
+Les rubriques modifiables
+183
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.La mise à jour sur encours LES RESERVESg) SOL : article SOLution d’une alternative
+Doit être mis à O sur les articles solutions
+Doit être mis à N sur les autres articles alternative (ARTxxxxxx ou ALTERNATIVE)
+h) TI : Type d’Immatriculation
+A pour les références autres que ‘ALTERNATIVE ‘ et solutions
+B pour les ULC
+C pour les références en ARTxxxx ou ALTERNATIVE
+E pour les références solutions
+i) Les codes producteurs validés
+La mise à jour des caches serveur et poste monteur est obligatoire lors d’un ajout de code producteur validéLe refresh des caches serveur (menu ITR) et mise en cache des phases (poste monteur ) est obligatoire.
+Les rubriques modifiables
+184
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.La mise à jour sur encours LES RESERVESa) PHASE : le n° de phase
+Il permet de faire le lien avec PIM monteur. Il est renseigné automatiquement par le système
+b) RV : relevé Vendor
+Il est calculé selon les valeurs du classement et des attributs SU et SM.
+c) DENOMINATION OD
+Cette information vient de PM.
+Les rubriques non modifiables
+185
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+186
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.La création d’un article dans
+DTM
+187
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.La création d’un article dans DTM LES RESERVES1 Saisir la nouvelle référence article à créer.
+Code opération : NCOD ; référence article (=clé1)
+1
+188
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.La création d’un article dans DTM LES RESERVES
+189
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.La création d’un article dans DTM LES RESERVESAucun champ n’est obligatoire pour PIM donc aucun contrôle ni blocage lors de la création, cependant :
+• Les attributs SU, SM et classement doivent impérativement être renseignés car ils conditionnent le relevé de serial et vendor
+• Si l’attribut Suivi Utilisation = O, le champ Référence transposée doit être renseigné pour permettre le contrôle dans Comete.
+• Le nouvel article créé ne sera pas ‘visé Qualité’. Il y aura donc blocage au ‘’solde Qualité’’.
+• Lors de la distribution PM vers PIM de cet article, tous les champs précédemment renseignés seront écrasés exceptés les attributs SU, SM et classement.
+=> Une demande de validation des BT sera demandée si écart constaté.
+Conseils pour renseigner les attributs du nouvel article créé
+190
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+191
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.L’état qualité série
+192
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.L’état qualité série LES RESERVESVia le code opération TRAM : TORCAM (sans clé1)
+1 1 Saisir le code opération TORCAM puis Enchainement
+1 Saisir C en colonne ‘A’
+1 2
+Saisir le matricule module/moteur concerné
+puis VALIDER en bas à droite de l’écran
+2
+3
+3 L’adresse de messagerie est modifiable
+193
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.L’état qualité série LES RESERVESVia le menu contextuel de l’ITR
+1 Sélectionner l’ITR puis clic droit pour ‘Etat qualité des ensembles’
+1
+2
+2 L’adresse de messagerie est modifiable.
+194
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+195
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le solde qualité des modules à
+ITR
+196
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘ solde qualité ‘ LES RESERVESLe statut ‘ soldé qualité ‘ permet à PIM d’effectuer un certain nombre de contrôles :
+Les 3 éléments de l’ITR sont au statut ‘terminé montage’.
+Plus aucun litige
+Plus de réserve non soldées
+Tous les articles sont visés qualité
+Au terme de ces contrôles, les 3 composants de l’ITR passent au statut ‘Soldé qualité’ :
+COOR
+COPR
+OR
+L’ITR n’est plus accessible en mise à jour.
+Nota : selon le type de problème restant, la COPR ou COOR ou OR n’auront pas le statut ‘Soldé qualité’.
+197
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘ solde qualité ‘ LES RESERVESComment y accéder ?
+L’entrée du bureau PIM est obligatoirement ‘ Liste des ITR multiniveaux par OR’
+198
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘ solde qualité ‘ LES RESERVESComment y accéder ?
+Sélectionner l’ITR puis clic droit pour
+visualiser le menu contextuel.
+1
+Sélectionner ‘ Solder qualité l’OR ‘ ou ‘Solder qualité
+l’OR multi niveaux’ selon le besoin.
+2
+1
+2
+199
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘ solde qualité ‘ LES RESERVESCet onglet permet d’avoir une vue
+synthétique des statuts des modules et
+sous-modules.
+1
+Le résultat : l’onglet ‘ OR multiniveaux ‘
+2
+2 Le statut des 3 éléments composant l’IT : COOR – COPR - OR.
+1
+200
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘ solde qualité ‘ LES RESERVESLe résultat : l’onglet ‘ Evènements COPR ‘
+Cet onglet permet de lister les phases posant problème : • Les phases au statut ‘non validées’
+201
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘ solde qualité ‘ LES RESERVESLe résultat : l’onglet ‘ Evènements COOR ‘
+Cet onglet permet de lister les repères posant problème : • Les articles ‘ non visés qualité ‘ • Les litiges
+202
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le ‘ solde qualité ‘ LES RESERVESLe résultat : l’onglet ‘ Evènements COOR (OR)‘
+Cet onglet permet de lister les repères des composés posant problème : • Les articles ‘ non visés qualité ‘ • Les litiges
+203
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+204
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le retrait du ‘solde qualité’ d’un module à ITR
+205
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le retrait du ‘ solde qualité ‘ LES RESERVESLe statut ‘ soldé qualité ‘ empêche toute mise à jour de l’ITR :
+Les phases ne sont plus accessibles en mise à jour.
+Pour ‘reprendre la main ‘ sur une ITR au statut ‘soldé qualité’, il faut retirer ce statut puis le
+statut ‘ terminé Montage ‘ et remettre les composants au statut ‘en cours’ :
+COOR
+COPR
+OR
+206
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le retrait du ‘ solde qualité ‘ LES RESERVESComment y accéder ?
+L’entrée du bureau PIM est obligatoirement ‘ Liste des ITR multiniveaux par OR’
+207
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Le retrait du ‘ solde qualité ‘ LES RESERVESComment y accéder ?
+Sélectionner l’ITR puis clic droit pour
+visualiser le menu contextuel.
+1
+2 Sélectionner ‘ Retrait Soldé Qualité‘.
+Une ITR au statut ‘terminé montage’
+est de couleur vert foncé.
+Après exécution, l’ITR repasse au statut ‘Terminé
+montage’ et donc de couleur vert claire.
+1
+2
+208
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+209
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les demandes de transfert
+210
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les demandes de transfert LES RESERVESLes demandes de transfert permettent :
+• D’envoyer la MTL d’un module chez GE.
+• D’envoyer l’asbuilt d’un module chez GE
+• De faire une demande d ’état qualité série
+211
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les demandes de transfert LES RESERVESL’envoi de la MTL d’un module chez GE. Sélectionner l’ITR puis clic droit pour
+visualiser le menu contextuel.
+1
+Sélectionner ‘ Demandes de transfert‘ puis ‘
+Transfert MTL CFM vers GE’.
+2
+1
+2
+212
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les demandes de transfert LES RESERVESL’envoi de l’asbuilt d’un module chez GE. Sélectionner l’ITR puis clic droit pour
+visualiser le menu contextuel.
+1
+Sélectionner ‘ Demandes de transfert‘ puis ‘
+Transfert Asbuilt CFM vers GE support’.
+Nota : Le fichier est actuellement envoyé dans
+une messagerie géré par KS qui envoie le
+fichier vers GE support
+2
+1
+2
+213
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.
+214
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les modules/moteurs sans ITR
+215
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les modules/moteurs sans ITR LES RESERVES1 Sélectionner ‘En cours’ ou ‘Terminé montage’ ou ‘Soldé qualité’ ou ‘Soldé avionnage’
+1
+216
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les modules/moteurs sans ITR LES RESERVES1 Sélectionner la fonction souhaitée
+Les fonctions disponibles.
+1
+217
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les modules/moteurs sans ITR LES RESERVESLes fonctions disponibles. Généralités OR
+Equivalent au code TRAM : IGOR (voir chapitre ‘Les interrogations’)
+Consulter les statuts de l’OR
+Equivalent au code TRAM : NIEOR (voir chapitre ‘Les interrogations’)
+Généralités OD
+Equivalent au code TRAM : NIGOD (voir chapitre ‘Les interrogations’)
+Composition d’OR reçue
+Permet de visualiser l’AsBult concerné – Voir planche suivante
+Lignes ‘à problème’ de la COOR
+Permet de visualiser les problèmes (litiges, …) – Equivalent aux évènements sur encours.
+Liste des sous-modules multiniveaux
+Voir planche suivante
+Terminé montage l’OR mono ou multi-niveau
+Même fonctionnement que pour les modules à ITR
+218
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les modules/moteurs sans ITR LES RESERVESComposition d’OR reçue
+Peut prendre les valeurs ‘A : Absent à tort’, ‘P : Présent à tort’ ou ‘M : repère MTL sans serial’ ou ‘K : repère suivi aprèsvente sans serial’ ou vide si aucun problème.
+1
+1
+2
+3
+42 Litige Comete.
+3 Peut prendre les valeurs ‘O : Vandor Obligatoire et absent’ ou vide si aucun problème.
+4 Peut prendre les valeurs ‘N’ si nouvelle composition reçue et non prise en compte’ ou blanc si aucun problème
+219
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les modules/moteurs sans ITR LES RESERVESComposition d’OR reçue
+1 Inscrire ‘M’ sur la ligne ayant ‘DER. COMPO’=N puis valider pour prendre en compte la dernière composition reçue.
+1
+220
+W-CA B / 19 décembre 2011
+Ce document et les informations qu’il contient sont la propriété de Snecma. Ils ne doivent pas être copiés ni communiqués à un tiers sans l’autorisation préalable et écrite de Snecma.Les modules/moteurs sans ITR LES RESERVESListe des sous-modules multiniveaux
+Affiche les statuts de l’OR et de la COOR de chaque sous-module avec enchaînement possible pour retirer ou apposer le terminé montage ou le solde
+qualité.
+Attention :
+* Pas de statut COPR affcihé car module sans ITR
+* Le retrait du terminé montage et du solde qualité des modules à ITR (cas du MM2 et de ses sous-modules) est à fairte via l’entrée du
+bureau PIM ‘Liste des ITR multiniveaux par OR’
+1
+1

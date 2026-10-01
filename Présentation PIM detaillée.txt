@@ -1,0 +1,637 @@
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 1/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+Sommaire
+1 OBJETS ..................................................................................................................................... 6
+2 PIM POURQUOI ? COMMENT? ............................................................................................... 6
+2.1 QUEL TYPE D’ENSEMBLE .................................................................................................... 6
+2.2 AUCUNE ADERANCE ENTRE LA GAMME DE GESTION (BAAN) ET LA GAMME TECHNIQUE (PIM)6
+2.3 GESTION EDD – UNIT ....................................................................................................... 7
+2.4 COMMENT (A PARTIR DE BAAN) ........................................................................................ 7
+3 INTERFACE PIM ....................................................................................................................... 8
+3.1 LE BUREAU PIM................................................................................................................. 8
+3.2 LA BARRE DES UTILISATEURS - MODE DE FONCTIONNEMENT ................................................ 8
+3.3 INFOS BULLES ................................................................................................................... 9
+3.3.1 Sur boutons commndes......................................................................................... 9
+3.3.2 Sur Onglet.............................................................................................................. 9
+3.3.3 sur les ligne du tableau de données ...................................................................... 9
+3.4 MENUS CONTEXTUELS........................................................................................................ 10
+3.5 LES TABLEAUX PIM ........................................................................................................... 11
+3.5.1 TRI ......................................................................................................................... 11
+3.5.2 Filtre ....................................................................................................................... 11
+3.5.3 Export..................................................................................................................... 11
+4 CONSULTATION OR ................................................................................................................ 12
+4.1 LES DIFFERENTS ACCES AUX OR ........................................................................................ 12
+4.2 LA CONSULTATION MULTINIVEAU......................................................................................... 12
+4.3 GENERALITE D’UN OR........................................................................................................ 13
+4.4 STATUT D’UN OR................................................................................................................ 13
+4.5 GÉNÉRALITÉ EDD.............................................................................................................. 14
+4.6 GENERALITES ITD.............................................................................................................. 14
+5 MODELISATION DES PROCESSUS........................................................................................ 15
+5.1 GRAPHE MOYEN (30 OPP)................................................................................................. 15
+5.2 MODELISATION DE L’ENSEMBLE DES PROCESSUS CONNU..................................................... 15
+5.3 GRAPHE COMPLEXE (87 OPP)............................................................................................ 16
+5.4 CODE COULEUR – AVANCEMENT ET PROBLEME................................................................... 16
+5.5 EXPLOREUR....................................................................................................................... 17
+5.6 GRAPHE VS EXPLORATEUR................................................................................................ 17
+6 PRESENTATION ITR SOUS FORME DE TABLEAU............................................................... 18
+6.1 LISTE OPP ........................................................................................................................ 18
+6.2 LISTE OPE ........................................................................................................................ 18
+6.3 LISTE PHASES .................................................................................................................... 18
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 2/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+7 PRESENTATION PHASE.......................................................................................................... 19
+7.1 IHM................................................................................................................................... 19
+7.2 MODE AFFICHAGE PHASE.................................................................................................... 19
+7.3 STRUCTURE INTERNE PHASE (DTD – PAS EXPLOITABLE DANS LE CADRE D’UNE RECHERCHE)20
+7.4 TEXTE DE LA PHASE ET TYPE D’OBJET................................................................................. 21
+8 LES DONNEES DE LA PHASE - LES ONGLETS DE LA PHASE .......................................... 22
+8.1 REPERE............................................................................................................................. 22
+8.2 GM (COTES) ...................................................................................................................... 22
+8.3 DOCUMENT EXTERNE.......................................................................................................... 23
+8.4 INGREDIENT, OUTILLAGE, COMMENTAIRE ............................................................................. 23
+9 LES BOUTONS DE COMMANDE DE LA PHASE ................................................................... 24
+9.1 BOUTON DE COMMANDE VISA, VERROUILLAGE, RAFRAICHIE ................................................. 24
+9.2 CODES COULEUR ET STATUT............................................................................................... 24
+10 ILLUSTRATION ......................................................................................................................... 25
+10.1 PRESENTATION COMPLEXE - ILLUSTRATION......................................................................... 25
+10.2 INTERACTIVITE (ZONE SENSIBLE) PRINCIPE.......................................................................... 25
+10.3 EXEMPLE DE ZONES SENSIBLES OUTILLAGE........................................................................ 25
+10.4 EXEMPLE DE ZONES SENSIBLES REPERE............................................................................. 26
+11 ALERTE ..................................................................................................................................... 26
+12 PARAMETRES .......................................................................................................................... 27
+12.1 PRESENTATION DANS L’INSTRUCTION.................................................................................. 27
+12.2 PANNEAU DE CREATION...................................................................................................... 27
+12.3 EXPMPLE ........................................................................................................................... 27
+13 OUTILLAGE............................................................................................................................... 28
+13.1 PRESENTATION COMPLEXE OUTILLAGE .................................................................. 28
+13.2 EXEMPLE FICHE OUTILLAGE - GENERATEUR AIR CHAUD....................................................... 28
+14 ACTION SUR REPERE ............................................................................................................. 29
+14.1 EXEMPLE DE LIAISON / ZONE .............................................................................................. 29
+14.1.1Exemple canalisation............................................................................................. 29
+14.1.2Exemple Pièce....................................................................................................... 29
+14.2 MONTER / RIVETER / FREINER.............................................................................................. 30
+14.2.1Presentation dans l’instruction............................................................................... 30
+14.3 DT SERRAGE ..................................................................................................................... 30
+14.3.1Presentation dans l’instruction............................................................................... 30
+14.3.2Affichage instruction resumé du DT de serrage .................................................... 31
+14.4 ACTION LUBRIFIER ............................................................................................................. 31
+14.4.1Presentation dans l’instruction............................................................................... 31
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 3/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+14.5 RIVETER ............................................................................................................................ 31
+14.5.1Presentation dans l’instruction............................................................................... 31
+15 INGREDIENT ............................................................................................................................. 32
+15.1 PRESENTATION COMPLEXE – INGREDIENT ........................................................................... 32
+15.2 ONGLET INGREDIENT.......................................................................................................... 32
+15.3 FICHE RISQUE - PRODCHIM.............................................................................................. 32
+16 ENREGISTREMENT REPERE.................................................................................................. 33
+16.1 PRESENTATION COMPLEXE REPERE ................................................................................. 33
+16.2 MOUVEMENT SUR REPERE .................................................................................................. 33
+16.3 ENREGISTREMENT PEM SIMPLE (AUTO OU MODE MANUEL).................................................... 34
+16.4 ENREGISTREMENT PIECE COMPLEXE SERIAL VENDOR ET LEVE D’ALTERNATIVE...................... 34
+16.5 ECLATEMENT AUTO OU MANUEL.......................................................................................... 34
+16.6 DECLARATION ETAT NON PREVU EN ITD.............................................................................. 34
+16.7 DELCARATION JEU............................................................................................................. 35
+16.8 ONGLET COMPOSITION ....................................................................................................... 35
+16.9 ONGLET MESURES.......................................................................................................... 35
+17 DECLARATION MANUEL DE RESERVE SUR REPERE........................................................ 36
+17.1 CRÉATION D’ UNE RÉSERVE UVC ( UNUSUAL VISUAL CONDITION – CIVIL ) ............................. 36
+17.2 CREATION D’ UNE RESERVE PRELIB (PRELIBERATION – CIVIL ET MILITAIRE)........................... 36
+17.3 CREATION D’ UNE RESERVE DE TYPE COSMETIQUE............................................................... 36
+18 GM RELEVER............................................................................................................................ 37
+18.1 PRESENTATION COMPLEXE – GM ITD................................................................................. 37
+18.2 PRESENTATION COMPLEXE – GM ITT ................................................................................. 37
+18.3 ONGLET............................................................................................................................. 37
+18.4 SAISIE SIMPLE EN 3 POINTS................................................................................................. 38
+18.5 SAISIE MULTIPLE (ENSEMBLE DES MESURES DE LA PHASE) .................................................. 38
+18.5.1Validation saisie hors limite ................................................................................... 38
+19 GM CALCULEE ......................................................................................................................... 39
+19.1 PRESENTATION COMPLEXE – GM CALCULEE – ITD.............................................................. 39
+19.2 PRESENTATION COMPLEXE – GM CALCULEE – ITR.............................................................. 39
+19.3 PHASE ESEMPLE ................................................................................................................ 39
+19.4 ONGLET GM CALCULEE...................................................................................................... 40
+19.5 PANNEAU D’EXPLORATION FORMULE GM CALCULEE ........................................................... 40
+20 GM IMPORTEE.......................................................................................................................... 41
+20.1 PRESENTATION COMPLEXE – GM - ITD............................................................................... 41
+20.2 PRESENTATION COMPLEXE – GM - ITR............................................................................... 41
+20.3 ONGLET GM IMPORTE........................................................................................................ 41
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 4/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+21 DOCUMENT EXTERENE .......................................................................................................... 42
+21.1 PRESENTATION COMPLEXE – DOC EXTERNE MODIFIABLE ..................................................... 42
+21.2 PRESENTATION COMPLEXE – DOC EXTERNE NON MODIFIABLE.............................................. 42
+21.3 PHASE EXEMPLE ................................................................................................................ 42
+22 URL ............................................................................................................................................ 43
+22.1 PRESENTATION COMPLEXE – URL ...................................................................................... 43
+23 COMMENTAIRE ........................................................................................................................ 43
+23.1 3 TYPES............................................................................................................................. 43
+23.2 3 FORMATS ........................................................................................................................ 43
+24 ITT BIBLIOTHEQUE.................................................................................................................. 44
+25 VALIDATION.............................................................................................................................. 45
+25.1 VALIDATION SIMPLE AVEC OU SANS COMMENTAIRE .............................................................. 45
+25.2 COVALIDATION AVEC COMMENTAIRE ................................................................................... 45
+26 RECHERCHE INFORMATION .................................................................................................. 46
+26.1 AVIS DE MODIFICATION ....................................................................................................... 46
+26.2 UTILISATION REPERE .......................................................................................................... 46
+26.3 UTILISATION GM ................................................................................................................ 46
+27 EVENEMENT SUR ENCOURS MULTINIVEAU........................................................................ 47
+27.1 EXEMPLE AVEC DEUX FAMILLE DE PTOBLEME ...................................................................... 47
+28 PIMPAD...................................................................................................................................... 48
+28.1 PRINCIPE ........................................................................................................................... 48
+28.2 INTERFACE PRINCIPAL ........................................................................................................ 48
+29 MIGRATION............................................................................................................................... 49
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 5/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 6/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+1 OBJETS
+Ce document a pour objet, de structurer la presentation PIM pour nos corespondant MES
+2 PIM POURQUOI ? COMMENT?
+2.1 QUEL TYPE D’ENSEMBLE
+- Moteur et module gérés en UNIT
+- EMS, EME et KIT gérés en date
+2.2 AUCUNE ADERANCE ENTRE LA GAMME DE GESTION (BAAN) ET LA GAMME TECHNIQUE (PIM)
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 7/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+2.3 GESTION EDD – UNIT
+2.4 COMMENT (A PARTIR DE BAAN)
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 8/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+3 INTERFACE PIM
+3.1 LE BUREAU PIM
+3.2 LA BARRE DES UTILISATEURS - MODE DE FONCTIONNEMENT
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 9/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+3.3 INFOS BULLES
+3.3.1 SUR BOUTONS COMMNDES
+3.3.2 SUR ONGLET
+3.3.3 SUR LES LIGNE DU TABLEAU DE DONNEES
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 10/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+3.4 MENUS CONTEXTUELS
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 11/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+3.5 LES TABLEAUX PIM
+3.5.1 TRI
+3.5.2 FILTRE
+3.5.3 EXPORT
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 12/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+4 CONSULTATION OR
+4.1 LES DIFFERENTS ACCES AUX OR
+4.2 LA CONSULTATION MULTINIVEAU
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 13/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+4.3 GENERALITE D’UN OR
+4.4 STATUT D’UN OR
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 14/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+4.5 GENERALITE EDD
+4.6 GENERALITES ITD
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 15/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+5 MODELISATION DES PROCESSUS
+5.1 GRAPHE MOYEN (30 OPP)
+ CRITERES :
+Reference article : E2R022A
+5.2 MODELISATION DE L’ENSEMBLE DES PROCESSUS CONNU
+ CRITERES :
+ITD : IT00008276/132 (ITD du graphe ci-dessus)
+4 processus de production => 4 codes gamme
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 16/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+5.3 GRAPHE COMPLEXE (87 OPP)
+ CRITERES :
+- Reference article : 65R029D
+- Code Gamme : 01 (interne)
+5.4 CODE COULEUR – AVANCEMENT ET PROBLEME
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 17/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+5.5 EXPLOREUR
+ CRITERES :
+Reference article : E2R022A
+OPP 9185 – OPE0040
+5.6 GRAPHE VS EXPLORATEUR
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 18/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+6 PRESENTATION ITR SOUS FORME DE TABLEAU
+6.1 LISTE OPP
+6.2 LISTE OPE
+ CRITERES :OPP 9185
+6.3 LISTE PHASES
+ CRITERES :PHASE 0040
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 19/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+7 PRESENTATION PHASE
+7.1 IHM
+ CRITERES :
+OR : LH0test
+Moteur assemblé
+2MF OPP 9020 – OPE 0050 - toutes les phases
+7.2 MODE AFFICHAGE PHASE
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 20/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+7.3 STRUCTURE INTERNE PHASE (DTD – PAS EXPLOITABLE DANS LE CADRE D’UNE RECHERCHE)
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 21/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+7.4 TEXTE DE LA PHASE ET TYPE D’OBJET
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 22/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+8 LES DONNEES DE LA PHASE - LES ONGLETS DE LA PHASE
+8.1 REPERE
+8.2 GM (COTES)
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 23/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+8.3 DOCUMENT EXTERNE
+8.4 INGREDIENT, OUTILLAGE, COMMENTAIRE
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 24/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+9 LES BOUTONS DE COMMANDE DE LA PHASE
+9.1 BOUTON DE COMMANDE VISA, VERROUILLAGE, RAFRAICHIE
+9.2 CODES COULEUR ET STATUT
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 25/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+10 ILLUSTRATION
+10.1 PRESENTATION COMPLEXE - ILLUSTRATION
+ Illustration « Mise en place de l’outillage de manutention »
+Icône Libellé Illustration
+Objet
+ Illustration « Mise en place de l’outillage de manutention »
+10.2 INTERACTIVITE (ZONE SENSIBLE) PRINCIPE
+10.3 EXEMPLE DE ZONES SENSIBLES OUTILLAGE
+ CRITERES :
+OPP9060 OPE 220 Ph10 -> zone sensible outillage
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 26/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+10.4 EXEMPLE DE ZONES SENSIBLES REPERE
+OPP9060 OPE220 Ph25 -> Zone sensible Pièce
+11 ALERTE
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 27/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+12 PARAMETRES
+12.1 PRESENTATION DANS L’INSTRUCTION
+12.2 PANNEAU DE CREATION
+12.3 EXPMPLE
+OPP9060 OPE220 Ph20 -> Zone sensible Pièce
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 28/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+13 OUTILLAGE
+13.1 PRESENTATION COMPLEXE OUTILLAGE
+ 888-392-900-2 Outillage de maintien des vis (voir  )
+Icône Référence Libellé Outil
+ 888-392-900-2 Outillage de maintien des vis (voir  )
+Illustration associée
+Facultatif
+Verbe
+13.2 EXEMPLE FICHE OUTILLAGE - GENERATEUR AIR CHAUD
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 29/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+14 ACTION SUR REPERE
+Les actions sur repère permettent de demander une action au monteur et de lui afficher en plus du repère
+les attributs de la définition nécessaire à l’action.
+Pour chaque repère il est possible d’identifier la liaison, la zone qui supporte un ensemble d’attribut au
+repère.
+14.1 EXEMPLE DE LIAISON / ZONE
+14.1.1 EXEMPLE CANALISATION
+Liaison / Zone 1
+Du repère 442A1
+Liaison / Zone 2
+Du repère 442A1
+14.1.2 EXEMPLE PIECE
+Liaison / Zone 1
+Du repère 03100
+Liaison / Zone 2
+Du repère 03100
+TGB 03200
+Liaison / Zone 1
+Du repère 03200
+Liaison / Zone 1
+Du repère 03200
+Liaison / Zone 3
+Du repère 03100
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 30/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+14.2 MONTER / RIVETER / FREINER
+Maxi de deux documents technique par action monter / riveter / freiner
+14.2.1 PRESENTATION DANS L’INSTRUCTION
+14.3 DT SERRAGE
+14.3.1 PRESENTATION DANS L’INSTRUCTION
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 31/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+14.3.2 AFFICHAGE INSTRUCTION RESUME DU DT DE SERRAGE
+14.4 ACTION LUBRIFIER
+14.4.1 PRESENTATION DANS L’INSTRUCTION
+14.5 RIVETER
+14.5.1 PRESENTATION DANS L’INSTRUCTION
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 32/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+15 INGREDIENT
+15.1 PRESENTATION COMPLEXE – INGREDIENT
+ DMR70-115 Acétone (voir )
+Icône Référence Libellé ingrédient
+ DMR70-115 Acétone (voir )
+Illustration associée
+Facultatif
+Verbe
+15.2 ONGLET INGREDIENT
+15.3 FICHE RISQUE - PRODCHIM
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 33/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+16 ENREGISTREMENT REPERE
+16.1 PRESENTATION COMPLEXE REPERE
+16.2 MOUVEMENT SUR REPERE
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 34/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+16.3 ENREGISTREMENT PEM SIMPLE (AUTO OU MODE MANUEL)
+16.4 ENREGISTREMENT PIECE COMPLEXE SERIAL VENDOR ET LEVE D’ALTERNATIVE
+16.5 ECLATEMENT AUTO OU MANUEL
+16.6 DECLARATION ETAT NON PREVU EN ITD
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 35/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+16.7 DELCARATION JEU
+16.8 ONGLET COMPOSITION
+16.9 ONGLET MESURES
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 36/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+17 DECLARATION MANUEL DE RESERVE SUR REPERE
+17.1 CREATION D’ UNE RESERVE UVC ( UNUSUAL VISUAL CONDITION – CIVIL )
+17.2 CREATION D’ UNE RESERVE PRELIB (PRELIBERATION – CIVIL ET MILITAIRE)
+17.3 CREATION D’ UNE RESERVE DE TYPE COSMETIQUE
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 37/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+18 GM RELEVER
+18.1 PRESENTATION COMPLEXE – GM ITD
+18.2 PRESENTATION COMPLEXE – GM ITT
+18.3 ONGLET
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 38/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+18.4 SAISIE SIMPLE EN 3 POINTS
+18.5 SAISIE MULTIPLE (ENSEMBLE DES MESURES DE LA PHASE)
+18.5.1 VALIDATION SAISIE HORS LIMITE
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 39/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+19 GM CALCULEE
+19.1 PRESENTATION COMPLEXE – GM CALCULEE – ITD
+19.2 PRESENTATION COMPLEXE – GM CALCULEE – ITR
+19.3 PHASE ESEMPLE
+ CRITERES :
+OPP9140 OPE0480 Ph0020
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 40/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+19.4 ONGLET GM CALCULEE
+19.5 PANNEAU D’EXPLORATION FORMULE GM CALCULEE
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 41/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+20 GM IMPORTEE
+20.1 PRESENTATION COMPLEXE – GM - ITD
+20.2 PRESENTATION COMPLEXE – GM - ITR
+20.3 ONGLET GM IMPORTE
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 42/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+21 DOCUMENT EXTERENE
+21.1 PRESENTATION COMPLEXE – DOC EXTERNE MODIFIABLE
+21.2 PRESENTATION COMPLEXE – DOC EXTERNE NON MODIFIABLE
+21.3 PHASE EXEMPLE
+ CRITERES :
+OPP9140 OPE0480 Ph0015
+ CRITERES :
+E2R022A – 9300 – 3020 - 10
+Plusieurs documents a renseigner et consulter
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 43/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+22 URL
+22.1 PRESENTATION COMPLEXE – URL
+@ QME-000917 Procédure Montage moteurs civils et militaire
+@ QME-000917 Procédure Montage moteurs civils et militaire
+Icône Ref. DOC Libellé DOC
+23 COMMENTAIRE
+23.1 3 TYPES
+- Permanent (conservé >30ans)
+- Volatile (supprimer automatique au visa de la phase => passage de consigne)
+- ITT Bibliotheque (instruction peu frequante)
+23.2 3 FORMATS
+- Words ou Excel
+- Fichier externe (exemple photo)
+- Texte simple
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 44/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+24 ITT BIBLIOTHEQUE
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 45/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+25 VALIDATION
+25.1 VALIDATION SIMPLE AVEC OU SANS COMMENTAIRE
+25.2 COVALIDATION AVEC COMMENTAIRE
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 46/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+26 RECHERCHE INFORMATION
+26.1 AVIS DE MODIFICATION
+26.2 UTILISATION REPERE
+26.3 UTILISATION GM
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 47/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+27 EVENEMENT SUR ENCOURS MULTINIVEAU
+27.1 EXEMPLE AVEC DEUX FAMILLE DE PTOBLEME
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 48/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+28 PIMPAD
+28.1 PRINCIPE
+28.2 INTERFACE PRINCIPAL
+Formalisation Besoins Réf : KVI00001/
+MES Date :
+16/01/2014
+Presentation PIM Vers : 1.0 A Page : 49/49
+________________________________________________________________________________________________________
+Ce document est la propriété de SAFRAN. Il ne doit pas être utilisé, reproduit ou communiqué sans son autorisation.
+29 MIGRATION

@@ -1,0 +1,1002 @@
+
+Projet Poste Intégré Montage - PIM
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		Version	7.4	
+Spécifications Fonctionnelles Détaillées
+Interface PM – PIM 
+Projet : PIM
+
+	date:	 16/04/2018	
+
+
+Version	Auteur(s)	Valideur(s)	Approbateur(s)
+7.2	Patrick YGOUT		
+7.3	Jessica JACCAZ	Matthieu MOREAU	
+7.4	Jessica JACCAZ	Kévin BROUQUE	
+
+ 
+Historique des Versions
+
+Version	Date	Description de la version
+test	test	test
+1	21/04/05	Prise en compte de la nouvelle description du fichier NOMPIM00 issu de PM : 
+•	Rajout : désignation étrangère
+•	Restructuration référence concepteur et référence associée.
+Nouveaux algorittmes de gestion de la définition :
+•	La gestion en indice des références PM se fait uniquement sur les EDD.
+•	Gestion de la définition d’un EDD se fait par comparaison par rapport à sa définition connue ( s’il elle existe ) et par rapport à un autre EDD dont la référence change en fonction des types d’EDD
+Description du processus de transmission de NDR : TNDR
+2	07/06/05	- Lors de la constitution des équivalences des lignes produit, définition du radical de l’OD module par rapport au produit SGDT .
+- Remplacement de la Nomenclature De Réalisation ( NDR ) par la Liste De Repères ( LRD ) : 
+La liste de repères est à gérer pour les EDD, les EMS et les KITS.
+     La liste de repères est une composition de repères fonctionnels issue de NDD comparables en terme de définition et qui ont les mêmes composants en terme de repères fonctionnels et de quantité au repère. De plus, elle intègre les repères de niveau inférieur de la NDD pour lequel on rend les composants de 1er  niveau fictif ( cas des ULC et composant à cumul de quantité )  Son identifiant est composé du Radical de l’OD module ( ou l’OD si EMS ou KIT ) associé à un indice avec pour séparateur un slash.
+3	28/06/05	Evolution des algorithmes de comparaison entre les définitions du snapshot et les indices du radical d’OD module associé à la ligne produit.
+	CN = somme des quantités composantes + nombre de composants/1000
+
+Idée d'application à la LRD, qui me semble prioritaire
+A la réception d'une nouvelle nomenclature mononiveau, calcul du CN. Entre 2 LRD successives, il y a de fortes probabilités que cette CN évolue (en effet, soit on rajoute un repère, soit on modifie une quantité)
+
+- si le unit est connu et le CN n'évolue pas
+Comparaison de la LRD par rapport à l'ancienne définition
+     * si OK pas de changement sinon recherche des indices qui ont le même CN entre l'indice immédiatement inférieur et les indices supérieurs, puis comparaisons précise des nomenclature sur ceux-la
+
+- si le unit est connu et la CN évolue alors recherche des indices qui ont le même CN entre l'indice immédiatement inférieur et les indices supérieurs, puis comparaisons précise des nomenclature sur ceux-la
+
+- le produit est connu mais pas le unit, alors recherche des indices qui ont le même CN entre l'indice du dernier unit connu et les indices supérieurs, puis comparaisons précise des nomenclature sur ceux-la
+
+- le produit n'est pas connu, alors recherche des indices qui ont le même CN sur les 2 indices supérieurs 
+3a	05/10/05	Introduction de la notion de nombre d’indices maximum à rechercher lors de la comparaison de la définition reçue par rapport aux lignes équivalentes déclarées .
+4.0	21/10/05	Fourniture de la description définitive du fichier d’interface PM – PIM
+Nouvelles propriétés : NOMPIM00.MTI, NOMPIM00.MDP, NOMPIM00.ALT, NOMPIM00.QSB, NOMPIM00.NQC
+4.1	03/03/06	Gestion de la définition des ULS comme celle des KITs et EMS en terme de gestion de configuration.
+Association des N° de MT aux EDD et aux articles. 
+5.0	21/08/06	Gesfic 512 :
+Rajout des rejets bloquants suite aux constats des premiers changements des fichiers en opérationnel : 
+Rejet 1 : Parcours de la nomenclature multiniveaux par macro arbre pour identifier les repères fonctionnels non unique dans l’ensemble de la nomenclature.
+Rejet 2 : Type de composant à ‘2’ et type de composé différent de ‘0’, ‘3’ ou ‘7’.
+Rejet 3 : Repère Fonctionnel space avec type de composé différent de ‘8’
+Rejet 4 : Repère Fonctionnel différent de space avec type de composé à ‘8’
+
+Stockage de l’historique des fichiers PM reçus : 
+6.0	05/02/07	- Gesfic 0970 : Nouvelles typologie d’article
+- Gesfic 0971 : Rajout de repères non connus de PM
+- Gesfic 1022 : Intégration des notions QSB
+6.1	11/06/07	- Gesfic 317 : Lancer l’’association EDD - LRD / ITD à GIT si l’EDD passe de non gelé à gelé. 
+6.2	11/06/13	- Gesfic 1869 : Si au moins un OR à ITR existe dans PIM  (et donc dans le SI Qualité ) et que le PNt évolue, envoi d'un mail d’avertissement des BTA
+- Gesfic 1927 : L'ensemble de la nomenclature est rejetée si au moins un des EDD est non gelé et qu'il existe au moins 1 matricule
+6.3	03/02/13	- Gesfic 1961 : Ségrégation des flux développement et série
+- Gesfic 1991 : Projet Corsaire :Complémentation des articles aux repères jeux d'aubes
+7.0	03/07/14	- Gesfic 2057 : Chargement partiel des nomenclatures suite à rejet sur contrôles bloquants.
+7.1	20/08/14	Compléments d’information concernant les destinataires des mails sur contrôles bloquants et d’avertissement
+7.2	01/06/15	Gesfic 2218 : La recherche de la LRD de référence se fait automatiquement par rapport au dernier indice de LDR connu. A partir de ce dernier indice, et pour le nombre d’indices défini dans TABODM poste « 00000 », remontée des indices pour définir si l’une d’elles a les mêmes Caractéristiques Nomenclatures.
+Gesfic 2069 : FEB concernant la modification de compo KIT ou EMS sans changement référence : Il est possible de conserver la même reference de tête si et seulement si les repères et les quantités sont strictement identiques. Un changement de référence ou l’ajout d’une solution autorise la conservation de la référence.
+A l’occasion de ce passage d’indice, précision qu’il ne s’agit pas uniquement de l’interface PM/PIM mais également de l’interface TEAMCENTER/PIM : PM et TEAMCENTER fournisent à PIM un fichier de même structure qui , pour des besoins de planification et de nommage de fichier, sont chargés dans PIM par des traitements différents ( GOTxyPAJ pour PM et GOTxyPQJ pour Teamcenter ) mais avec des programmes identiques.
+La présente spécification change de libellé et devient CdCF Interface PLM – PIM_V7.2
+7.3	10/05/17	Gesfic 2549 : Ajout ctrl bloquant descente NOMPIM si atribut SU incohérent entre DET/AET et solutions
+7.4.0
+7.4.1	16/04/18
+29/05/18	Spécifications de l’évolution 1354 : Gestion Alternative d’EMS/EMP
+Prise en compte des retours client : ajout de « EMP » là où il est fait mention d’ « EMS » (dans les deux cas il s’agit de type de composant 3)
+
+ 
+SOMMAIRE
+
+1	DESCRIPTION DU SNAPSHOT ( STRUCTURE NOMPIM00 ) :	7
+2	SPECIFICATIONS FONCTIONNELLES :	10
+2.1	DOCUMENTS ASSOCIES  :	10
+2.2	PRINCIPE DE GESTION DE LA CONFIGURATION DES REFERENCES PM :	10
+2.2.1	Exposé du problème :	10
+2.2.2	Gestion de la configuration des nomenclatures en définition :	11
+2.2.3	Gestion de la configuration des nomenclatures en réalisation :	12
+2.2.4	Définition du vocabulaire utilisé :	12
+2.2.4.1	Les concepts PM :	12
+2.2.4.1.1	Référence PM :	12
+2.2.4.1.2	EDD :	12
+2.2.4.2	Les concepts DTM :	13
+2.2.4.2.1	OD :	13
+2.2.4.2.2	OD module :	13
+2.2.4.2.3	PCA et N° d’ordre :	13
+2.2.4.2.4	Repère fonctionnel :	14
+2.2.4.2.5	LRD  : Liste De Repères	14
+2.3	GESTION COMMUNE DE 2 TYPOLOGIES DE DEFINITIONS PM :	15
+2.3.1	Les composants à alternatives :	15
+2.3.1.1	Méthode proposée :	15
+2.4	PRINCIPES DE L’INTEGRATION DES REFERENCES PM DANS PIM :	16
+2.4.1	But :	16
+2.4.2	Règles :	16
+2.5	LES ETAPES DE L’INTEGRATION  PAR NOMENCLATURE	16
+2.5.1	Effectuer les contrôles pouvant entraîner un rejet du chargement :	16
+2.5.1.1	Orientation des remontées des contrôles bloquants ou d’avertissement :	16
+2.5.1.2	Contrôles des EDD par rapport au générique ligne produit :	17
+2.5.1.2.1	Tout PCA ligne produit doit être déclaré dans la table ODM :	17
+2.5.1.2.2	Repère en double sans être déclarés en alternative :	17
+2.5.1.2.3	Suivi Utilisation non homogènes sur un repère fonctionnel :	17
+2.5.1.2.4	REPFCT en double dans la nomenclature multiniveaux :	17
+2.5.1.2.5	ULC non utilisable en alternative :	17
+2.5.1.2.6	Cohérence du type de composé et du repère fonctionnel à space :	17
+2.5.1.2.7	Cohérences du type de composé à « 8 » et du repère fonctionnel :	17
+2.5.1.2.8	Une définition EMS/EMP, ULC ou KIT connue de DTM, ne peut évoluer sans changer de référence :	17
+2.5.1.2.9	Attribut SU incohérent	17
+2.5.2	Chargement partiel d’une nomenclature présentant des contrôles bloquants :	18
+2.5.2.1	Principe :	18
+2.5.2.2	Recherche des parties de nomenclatures éligibles au rechargement  :	18
+2.5.2.2.1	Identification des composés à écarter du rechargement  :	18
+2.5.2.2.2	Constitution des sous-nomenclatures à recharger :	18
+2.5.2.2.3	Traitement des sous-nomenclatures à recharger :	18
+2.5.2.2.4	Illustrations des rechargements partiels :	20
+2.5.3	Evaluation de la définition reçue, par rapport aux NDD et LRD DTM :	21
+2.5.3.1	Principe de comparaison des nomenclatures EDD :	21
+2.5.3.2	Détermination des caractéristiques nomenclatures pour les EDD, EMS/EMP et Kits :	21
+2.5.3.3	Détermination des OD modules et LRD de références :	22
+2.5.3.3.1	La définition reçue est à comparer en terme de NDD et de LRD :	22
+2.5.3.3.2	La définition reçue est à comparer en terme de LRD uniquement :	24
+2.5.4	Interactions dans PIM ( GIT ) suite à l’intégration d’un EDD :	26
+2.5.4.1	l’EDD à été créé et rattaché à une LRD existante qui est liée à au moins une ITD:	26
+2.5.4.2	L’EDD à été créé avec une nouvelle LRD	26
+2.5.4.3	L’EDD a changé de LRD :	26
+2.5.5	Effectuer les contrôles entraînant un avertissement utilisateur :	27
+2.5.5.1	Changement de suivi en utilisation, suivi montage et relevé vendor d’un article :	27
+2.5.5.2	Tests d'intégrité d'une nomenclature reçue de PM	28
+2.5.5.2.1	Si une PEM (type 1) possède des composants :	28
+2.5.5.2.2	Si un EDD, ULC, EMS/EMP, alternative (types 0, 2, 3, 4, 5, 6, 7) n'a pas de composant :	28
+2.5.5.2.3	Si une PEM (type 1)  a un classement à '-' :	28
+2.5.5.2.4	Si un article est SU='O' et SM différent '-' :	28
+2.5.5.2.5	Si classement N1 ou N2 ou ( N3 et (SU=Oui ou SM = Oui) ) et pas de vendor	28
+2.5.6	DTM, TRAM et PIM ignorent les composants dont les repères fonctionnels sont à blanc dans PM :	29
+2.5.7	Attributs PIM à considérer par rapport à la définition PM :	29
+2.5.7.1	Immatriculation d’un article dans PIM :	30
+2.5.7.2	Contrôle sur quantité d’un article dans PIM :	30
+2.5.7.3	Gestion des N° de Modification Technique issu de PM :	30
+3	IMPACTS DTM :	31
+3.1	SCHEMA DE DONNEES DE LA DEFINITION DANS DTM :	31
+3.1.1	La définition reçue de PM	31
+3.1.2	L’historique des définitions reçues de PM	31
+3.1.3	La définition DTM	31
+3.2	DESCRIPTION DES TABLES ASSURANT LE CHARGEMENT :	32
+3.2.1	La tête de nomenclature : REFETA ( Table PM01 )	32
+3.2.2	Les référence articles : REFPM ( Table PM02 )	32
+3.2.3	Les compositions d’article : COPM ( Table PM03 )	33
+3.3	L’ENSEMBLE DES COMPOSITIONS REÇUES DE PM : ODIPM (TABLE PM04)	33
+3.4	DESCRIPTION DES TABLES CONCERNANT LA LRD :	34
+3.4.1	La Liste De Repères : LRD ( Table PM14 )	34
+3.4.2	La composition d’une LRD : COLRD ( Table PM16 )	34
+3.4.3	Le lien entre L’EDD et la LRD : LRDEDD ( Table PM15 )	34
+3.5	NOTIONS DIVERSES :	34
+3.5.1	Rajouts de propriétés sur l’Objet Défini : OD ( Table AO01 )	34
+4	EVOLUTIONS MCO :	35
+4.1	GESFIC 970 AP : NOUVELLES TYPOLOGIE D’ARTICLE :	35
+4.1.1	La définition reçue de PM	35
+4.2	GESFIC 971 AP : INTRODUCTION DE REPERES NON CONNUS DE PM :	35
+4.3	GESFIC 1022 AP : PRISE EN COMPTE DES QSB PM :	35
+4.4	GESFIC 1869 :	35
+4.5	GESFIC 1927 :	35
+4.6	GESFIC 1961 :	35
+4.7	GESFIC 1991 :	35
+4.8	GESFIC 2069 :	35
+4.9	GESFIC 2218 :	36
+
+
+ 
+
+1	DESCRIPTION DU SNAPSHOT ( STRUCTURE NOMPIM00 ) :
+
+STRUCTURE NOMPIM00
+Structure du fichier temporaire d'extraction des Nomenclatures venant de PM.
+Taille :  	320	 	 	 	 
+Nom de la donnée	Pos	Format	Libellés	Provenance
+NOMPIM00.NOMINTER 	1	CHAR 	8	NOM INTERFACE	Donnée venant de BaaN (norme d'échange) 
+NOMPIM00.SOCLOG 	9	CHAR 	3	SOCIETE LOGISTIQUE	Donnée venant de BaaN (norme d'échange) 
+NOMPIM00.REFETAT 	12	CHAR 	16	Référence de l'état de définition	C'est la référence du Moteur ou des modules gérés en UNIT (EdD) , des EMS/EMP, des KITs, des articles "BESOIN", des articles "VARIABLES". 
+Cas particulier : lorsque le composant est le moteur, cette ligne est vide.
+NOMPIM00.TYPCOMPE 	28	CHAR 	1	Type de composé	Permet de définir le type du composé :
+· "0" Etat de définition si catégorie article PM = "Etat de définition"
+· "1" si aucun des autres cas
+· "2" article ULC si code sélection = 310
+· "3" article 'EMS/EMP"si code sélection = 320
+· "4" article variable si code sélection = 430 avec repère fonct.
+· "5" article besoin ou DET si code sélection = 440 ou 445
+· "6" article de remplacement si code sélection = 450
+· "7" KIT si code sélection = M33
+· "8" quantité à cumuler si code sélection = 430 sans repère fonct. 
+· "9" EME si code sélection = 330
+NOMPIM00.REFCOMP 	29	CHAR 	16	Référence du Composant	Ce composant peut être un Etat de définition, une ULC , un EMS/EMP, un KIT, un article Besoin, un article variable, un composant d'ULC, un composant d'EMS/EMP, un composant de Kit, un article SELON BESOIN, un article à CHOISIR AU MONTAGE, ou une PEM 
+NOMPIM00.PNRART 	45	CHAR 	32	Part Number	C'est la référence fabricant de l'article composant. Cette donnée provient de la fiche article PM. Pour tous les articles qui ne sont pas des EdD, cette référence est identique à la référence du composant. 
+NOMPIM00.DATEEFFE 	77	CHAR 	8	Date d'effectivité	C'est la date d'effectivité de la MT (des articles de la MT). Cette date permettra de différencier les versions de kit et servira de critère pour l'archivage.
+NOMPIM00.LIBCOMP 	85	CHAR 	30	Libellé composant	C'est le nom de l'article dans PM
+NOMPIM00.DESETRA	115	CHAR 	30	Désignation étrangère	C'est la désignation étrangère dans PM
+NOMPIM00.TYPCOMPT 	145	CHAR 	1	Type du composant	Permet de définir le type du composant :
+· "0" Etat de définition si catégorie article PM = "Etat de définition"
+· "1" si aucun des autres cas
+· "2" article ULC si code sélection = 310
+· "3" article 'EMS/EMP"si code sélection = 320
+· "4" article variable si code sélection = 430 avec repère fonct.
+· "5" article besoin ou DET si code sélection = 440 ou 445
+· "6" article de remplacement si code sélection = 450
+· "7" KIT si code sélection = M33
+· "8" quantité à cumuler si code sélection = 430 sans repère fonct. 
+· "9" EME si code sélection = 330
+NOMPIM00.CODEFAB 	146	CHAR 	5	Code concepteur	Ce champ provient directement de PM (fiche article) 
+NOMPIM00.SERIALAS 	151	CHAR 	1	Sérialisation
+Suivi Utilisation	Ce champ provient directement de PM. Permet d'indiquer que l'article est à suivre.
+NOMPIM00.SERIALRM 	152	CHAR 	1	Sérialisation
+Suivi Montage	Ce champ provient directement de PM. Permet d'indiquer si le matricule est à relever au montage .
+NOMPIM00.CLASART 	153	CHAR 	4	Code classement	Ce code provient de la fiche article PM.
+NOMPIM00.REPLIEN 	157	CHAR 	9	Repère fonctionnel	Repère fonctionnel de l'utilisation du composant . Provient du lien de nomenclature.
+NOMPIM00.QUANTLIEN 	166	CHAR 	4	Quantité	Nombre de composants utilisés dans le lien de nomenclature exprimé en caractères numériques. 
+NOMPIM00.ALT 	170	CHAR	3	Alternatives	Alternative
+NOMPIM00.QSB	173	CHAR	2	Quantité Suivant Besoin	Suivant Besoin
+NOMPIM00.NQC	175	CHAR	4	Notion Quantité Cumulée	Couple Aubes larges/étroites
+NOMPIM00.VENDOR 	179	CHAR 	40	Liste des codes vendor	Blocs de caractères comprenant 8 codes vendor (8 * 5 c). Cette donnée provient de l'onglet PM "Fournisseur"
+NOTA : VENDOR est le nom PM de la zone contenant les huit VENDOR. Sur le système CENTRAL, cette zone est re- découpée en huit, de VENDOR1 à VENDOR8.
+NOMPIM00.REFASSO	219	CHAR	32	Référence associée	Cette donnée provient de l'onglet PM "Fournisseur", Type de référence = "A"
+NOMPIM00.REFCONC 	251	CHAR 	32	Référence complète du concepteur	C'est la référence complète du concepteur. Cette donnée provient de la fiche article PM.
+NOMPIM00.NUMMT 	283	CHAR 	9	Numéro de la MT GEL	Numéro de la MT de GEL de Unit ou de la MT de modification pour les autres articles 
+NOMPIM00.TRANSPO 	292	CHAR	23	Référence transposée SNECMA	Cette donnée provient de l'onglet PM "Fournisseur", Type de référence = "T", code = F0301 
+NOMPIM00.MTI	315	CHAR 	3	DMD de la famille MTI	Cette donnée doit contenir : « OUI » si l’article contient au moins 1 document associé dont le numéro est entre DMD0700 et DMD0799, « NON » sinon.
+NOMPIM00.MDP	318	CHAR	3	DMD de la famille MDP	Cette donnée doit contenir : « OUI » si l’article contient au moins 1 document associé dont le numéro est DMD0460, DMD0461, DMD0462, DMD0463 ou DMD0470, « NON » sinon.
+
+
+ 
+2	SPECIFICATIONS FONCTIONNELLES :
+2.1	DOCUMENTS ASSOCIES  :
+FEB PM – PIM  : Mise en place de l’interface PM – PIM
+2.2	PRINCIPE DE GESTION DE LA CONFIGURATION DES REFERENCES PM :
+2.2.1	Exposé du problème :
+Les nomenclatures PM répliquées vers PIM sont constituées de différents types de références :
+ - "0" : EDD - Etat De Définition 
+ - "1" : Si aucun des autres cas
+ - "2" : Article ULC 
+ - "3" : Article EMS/EMP (qui peut être à alternatives)
+ - "4" : Article besoin 
+ - "5" : Article besoin ( à alternatives )
+ - "6" : Article de remplacement
+ - "7" : Kit
+ - "8" : Article variable ( sans repère fonctionnel )
+
+Les EDD : Ces références sont assimilables à des numéros d’exemplaires qui peuvent porter sur une même définition.
+Les articles de gestion : Ces références sont des références génériques qui permettent d’effectuer des traitements en fonction du type de composant qui leur est associé.
+Les PEM : Ce sont les constituants élémentaires de la nomenclature.
+Les EMS/EMP, ULC et KIT sont des sous définition composées de PEM, et éventuellement d’articles de gestion.
+
+Il est à noter que certains articles de gestion n’ont pas de repères fonctionnels dans PM. 
+
+Les nomenclatures PM sont générées plusieurs fois vers PIM avec des états de définition qui varient dans le temps ( non gelées, gelées, regelées )
+Le dégel d’une référence PM se fait uniquement dans PM. Le regel génère un nouveau snapshot
+
+ 
+
+2.2.2	Gestion de la configuration des nomenclatures en définition : 
+* La configuration en définition NDD d’un OD se gère uniquement pour les EDD : 
+Lors de l’intégration des nomenclatures PM dans PIM, les écarts d’attributs qui font évoluer une définition d’EDD, ( OD module ) sont les propriétés de composition :
+- Le repère
+- La référence du composant
+- La quantité
+
+Remarque : Etant donné que la référence du composant est un attribut de définition, dès qu’une référence PM évolue, les références utilisatrices multi-niveaux évoluent.
+
+* La configuration en définition LRD se gère  pour les EDD, EMS/EMP et KIT : 
+Lors de l’intégration des nomenclatures PM dans PIM, les écarts d’attributs qui font évoluer une définition de LRD sont les propriétés de composition :
+- Le repère
+- La quantité
+Remarque : Etant donné que la référence du composant n’est pas un attribut de définition, l’évolution d’une LRD est mononiveau.
+
+Pour un EDD existant, dès que l’OD module évolue pour changement de composition de repère ou de quantité, la LRD évolue.
+
+ * La règle PM est que toute évolution de composition d’un EMS/EMP , ULC, KIT ou Composé à cumul de quantité entraîne la création d’un nouvel article.
+Donc, lors de l’intégration dans DTM, si la référence article existe déjà, la définition reçue doit avoir la même composition en terme de repère, quantité au repère.
+Gesfic 2069 : FEB concernant la modification de compo KIT ou EMS/EMP sans changement référence : Il est possible de conserver la même reference de tête si et seulement si les repères et les quantités sont strictement identiques. Un changement de référence ou l’ajout d’une solution autorise la conservation de la référence.
+
+Les propriétés hors composition, ayant évoluées sont prises en compte   dans DTM.
+
+* Pour les types d’articles différents de 0 ( EDD ) , 2 ( ULC ), 3 ( EMS/EMP ) et 7 ( Kit ) ayant une composition, ils sont considérés comme des composés à alternatives, donc toute nouvelle définition de composition reçue, annule et remplace celle connue de DTM.
+Les propriétés hors composition, ayant évoluées sont prises en compte (1) dans DTM
+ 
+
+2.2.3	Gestion de la configuration des nomenclatures en réalisation : 
+Au moment de la constitution d’une COOR ( à la génération de l’ITR ), les propriétés de définition des composants sont ramenés dans la COOR pour les considérer comme référence durant la vie de la COOR . Ceci à pour effet que si un nouveau snapshot vient modifier les propriétés de définition, ceci n’aura aucune conséquence sur l’encours. Par contre à la génération d’une nouvelle ITR portant sur la même définition , la COOR associée prendra en compte les nouvelles propriétés de définition ( sous réserve d’acceptation qualité ) .
+
+2.2.4	Définition du vocabulaire utilisé :
+2.2.4.1	Les concepts PM : 
+2.2.4.1.1	Référence PM : 
+C’est la rubrique référence composant  «  REFCOMP » contenu dans le snapshot, sachant que la tête d’arborescence est appelée également au titre de «  REFCOMP» sans avoir de composé associé.
+La notion de gel ne s’applique qu’aux EDD.
+2.2.4.1.2	EDD : 
+PM génère le fichier de nomenclatures NOMPIM00 à partir d’EDD : Ces références EDD sont des N° d’exemplaires de la définition : Dans le fichier NOMPIM00, un EDD est identifiable par son type de composant qui est égal à ‘0’. 
+Afin de géré de manière unique la définition d’un ensemble d’EDD qui portent sur la même définition, on a créé un nouveau type de référence appelé OD module. 
+A partir d’un EDD, on en déduit son produit générique ( PCA), son N° d’exemplaire ( N° d’ordre ) et sa définition ( OD module ) .
+
+
+
+
+
+
+
+
+
+
+
+Un EDD est dit gelé, lorsque la rubrique PARTNB ( Part Number ) est renseigné. Dans le cas contraire, il est dit non gelé.
+Remarques :
+2 EDD peuvent porter sur 1 même définition mais cette définition n’est pas pour autant gelée ou non gelée pour les 2 EDD. C’est le lien N° d’ordre qui porte l’état de gel ou de non gel de l’EDD.
+
+ 
+
+2.2.4.2	Les concepts DTM : 
+2.2.4.2.1	OD : 
+C’est la référence PM pour les articles dont le type est différent à 0
+2.2.4.2.2	OD module : 
+L’OD module est donc une référence générique de composants communs de même définition.
+L’OD module est une référence aveugle définie par :
+- L’applicabilité dans la table ‘ODM ‘ de la ligne produit pour un générique donnée.
+Son radical est composé 
+- D’un Bureau de Définition ( 2 caractères )
+- D’un compteur
+- D’une lettre clé
+Le regroupement des N° d’exemplaires communs en terme de définition se fait manuellement par une table applicative ( table ODM ) .
+L’OD module subit les règles d’évolution de gestion de configuration. 
+
+2.2.4.2.3	PCA et N° d’ordre : 
+C’est le découpage de la structure d’un EDD qui est nécessaire pour rattacher cet l’EDD à l’OD module.
+Le PCA est la référence générique contenue dans l’EDD .
+Le N° d’ordre est la concaténation des autres notions restantes
+
+
+Notions PM :
+Soit l’EDD : 10R0J7A0050
+Générique: J7A
+Ligne produit : 10
+Type : R (valeurs possibles A/R/D /E ( Avionnage / Référentiel / Développement / Exceptionnel)
+Unit : 0050
+
+Notions DTM :
+PCA : J7A
+N° d’ordre résultant :  10R00050
+
+ 
+
+2.2.4.2.4	Repère fonctionnel :
+Le repère est une entité qui est issue de PM . 
+
+2.2.4.2.5	LRD  : Liste De Repères
+
+La liste de repères est gérée pour les EDD, les EMS/EMP et les KITS.
+Elle est l’entité de gestion de configuration pour la composition de repères fonctionnels issus de NDD comparables en terme de définition et qui ont les mêmes repères fonctionnels et les mêmes quantités à chacun des repères. 
+De plus, elle intègre les repères de niveau inférieur de la NDD pour lequel on rend les composants de 1er  niveau fictif ( cas des ULC et composant à cumul de quantité ).
+ La liste de repère fait abstraction des repères composants fictifs « ULC ».
+
+L’identifiant de la liste de repère est composé :
+D’un radical alimenté par le radical de l’OD module ou la référence  de l’EMS/EMP ou KIT
+D’un ‘/’
+D’un indice numérique de 3 caractères.
+
+ 
+
+2.3	GESTION COMMUNE DE 2 TYPOLOGIES DE DEFINITIONS PM :
+Par anticipation des évolutions PM qui seront appliquées pour les nouveaux produits, il est nécessaire de faire cohabiter 2 types de définitions qui seront envoyées par PM.
+
+Les notions de définition présentant 2 typologies possibles sont :
+- Les composants à alternatives 
+- Les composants à cumul de quantité
+- Les composants à quantité variable
+
+2.3.1	Les composants à alternatives :
+D’une part, des composants à alternatives qui ont des composants, objet de la liste de choix dans la COOR à travers PIM. (cas 1).
+D’autre part, la disparition des composants à alternatives et le rattachement direct au composé, des composants, objet à la liste de choix dans la COOR. Chacun d’eux possède un identifiant d’alternative au repère (cas 2).
+
+2.3.1.1	Méthode proposée : 
+Cas 1 :
+- La référence de l’article de gestion ayant un repère fonctionnel dans PM de type 4, 5 ou 6 est chargée en l’état dans la nomenclature DTM.
+- La quantité est celle issue de PM.
+- Son type d’immatriculation est ‘C’ : Composant à alternative. 
+Avantages :
+- Dans DTM on sait quel article de gestion est utilisé pour constituer la liste d’alternatives.
+- En COOR (à travers PIM) si le type de composant est 4, 5 ou 6 on affiche un libellé générique « ALTERNATIVE ».
+- Les composants de l’article de gestion sont directement rattachés au composé : Ils ont chacun un lien d’équivalence.
+
+Cas 2 : 
+Lors de la rupture de repère, si le composant est déclaré comme étant en alternative, pour le composé traité :
+- Création d’une première ligne de composition ayant comme référence article la référence générique « ALTERNATIVE ».
+* La quantité associée est la somme des quantités au repère (une seule ligne du repère porte la quantité)
+* Le type d’immatriculation est ‘C’ : Composant à alternative.
+* Le type de quantité est ‘A’ : Quantité à contrôler par rapport à la quantité prévue.
+- Les composants déclarés en alternative se voient affecter un lien d’équivalence.
+* La quantité associée est celle issue de PM.
+* Le type d’immatriculation est ‘E’ : Sans immatriculation.
+* Le type de quantité est ‘C’ : Sans contrôle de quantité.
+- Les composants de l’article de gestion sont directement rattachés au composé : Ils ont chacun un lien d’équivalence.
+
+ 
+
+2.4	PRINCIPES DE L’INTEGRATION DES REFERENCES PM DANS PIM :
+2.4.1	But :
+Gérer par définition unique les références EDD qui présentent une définition identique.
+Une table de gestion d’équivalence des lignes produit est gérée afin de regrouper les lignes produits à comparer.
+Ceci permet d’avoir des nomenclatures de définition à proprement dit et de limiter le nombre de ces nomenclatures par rapport aux nomenclatures des EDD issus de PM.
+2.4.2	Règles :
+Pour une référence à gérer en définition ( OD module ), pour toute évolution de cette définition reçue de PM dès qu’elle ne répond pas aux critères de comparaisons décrits dans le chapitre suivant, il y a évolution d’indice.
+Toutes les définitions PM reçues sont stockées en l’état dans DTM. 
+2.5	LES ETAPES DE L’INTEGRATION  PAR NOMENCLATURE 
+Le fichier NOMPIM00 peut contenir différentes nomenclatures. Ces nomenclatures peuvent appeler des mêmes composants avec des définitions différentes pour chacune des nomenclatures. Dans DTM, il est donc nécessaire de charger les nomenclatures individuellement. L’ordre de chargement est établi en triant les têtes de nomenclature du fichier ( REFETAT à space ) en ordre alphanumérique croissant.
+2.5.1	Effectuer les contrôles pouvant entraîner un rejet du chargement :
+2.5.1.1	Orientation des remontées des contrôles bloquants ou d’avertissement : 
+Les remontées des contrôles bloquants et de contrôles d’avertissement sont envoyés ( pour chacune des têtes de nomenclature )  par rapport à un poste de table de la table ODM :
+
+Composé	Type de
+ composé	BAL destinatrice
+EDD	0	•	BT du générique/ligne produit si générique (*) /ligne produit si présents en table.
+•	BT du poste ADM si générique / ligne produit non présents en table.
+
+(*) : « Générique –D » pour un EDD de développement
+  «  Générique » dans les autres cas 
+EMS/EMP	3	Lanceur du poste EMS/EMP
+KIT	7	Lanceur du poste KIT
+
+ 
+
+2.5.1.2	Contrôles des EDD par rapport au générique ligne produit : 
+2.5.1.2.1	Tout PCA ligne produit doit être déclaré dans la table ODM :
+Chacun des EDD du fichier doit exister en terme de PCA ligne produit dans la table ODM.
+Gesfic 1961 : Si l’EDD est un EDD de développement, ( le 3ème caractère de l’EDD est « D ») ,le générique est complément de « -D » afin de contrôler l’existence du radical OD Module spécifique développement.
+Si le contrôle n’est pas vérifié :
+ Rejet de la nomenclature en listant les contrôles non vérifiés.
+2.5.1.2.2	Repère en double sans être déclarés en alternative :
+Pour chacun des repères composants, s’assurer de l’unicité composé – repère fonctionnel pour un lien de composition à space. Si non vérifié :
+Rejet de la nomenclature en listant les contrôles non vérifiés.
+2.5.1.2.3	Suivi Utilisation non homogènes sur un repère fonctionnel :
+Rejet de la nomenclature en listant les contrôles non vérifiés  
+2.5.1.2.4	REPFCT en double dans la nomenclature multiniveaux :
+Rejet de la nomenclature en listant les contrôles non vérifiés  
+2.5.1.2.5	ULC non utilisable en alternative :
+Si type de composant ( TYPECT ) = 2 et le type de composant différent de ‘0’ , ‘3’ ou ‘7’ , 
+Rejet de la nomenclature en listant les contrôles non vérifiés  
+Message : ULC non rattaché à un composant à ITR : COMPOSE – REPFCT – COMPOSANT - DENODF
+2.5.1.2.6	Cohérence du type de composé et du repère fonctionnel à space :
+Rejet de la nomenclature en listant les contrôles non vérifiés  
+Si type de composant ( TYPECT ) différent de  « 8 » et le repère fonctionnel est à space  
+Message : Absence de REPFCT  type de composant  : TYPECT - COMPOSE – REPFCT – COMPOSANT - DENODF
+2.5.1.2.7	Cohérences du type de composé à « 8 » et du repère fonctionnel :
+Si type de composant ( TYPECT ) = « 8 » et le repère fonctionnel est différent de space  
+Rejet de la nomenclature en listant les contrôles non vérifiés  
+Message : REPFCT à tord pour type de composant jeu d’aube : TYPECT - COMPOSE – REPFCT – COMPOSANT - DENODF
+2.5.1.2.8	Une définition EMS/EMP, ULC ou KIT connue de DTM, ne peut évoluer sans changer de référence :
+Pour chacun des EMS/EMP, ULC et Kits reçus :
+Si la référence existe en terme d’OD :
+Comparer les Caractéristiques Nomenclatures (C.N.) entre l’OD et la nomenclature reçue :
+Si pas d’égalité des C.N. :
+Rejet de la nomenclature en listant les contrôles non vérifiés.
+Si égalité sur C.N. :
+Comparaison de la nouvelle définition par rapport à la NDD de l’OD en terme de  Repère fonctionnel, Quantité au repère ( contrôle dans les 2 sens ) .
+Si contrôle non vérifié : 
+Rejet de la nomenclature en listant les contrôles non vérifiés.
+2.5.1.2.9	Attribut SU incohérent
+Pour chaque repère fonctionnel, si l’attribut suivi utilisation (SU) est différents entre les articles ayant un type composant ( TYPECT ) = « 5 » et un type composant = « 1 » : 
+Rejet de la nomenclature en listant les contrôles non vérifiés
+
+
+2.5.2	Chargement partiel d’une nomenclature présentant des contrôles bloquants : 
+Gesfic 2057 
+2.5.2.1	Principe :
+En cas de contrôles bloquant, au lieu d’écarter l’ensemble de la nomenclature, afin de mettre à disposition des méthodistes les bas de nomenclatures, écarter les parties de nomenclatures arborescentes qui présentent des contrôles bloquants et recharger les parties de nomenclatures ( à positionner comme tête de nomenclature ) qui peuvent être autonomes.
+2.5.2.2	Recherche des parties de nomenclatures éligibles au rechargement  :
+
+Suite à l’émission du mail relatif aux contrôles bloquants, au lieu d’arrêter la chaine de traitement, ajout d’une sous-chaîne de traitement afin d’identifier les parties de nomenclatures ne se trouvant pas parmi les composés présentant des contrôles bloquants ou ne se trouvant pas parmi les utilisations multiniveaux des composants présentant des contrôles bloquants.
+2.5.2.2.1	Identification des composés à écarter du rechargement  :
+
+A partir des références présentant des contrôles bloquants, constituer un fichier avec ces références à contrôles bloquants et de leur utilisations multiniveaux.
+2.5.2.2.2	Constitution des sous-nomenclatures à recharger :
+Seuls les modules à ITR ( types de composants 0, 3 ou 7 ) non impactés par les contrôles bloquants sont rechargés : Les composants de type W,X,Y et Z seront rechargés lorsque l’EDD utilisateur ne présente plus de contrôles bloquants. 
+
+Parcours du fichier de la nomenclature initialement à traiter :
+•	Si le composant n’est pas dans le fichier des références à écarter 
+o	Si le type de composant est 0, 3 ou 7 ( composant à ITR )
+	Si la référence du composé est dans le fichier des références à écarter 
+•	Reblanchir la référence composé et écrire la ligne ( le composant devient tête de nomenclature )
+o	Si le type de composant est différent de 0, 3 et 7
+	Si la référence du composé n’est pas dans le fichier des références à écarter 
+•	Ecrire la ligne 
+2.5.2.2.3	Traitement des sous-nomenclatures à recharger :
+
+Eclatement et intégration du fichier des sous-nomenclatures par une sous-chaine identique à la chaîne primaire.
+Remarque : Les contrôles d’avertissements éventuels ressortiront à nouveau au titre du chargement de la sous-nomenclature.
+ 
+
+2.5.2.2.4	Illustrations des rechargements partiels :
+
+ 
+
+   
+ 
+
+2.5.3	Evaluation de la définition reçue, par rapport aux NDD et LRD DTM : 
+2.5.3.1	Principe de comparaison des nomenclatures EDD :
+
+1.	Une comparaison de nomenclature EDD peut être comparée à une définition connue si et seulement si les 2 nomenclatures ont les mêmes Caractéristiques de Nomenclatures ( CN ).
+2.	Le principe de recherches de la potentialité de définition connue se fait chronologiquement de la façon suivante :
+a)	S’il n’existe pas de LRD ===> Nouvelle définition
+b)	S’il n’existe pas de LRD ayant le même CN ===> Nouvelle définition
+c)	L’EDD a-t-il déjà été chargé ?
+Si oui : Comparaison de la définition reçue avec celle précédemment associée. 
+Les 2 nomenclatures ont le même CN ; la définition de référence est cet indice d’OD module.
+Les CN ne sont pas identiques, la définition de référence est l’indice de même CN, recherchée à partir de l’indice précédent la définition précédemment associée.
+d)	La ligne produit – type a-t-elle déjà été chargée ?
+Si oui : Comparaison de la définition reçue avec la définition associé au unit précédemment. 
+Les 2 nomenclatures ont le même CN ; la définition de référence est cet indice d’OD module.
+Les CN ne sont pas identiques, la définition de référence est l’indice de même CN, recherchée à partir de l’indice précédent la définition précédemment associée.
+e)	La ligne produit référentielle a-t-elle déjà été chargée ?
+Si oui : Comparaison de la définition reçue avec la définition associé au unit précédemment. 
+Les 2 nomenclatures ont le même CN ; la définition de référence est cet indice d’OD module.
+Les CN ne sont pas identiques, la définition de référence est l’indice de même CN, recherchée à partir de l’indice précédent la définition précédemment associée.
+f)	La ligne produit n’est pas connue, la définition à comparer se trouve parmi les n derniers indices de l’OD module ayant le même CN ( n : valeur paramètre saisie dans la table ODM ).
+2.5.3.2	Détermination des caractéristiques nomenclatures pour les EDD, EMS/EMP et Kits :
+
+Pour les articles gérés en configuration ( NDD et LRD ), ( si le type du composé est égal à ‘0’, ‘3’ ou ‘7’ ), calculer :
+- le nombre distinct de repères .
+- la somme des quantités pour l’ensemble des repères qui ne sont pas déclarés en alternative.
+
+( Pour la LRD, le nombre de repères et le cumul des quantités doivent intégrer les composants d’ ULC  en ne prenant pas en compte l’ ULC lui-même )
+ 
+
+2.5.3.3	Détermination des OD modules et LRD de références :
+1ers contrôles permettant d’identifier les évolutions de ODM et LRD
+Pour chacun des EDD reçus : 
+Rechercher si la LRD d’indice 000 du radical trouvé en table ODM existe :
+Si LRD d’indice 000 est non existante : 
+- L’OD module associé à l’EDD est un nouvel OD module à créer à l’indice 00000
+- La LRD associée à l’EDD est une nouvelle LRD créée à l’indice 000
+Si au moins une LRD de même radical rechercher si au moins une LRD à les mêmes CN
+Si non : La définition est obligatoirement une nouvelle définition : L’OD module et la LRD doivent évoluer.
+
+Décomposition de la référence EDD en PCA – N° Ordre.
+2.5.3.3.1	La définition reçue est à comparer en terme de NDD et de LRD :
+2.5.3.3.1.1	Détermination des OD module et LRD de référence :
+Si l’OD module d’indice 00000 existe et si l’OD module associé à l’EDD n’est pas identifié comme étant à évoluer au titre de l’un de ses composants, recherche des indices d’EDD et de LRD de référence : 
+Recherche exacte d’existence dans DTM, du PCA – N° d’ordre calculé :
+2.5.3.3.1.1.1	Si le PCA – N° d’Ordre existe : 
+Comparer les C.N. entre l’OD module et la nomenclature reçue :
+Si égalité des C.N. :
+- ODM : L’indice de l’OD module de référence est l’OD module rattaché à l’EDD.
+- LRD : A partir du dernier indice existant de la LRD et jusqu’à l’indice 000, remonter les indices des LRD, pour rechercher si un indice de LRD présente le même C.N. 
+Si on trouve un indice de LRD présentant le même C.N. :
+- Cette LRD est l’indice de référence.
+Si l’on ne trouve pas un indice de LRD présentant le même C.N. :
+- La LRD de dernier dernier indice doit évoluer en indice.
+Si pas d’égalité des C.N. :
+-	 ODM : A partir de l’indice –1 de l’OD module rattaché au PCA – N° d’ordre, rechercher si un indice d’OD module présente le même C.N. 
+Si on trouve un indice d’OD présentant le même C.N. :
+- Cet OD module est l’indice de référence.
+Si l’on ne trouve pas un indice d’OD présentant le même C.N. :
+- Le radical d’OD module doit évoluer en indice ainsi que l’utilisation multiniveau de l’OD module rattaché au PCA – N° d’ordre.
+- LRD : A partir du dernier indice existant de la LRD et jusqu’à l’indice 000, remonter les indices des LRD, pour rechercher si un indice de LRD présente le même C.N. 
+Si on trouve un indice de LRD présentant le même C.N. :
+- Cette LRD est l’indice de référence.
+Si l’on ne trouve pas un indice de LRD présentant le même C.N. :
+- La LRD de dernier dernier indice doit évoluer en indice.
+
+2.5.3.3.1.1.2	Si le PCA – N° d’Ordre n’existe pas : Recherches sur la ligne produit 
+Rechercher si la ligne produit ( 2 1er caractères ) et le type de produit ( 3e caractère de l’EDD ) est connue :
+Si trouvé :
+L’EDD connu à retenir est celui qui présente le UNIT directement inférieur.
+Si non trouvé mais que la ligne produit existe :
+L’EDD connu à retenir est celui de la ligne produit dont le type de produit est ‘R’ et qui présente le UNIT directement inférieur.
+Si cet EDD existe :
+ODM : Accéder à l’OD module de cet EDD et comparer le C.N. avec l’EDD du fichier :
+Si pas d’égalité des C.N. :
+A partir de l’indice –1 de l’OD module rattaché au PCA – N° d’ordre, rechercher si un indice d’OD module présente le même C.N. 
+Si on trouve un indice d’OD présentant le même C.N. :
+- Cet OD module est l’indice de référence.
+Si l’on ne trouve pas un indice d’OD présentant le même C.N. :
+- Le radical d’OD module doit évoluer en indice ainsi que l’utilisation multiniveau de l’OD module rattaché au PCA – N° d’ordre.
+LRD : A partir du dernier indice existant de la LRD et jusqu’à l’indice 000, remonter les indices des LRD, pour rechercher si un indice de LRD présente le même C.N. 
+Si on trouve un indice de LRD présentant le même C.N. :
+- Cette LRD est l’indice de référence.
+Si l’on ne trouve pas un indice de LRD présentant le même C.N. :
+- La LRD de dernier dernier indice doit évoluer en indice.
+
+Si cet EDD n’existe pas : Poursuivre la recherche au titre des autres lignes produit équivalentes qui sont chargées.
+2.5.3.3.1.1.3	Si la ligne produit  n’existe pas : 
+
+A partir du dernier indice du radical connu, rechercher parmi les n derniers indices ( valeur paramètre dans la table ODM ), l’indice le plus petit qui présente le même CN. 
+Si l’on ne trouve pas un indice d’OD présentant le même C.N. :
+- Le radical d’OD module doit évoluer en indice ainsi que l’utilisation multiniveau de l’OD module rattaché au PCA – N° d’ordre.
+- La LRD de radical doit évoluer en indice.
+Si on trouve un indice d’OD présentant le même C.N. :
+- Cet OD est l’indice de référence.
+LRD : A partir du dernier indice existant de la LRD et jusqu’à l’indice 000, remonter les indices des LRD, pour rechercher si un indice de LRD présente le même C.N. 
+Si on trouve un indice de LRD présentant le même C.N. :
+- Cette LRD est l’indice de référence.
+Si l’on ne trouve pas un indice de LRD présentant le même C.N. :
+2.5.3.3.1.2	Comparaison de la définition reçue par rapport aux NDD et LRD de références déterminées :
+ODM : A effectuer uniquement si l’OD module ne doit pas évoluer au titre de ses composants 
+Comparaison de la nouvelle définition par rapport à la NDD de l’OD module de référence en terme de  Repère fonctionnel, Quantité au repère, Référence article composant ( contrôle dans les 2 sens ) .
+* si OK : L’EDD est associé à la l’OD module de référence.
+* si pas OK : 
+Si écart uniquement sur référence article :
+- L’EDD est détaché de l’OD module précédemment rattaché.
+* L’EDD reste attaché à la même LRD
+Si écart sur repère fonctionnel ou quantité au repère :
+- L’EDD est détaché de l’OD module précédemment rattaché.
+- L’EDD est détaché de la LRD précédemment rattaché
+
+Recherche des indices de NDD qui ont le même CN entre l'indice de référence et les indices supérieurs, puis comparaisons précise des nomenclatures sur ceux-la. ( en terme de Repère fonctionnel, Quantité au repère, Référence article composant ) dans les 2 sens.
+Si l’on trouve une référence NDD comparable à la définition reçue :
+- L’EDD est associé à cet OD module.
+Si l’on ne trouve pas de référence NDD comparable à la définition reçue :
+- L’OD module est indicé 
+Gesfic 1991 : Si le radical ODM est en table des repères jeux d’aubes, le radical ODM et l’EDD associés sont chargés en table applicative PAJ afin de permettre la complémentation des articles à de la table des repères jeux d’aubes. 
+Le poste de table contient le radical OD Module
+Le libellé du poste contient l’EDD
+- L’EDD est associé à ce nouvel OD module indicé.
+- Les EDD utilisateurs dans la nomenclature devront être associés à de nouveaux indices d’ OD modules , s’ils existent à l’indice 00000 .
+Gesfic 1991 : Si le radical ODM est en table des repères jeux d’aubes, le radical ODM et l’EDD associés sont chargés en table applicative PAJ afin de permettre la complémentation des articles à de la table des repères jeux d’aubes. 
+Le poste de table contient le radical OD Module
+Le libellé du poste contient l’EDD
+
+Recherche des indices de LRD qui ont le même CN entre l'indice de référence et les indices inférieurs, puis comparaisons précises des nomenclatures sur ceux-la. ( en terme de Repère fonctionnel, Quantité au repère ) dans les 2 sens.
+Si l’on trouve une référence LRD comparable à la définition reçue :
+- L’EDD est associé à cette LRD.
+Si l’on ne trouve pas de référence LRD comparable à la définition reçue :
+- La LRD est indicée
+- L’EDD est associé à cette nouvelle LRD indicée.
+2.5.3.3.2	La définition reçue est à comparer en terme de LRD uniquement :
+( Si l’OD module doit évoluer au titre de ses composants )
+2.5.3.3.2.1	Détermination de la LRD de référence :
+Si l’OD module d’indice 00000 existe et si l’OD module associé à l’EDD est identifié comme étant à évoluer au titre de l’un de ses composants, seule la recherche de la LRD de référence est à effectuer : 
+LRD : A partir du dernier indice existant de la LRD et jusqu’à l’indice 000, remonter les indices des LRD, pour rechercher si un indice de LRD présente le même C.N. 
+Si on trouve un indice de LRD présentant le même C.N. :
+- Cette LRD est l’indice de référence.
+Si l’on ne trouve pas un indice de LRD présentant le même C.N. :
+- La LRD de dernier dernier indice doit évoluer en indice.
+
+Si le produit est connu mais pas le unit, l’EDD de référence est le unit précédent :
+LRD : A partir du dernier indice existant de la LRD et jusqu’à l’indice 000, remonter les indices des LRD, pour rechercher si un indice de LRD présente le même C.N. 
+Si on trouve un indice de LRD présentant le même C.N. :
+- Cette LRD est l’indice de référence.
+Si l’on ne trouve pas un indice de LRD présentant le même C.N. :
+- La LRD de dernier dernier indice doit évoluer en indice.
+
+
+Si le produit n’est connu :
+LRD : A partir du dernier indice existant de la LRD et jusqu’à l’indice 000, remonter les indices des LRD, pour rechercher si un indice de LRD présente le même C.N. 
+Si on trouve un indice de LRD présentant le même C.N. :
+- Cette LRD est l’indice de référence.
+Si l’on ne trouve pas un indice de LRD présentant le même C.N. :
+- La LRD de dernier dernier indice doit évoluer en indice.
+
+2.5.3.3.2.2	Comparaison de la définition reçue par rapport à la LRD de référence :
+
+Comparaison de la nouvelle définition par rapport à la LRD de référence en terme de  Repère fonctionnel, Quantité au repère ( contrôle dans les 2 sens ) .
+* si OK : L’EDD est associé à la LRD de référence .
+* si pas OK : 
+- L’EDD est détaché de la LRD précédemment rattaché ( s’il y avait un lien )
+
+Recherche des indices de LRD qui ont le même CN entre l'indice de référence et les indices inférieurs, puis comparaisons précises des nomenclatures sur ceux-la. ( en terme de Repère fonctionnel, Quantité au repère ) dans les 2 sens.
+Si l’on trouve une référence LRD comparable à la définition reçue :
+- L’EDD est associé à cette LRD.
+Si l’on ne trouve pas de référence LRD comparable à la définition reçue :
+- La LRD est indicée
+- L’EDD est associé à cette nouvelle LRD indicée.
+ 
+
+2.5.4	Interactions dans PIM ( GIT ) suite à l’intégration d’un EDD :
+Il s’agit d’effectuer automatiquement les mises à jour de l’applicabilité en EDD à une ITD, en fonction des applicabilités existantes dans PIM si l’EDD a changé de LRD ou si l’EDD passe de non gelé   gelé.
+
+* Si l’EDD a été créé et rattaché à une LRD existante qui est liée à au moins une ITD:
+* Si L’EDD a été créé avec une nouvelle LRD
+* Si l’EDD a changé de LRD :
+- Ancienne LRD liée à au moins une ITD.
+- Nouvelle LRD liée à au moins une ITD.
+2.5.4.1	l’EDD à été créé et rattaché à une LRD existante qui est liée à au moins une ITD:
+Créer autant d’applicabilités en EDD que de lien LRD – ITD
+
+2.5.4.2	L’EDD à été créé avec une nouvelle LRD
+… Information méthodiste qu’un EDD a été créé sur une LRD sans ITD.
+
+2.5.4.3	L’EDD a changé de LRD :
+- L’ancienne LRD est liée à au moins une ITD.
+Pour chacune des LRD – EDD / ITD :
+… Information méthodiste qu’une ITD n’est plus valide pour l’EDD.
+Si l’applicabilité est valide, alimenter automatiquement la date de fin de validité.
+
+- Nouvelle LRD existe et est liée à au moins une ITD.
+Créer autant d’applicabilités en EDD que de lien LRD – ITD
+… Information méthodiste du nouveau lien EDD - ITD.
+
+- Nouvelle LRD n’existe pas ou n’est pas liée à au moins une ITD.
+… Information méthodiste qu’un EDD à été créé sur une LRD sans ITD.
+ 
+
+2.5.5	Effectuer les contrôles entraînant un avertissement utilisateur :
+2.5.5.1	Changement de suivi en utilisation, suivi montage et relevé vendor d’un article :
+Pour tous les articles du fichier, si la définition existe dans DTM, et qu’au moins l’une de ces 3 propriétés évolue, le changement de valeur doit être entériné par la qualité avant de l’appliquer en COOR.
+
+Méthode de traitement proposé :
+A la création des définitions PM dans DTM les OD portent 2 visas : Le visa ‘R’ et le visa ‘Q’
+
+Le fait qu’une propriété de suivi en utilisation ou relevé montage ou code classement soit modifiée à par conséquences 
+- D’AVERTIR LA QUALITE DU CHANGEMENT D’ATTRIBUT
+- De stocker la ou les nouvelles valeurs dans des rubriques de mise en réserve
+- De retirer le visa ‘Q’ de l’OD impacté.
+La qualité devra alors statuer sur l’application des attributs proposés par PM et viser ‘Q’, l’OD concerné. 
+Action Qualité à réaliser :
+Par un code opération réservé Qualité, l’utilisateur pourra accepter la nouvelle définition ou la refuser :
+S’il l’accepte, les nouveaux attributs sont pris en compte dans l’OD, le visa ‘Q’ est apposé et les nouveaux attributs sont répercutés sur les COOR déclarés en écart à la génération de la COOR.
+S’il la refuse, les nouveaux attributs de définition sont supprimés et le visa ‘Q’ est apposé. 
+
+Attention : 
+Cette procédure ne s’applique pas pour les COOR générées avant la modification d’attribut :
+ S’il est nécessaire de prendre en compte les nouveaux paramètres dans une COOR existante, je propose ce que l’on appelle, un changement de composition par recopie . …on l’on recopie l’ensemble de la COOR avec les nouvelles propriétés de définition : SU, SM, Classement, alternatives …
+ 
+
+2.5.5.2	Tests d'intégrité d'une nomenclature reçue de PM
+
+Pas de règle concernant la présence des références transposées ou associées
+
+2.5.5.2.1	Si une PEM (type 1) possède des composants :
+Alerter BT-ligne et ignorer les composants
+2.5.5.2.2	Si un EDD, ULC, EMS/EMP, alternative (types 0, 2, 3, 4, 5, 6, 7) n'a pas de composant :
+Alerter BT-ligne 
+2.5.5.2.3	Si une PEM (type 1)  a un classement à '-' :
+Alerter BT-ligne 
+2.5.5.2.4	Si un article est SU='O' et SM différent '-' : 
+Alerter BT-ligne 
+2.5.5.2.5	Si classement N1 ou N2 ou ( N3 et (SU=Oui ou SM = Oui) ) et pas de vendor 
+Alerter BT-ligne
+Msg : 'LISTE DES VENDOR EST VIDE'.
+
+ 
+
+2.5.6	DTM, TRAM et PIM ignorent les composants dont les repères fonctionnels sont à blanc dans PM :
+Les repères "à blanc" issus de PM ne sont pas nécessaires dans DTM ( NDD et LRD ) ni dans PIM ( LRIT ) :
+- Les repères composants de ce dernier sont rattachés directement à l'EDD supérieur dans la NDD et la LRD.
+- Le méthodiste créé un repère jeu d'aubes et y associe l'ensemble des composants qui si rattachent. La quantité de ce repère est le cumul des quantités de l'ensemble des composants.
+- A la génération de l'ITR, la COOR est complétée de ce nouveau repère et les composants récupèrent comme attribut de jeu, ce nouveau repère.
+- A l'intégration du jeu dans la COOR,
+* Contrôle que la quantité prévue sur le repère jeu est égale à la somme  des aubes livrées dans le fichier PIRAT.
+* Contrôle que les quantités des aubes dont typqte = 'A'  ou 'C' ( est conforme à la quantité prévue en NDD ) .
+-  Si écart sur quantité au repère, ouverture d'une réserve sur quantité.
+
+2.5.7	Attributs PIM à considérer par rapport à la définition PM :
+
+Les articles PM répliquées vers PIM sont constituées de différents types de références qui sont appliqués au niveau du composé et du composant :
+ - "0" : EDD - Etat De Définition 
+ - "1" : Si aucun des autres cas
+ - "2" : Article ULC 
+ - "3" : Article EMS/EMP (qui peut être à alternatives)
+ - "4" : Article besoin 
+ - "5" : Article besoin ( à alternatives )
+ - "6" : Article de remplacement
+ - "7" : Kit
+ - "8" : Article variable ( sans repère fonctionnel )
+ - "9" : Article issu du type 5
+ 
+
+2.5.7.1	Immatriculation d’un article dans PIM :
+PIM à besoin de gérer la notion d’immatriculation d’un article (suivi utilisation, relevé montage, relevé vendor )  qui est déterminée par rapport au type de composant dont il est associé dans PM :
+
+Définition PM	Traitements PIM	Valeur de TYPIMA
+Types de composant à 0, 1 et 7
+Types de composant à 3 non alternative (sans ALT)	Ligne à traiter par rapport la définition de l’article prévue	A
+Type de composant à 2	Ligne fictive sans traitement : On fait apparaître les composants et ce sont eux qui portent les traitements.	B
+Type de composant à 3 et alternative (avec ALT)	Ligne à immatriculer par rapport à l’un des composants de l’article prévu.	C
+Type de composant à 4 avec repère fonctionnel et type de composant à 5 et 6	Ligne à immatriculer par rapport à l’un de des composants de l’article prévu.	C
+Types de composant à 4 sans repère fonctionnel	Ligne avec un repère fonctionnel PIM que l’on rend fictive objet d’un  contrôle de cumul de quantité.	D
+Composants d’un composant dont le TYPIMA = C	Ligne sans contrôle de quantité.	E
+
+2.5.7.2	Contrôle sur quantité d’un article dans PIM :
+PIM a besoin de gérer pour un composant, la notion de type de contrôle en terme de quantité. Ce contrôle s’effectue par rapport au type d’immatriculation de l’article.
+
+Valeur de TYPIMA	Traitements PIM pour TYPQTE	Valeur de TYPQTE
+A , C	Contrôle par rapport à la quantité prévue en NDD	A
+D	Contrôle par rapport au cumul des composants montés	B
+B , 	Sans contrôle de quantité 	C
+
+2.5.7.3	Gestion des N° de Modification Technique issu de PM :
+Le dernier N° de MT ( NOMPIM00.NUMMT ) est associé à chacun des articles de la nomenclature dont NOMPIM00.NUMMT est alimenté . Ce N° de MT sera consultable à travers l’écran de consultation des propriétés de l’EDD ou de l’article.
+De plus, si le N° de MT n’existe pas en tant qu’OCD, il est créé et chacun des OD qui lui sont associés dans NOMPIM00.NUMMT lui sont rattachés ( s’il ne l’était pas ) .
+
+ 
+
+3	IMPACTS DTM :
+3.1	SCHEMA DE DONNEES DE LA DEFINITION DANS DTM :
+3.1.1	La définition reçue de PM
+Sert à gérer en configuration les données d’une nomenclature :
+
+tête de nomenclature 
+
+
+
+
+
+	Les références articles 
+
+
+	La composition des articles 
+
+
+3.1.2	L’historique des définitions reçues de PM
+Sert à sauvegarder l’ensemble des données reçues de PM :
+
+
+
+	L’ensemble des NOMPIM00 reçus de PM
+
+3.1.3	La définition DTM
+Sert à gérer en configuration les définitions DTM :
+
+
+
+
+(0,n)
+
+
+( 1, n )
+
+( 1,1 )                                ( 1,1 )
+( 0, n )                                                                 ( 0 ,n )
+
+
+
+
+
+
+
+
+
+
+ 
+
+3.2	DESCRIPTION DES TABLES ASSURANT LE CHARGEMENT :
+3.2.1	La tête de nomenclature : REFETA ( Table PM01 )
+	Libellé rubrique	Nom de la rubrique	Format	Rubrique PM
+	Radical	RADOD	x(16)	REFETAT
+
+3.2.2	Les référence articles : REFPM ( Table PM02 )
+	Libellé rubrique	Nom de la rubrique	Format	Rubrique du fichier PM
+Propriétés fonctionnelles	Radical	RADOD	x(16)	REFETAT
+	Part number	PARTNB	x (32)	PNRART
+	Dénomination	DENODF	x(30)	LIBCOMP
+	Serialisation	INIMMA	X(1)	SERIALAS
+	Relevé montage	RELMON	X(1)	SERIALRM
+	Classement	CLASMT	X(4)	CLASART
+	Vendor	VENDOR	8 * x(5)	VENDOR
+	Code fabriquant	FABIMP	X(5)	CODEFAB
+	Référence associée	REFASC	X(32)	REFASSO
+	Référence concepteur	RFCONC	x(32)	REFCONC
+	Référence transposée	REFTRP	x(23)	TRANSPO
+	Type de composant	TYPECT	X(1)	TYPCOMPT
+	Désignation étrangère	DENODE	X(30)	DESETRA
+Propriétés techniques	Radical d’ OD module et LRD associé en table ODM	RADIC	X(8)	
+	Indice OD module défini	INDOD	9(5)	
+	Indice référence de comparaison sur ODM	IND1OD	9(5)	
+	Indice LRD défini	INDLRD	9(3)	
+	Indice référence de comparaison sur LRD	IN1LRD	9(3)	
+	Indicateur d’évolution d’un composant ou de création à l’indice 00000.	INDICE	X(1)	Valeurs :
+0 :
+1 : évol. Comp.
+2 : création
+	Dernier indice 	DINDOD	9(5)	
+	Matricule de création	MATCRE	X(7)	
+	Date de création	DATCRE	X(8)	
+	Nombre de repères composants ( hors Alt. )	NBCOMP	9(4)	
+	Somme des quantités de l’ensemble des repères	QTEREP	9 (10)	
+	Niveau dans la nomenclature	SOM	9(4)	
+ 
+
+3.2.3	Les compositions d’article : COPM ( Table PM03 )
+	Libellé rubrique	Nom de la
+ rubrique	Format	Rubrique du fichier PM
+Propriétés fonctionnelles	Référence article composé	RADOD	X (16)	REFETAT
+	Repère fonctionnel	REPFCT	X  (9)	REPLIEN
+	Lien de composition au repère	COLICO	X  (1)	 (*)
+	Référence article composant	RADOD1	X (16)	REFCOMP
+	Quantité	QTECO	X (4)	QUANTLIEN
+	Type de composé	TYPECE	X(1)	TYPCOMPE
+	Quantité variable	QTEVAR	X(1)	 (*)
+	Quantité à cumuler	QTECUM	X(1)	 (*)
+	Type de composant	TYPECT	X(1)	TYPCOMPT
+	N° de MT	REFOCD	x(9)	NUMMT
+	Date effectivité	DATEEF	x(8)	DATEEFFE
+	Document de référence DMD	REFDOC		(*)
+
+(*) : FEB PM-PIM version 2 
+
+3.3	L’ENSEMBLE DES COMPOSITIONS REÇUES DE PM : ODIPM (TABLE PM04)
+
+	Libellé rubrique	Nom de la
+ rubrique	Format	Rubrique du fichier PM
+Propriétés fonctionnelles	Référence article composé	RADOD	X (16)	REFETAT
+	Repère fonctionnel	REPFCT	X  (9)	REPLIEN
+	Lien de composition au repère	COLICO	X  (1)	 (*)
+	Référence article composant	RADOD1	X (16)	REFCOMP
+	Quantité	QTECO	X (4)	QUANTLIEN
+	Type de composé	TYPECE	X(1)	TYPCOMPE
+	Quantité variable	QTEVAR	X(1)	 (*)
+	Quantité à cumuler	QTECUM	X(1)	 (*)
+	Type de composant	TYPECT	X(1)	TYPCOMPT
+	N° de MT	REFOCD	x(9)	NUMMT
+	Date effectivité	DATEEF	x(8)	DATEEFFE
+Propriétés techniques	Date de création
+	DATCRE	x(8)	
+	Heure de création
+	HEUCRE	x(6)	
+	Indice calculé d’ OD module
+	INDOD	9(5)	
+
+ 
+
+3.4	DESCRIPTION DES TABLES CONCERNANT LA LRD :
+3.4.1	La Liste De Repères : LRD ( Table PM14 )
+
+Libellé rubrique	Description	Type
+Radical	Constitue la référence de la liste	x(20)
+Indice liste		
+Libellé	Dénomination de l’article associé au repère	x(30)
+NBCOMP	Nombre de repères composants	9 (4)
+QTEREP	Somme des quantités de l’ensemble des repères	9 (10)
+DIND	Dernier indice	9(03)
+3.4.2	La composition d’une LRD : COLRD ( Table PM16 )
+
+Libellé rubrique	Description	type
+Radical liste	Constitue la référence de la liste composée	x(20)
+Indice liste		
+Repère fonctionnel	Repère fonctionnel composant	X(09)
+Quantité	Quantité au repère	9(4)
+
+3.4.3	Le lien entre L’EDD et la LRD : LRDEDD ( Table PM15 )
+
+Libellé rubrique	Description	Type
+Radical	Constitue la référence de la liste	x(16)
+Indice liste		9(03)
+EDD	Référence EDD : 	X(11)
+
+3.5	NOTIONS DIVERSES : 
+3.5.1	Rajouts de propriétés sur l’Objet Défini : OD ( Table AO01 )
+NBCOMP	Nombre de composants directs	9 (4)
+QTEREP	Somme des quantités de l’ensemble des repères	9 (10)
+
+ 
+
+4	EVOLUTIONS MCO :
+4.1	GESFIC 970 AP : NOUVELLES TYPOLOGIE D’ARTICLE :
+4.1.1	La définition reçue de PM
+4.2	GESFIC 971 AP : INTRODUCTION DE REPERES NON CONNUS DE PM :
+1) Chargement DTM : 
+ * Rajout des repères non PM / table REP pour une ligne produit, genérique traité ( le repère étant facultatif ) à charger . 
+ * Si pas de repère dans le poste de table, le repère est directement rattaché à l'EDD.
+Pour chacun des repères associés à la ligne produit / générique, rajouter une ligne à charger ( PM03 ) pour l'EDD traité :
+ - Le REPFCT, REF ARTICLE ET QUANTITE sont issus du poste de table
+ - Les autres propriétés de l'article sont issus de l'article créé dans DTM
+ - Le type de composant est A ( Repère non géré dans PM ) à gérer dans PIM comme un type 1.
+  Ce nouveau repère est composant de l'EDD ( qu'il y ait ou non un repère associé dans le poste de table ).
+4.3	GESFIC 1022 AP : PRISE EN COMPTE DES QSB PM :
+4.4	GESFIC 1869 : 
+•	Avertissement si changement partnb sur EDD ayant au moins 1 OR
+4.5	GESFIC 1927 : 
+L'ensemble de la nomenclature est rejetée si au moins est des EDD est non gelé et qu'il existe au moins 1 matricule
+4.6	GESFIC 1961 : 
+Ségrégation des flux développement et série : 
+ 
+4.7	GESFIC 1991 : 
+Projet Corsaire : Complémentation des articles aux repères jeux d'aubes
+
+ 
+
+4.8	GESFIC 2069 : 
+FEB concernant la modification de compo KIT ou EMS/EMP sans changement référence : Il est possible de conserver la même reference de tête si et seulement si les repères et les quantités sont strictement identiques. Un changement de référence ou l’ajout d’une solution autorise la conservation de la référence.
+4.9	GESFIC 2218 : 
+La recherche de la LRD de référence se fait automatiquement par rapport au dernier indice de LDR connu. A partir de ce dernier indice, et pour le nombre d’indices défini dans TABODM poste « 00000 », remontée des indices pour définir si l’une d’elles a les mêmes Caractéristiques Nomenclatures.
+
